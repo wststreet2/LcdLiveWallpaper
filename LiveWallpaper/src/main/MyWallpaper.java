@@ -13,8 +13,8 @@ import android.view.SurfaceHolder;
 
 public class MyWallpaper extends WallpaperService {
 
-	private static final int LCD_WIDTH = 144;
-	private static final int LCD_HEIGHT = 256;
+	private static final int LCD_WIDTH = 72;
+	private static final int LCD_HEIGHT = 128;
 
 	@Override
 	public Engine onCreateEngine() {
@@ -99,10 +99,13 @@ public class MyWallpaper extends WallpaperService {
 			c = sh.lockCanvas();
 			drawBg(c);
 			drawMatrix();
-			/*
-			 * for (int i = 0; i < LCD_WIDTH; i++) for (int j = 0; j <
-			 * LCD_HEIGHT; j++) { if (r.nextBoolean()) drawPixel(i, j); }
-			 */
+			initMatrix();
+			for (int i = 0; i < LCD_WIDTH; i++)
+				for (int j = 0; j < LCD_HEIGHT; j++) {
+					if (r.nextBoolean())
+						drawPixel(i, j);
+				}
+
 			try {
 				sh.unlockCanvasAndPost(c);
 			} catch (Exception e) {
@@ -114,13 +117,13 @@ public class MyWallpaper extends WallpaperService {
 		public void onTouchEvent(MotionEvent event) {
 			// TODO Auto-generated method stub
 			super.onTouchEvent(event);
-			int touchX = (int) event.getX() * LCD_WIDTH / width;
-			int touchY = (int) event.getY() * LCD_HEIGHT / height;
-			Log.d("WallpaperExample", "" + touchX);
-			Log.d("WallpaperExample", "" + touchY);
-			for (int i = touchX - 5; i <= touchX + 5; i++)
-				for (int j = touchY; j <= touchY + 5; j++)
-					displayMatrix[i][j] = 1;
+			/*
+			 * int touchX = (int) event.getX() * LCD_WIDTH / width; int touchY =
+			 * (int) event.getY() * LCD_HEIGHT / height;
+			 * Log.d("WallpaperExample", "" + touchX); Log.d("WallpaperExample",
+			 * "" + touchY); for (int i = touchX - 5; i <= touchX + 5; i++) for
+			 * (int j = touchY; j <= touchY + 5; j++) displayMatrix[i][j] = 1;
+			 */
 		}
 
 		private void drawBg(Canvas c) {
@@ -141,7 +144,7 @@ public class MyWallpaper extends WallpaperService {
 		}
 
 		private void drawPixel(int x, int y) {
-			int margin = 0;
+			int margin = 1;
 			try {
 				c.drawRect((x * pixelWidth) + margin, (y * pixelHeight)
 						+ margin, (x * pixelWidth) + pixelWidth - margin,
