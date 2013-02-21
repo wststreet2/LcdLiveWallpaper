@@ -110,7 +110,7 @@ public class MyWallpaper extends WallpaperService {
 				sh.unlockCanvasAndPost(c);
 			} catch (Exception e) {
 			}
-			mHandler.postDelayed(mDraw, 1000 / 5);
+			mHandler.postDelayed(mDraw, 1000 / 2);
 		}
 
 		@Override
