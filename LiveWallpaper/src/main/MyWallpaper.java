@@ -117,13 +117,15 @@ public class MyWallpaper extends WallpaperService {
 		public void onTouchEvent(MotionEvent event) {
 			// TODO Auto-generated method stub
 			super.onTouchEvent(event);
-			/*
-			 * int touchX = (int) event.getX() * LCD_WIDTH / width; int touchY =
-			 * (int) event.getY() * LCD_HEIGHT / height;
-			 * Log.d("WallpaperExample", "" + touchX); Log.d("WallpaperExample",
-			 * "" + touchY); for (int i = touchX - 5; i <= touchX + 5; i++) for
-			 * (int j = touchY; j <= touchY + 5; j++) displayMatrix[i][j] = 1;
-			 */
+
+			int touchX = (int) event.getX() * LCD_WIDTH / width;
+			int touchY = (int) event.getY() * LCD_HEIGHT / height;
+			try {
+				for (int i = touchX - 5; i <= touchX + 5; i++)
+					for (int j = touchY; j <= touchY + 5; j++)
+						displayMatrix[i][j] = 1;
+			} catch (Exception e) {
+			}
 		}
 
 		private void drawBg(Canvas c) {
