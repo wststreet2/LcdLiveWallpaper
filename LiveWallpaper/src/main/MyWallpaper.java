@@ -56,7 +56,7 @@ public class MyWallpaper extends WallpaperService {
 			super.onCreate(surfaceHolder);
 			sh = surfaceHolder;
 			p = new Paint();
-			p.setARGB(0xFF, 0x00, 0x00, 0x00);
+			p.setARGB(0xFF, 0x33, 0x33, 0x33);
 			p.setStrokeWidth(0.5f);
 			p.setTextSize(100);
 			posx = 0;
