@@ -21,7 +21,6 @@ public class MyWallpaper extends WallpaperService {
 
 	@Override
 	public Engine onCreateEngine() {
-		// TODO Auto-generated method stub
 		return new MyWallpaperEngine();
 	}
 
@@ -48,14 +47,12 @@ public class MyWallpaper extends WallpaperService {
 
 		@Override
 		public void onSurfaceDestroyed(SurfaceHolder holder) {
-			// TODO Auto-generated method stub
 			super.onSurfaceDestroyed(holder);
 			mHandler.removeCallbacks(mDraw);
 		}
 
 		@Override
 		public void onCreate(SurfaceHolder surfaceHolder) {
-			// TODO Auto-generated method stub
 			super.onCreate(surfaceHolder);
 			sh = surfaceHolder;
 			p = new Paint();
@@ -69,13 +66,11 @@ public class MyWallpaper extends WallpaperService {
 		@Override
 		public void onSurfaceChanged(SurfaceHolder holder, int format,
 				int width, int height) {
-			// TODO Auto-generated method stub
 			super.onSurfaceChanged(holder, format, width, height);
 		}
 
 		@Override
 		public void onSurfaceCreated(SurfaceHolder holder) {
-			// TODO Auto-generated method stub
 			super.onSurfaceCreated(holder);
 			initMatrix();
 			c = sh.lockCanvas();
@@ -91,7 +86,6 @@ public class MyWallpaper extends WallpaperService {
 
 		@Override
 		public void onSurfaceRedrawNeeded(SurfaceHolder holder) {
-			// TODO Auto-generated method stub
 			super.onSurfaceRedrawNeeded(holder);
 			drawFrame();
 
@@ -118,7 +112,6 @@ public class MyWallpaper extends WallpaperService {
 
 		@Override
 		public void onTouchEvent(MotionEvent event) {
-			// TODO Auto-generated method stub
 			super.onTouchEvent(event);
 
 			int touchX = (int) event.getX() * LCD_WIDTH / width;
