@@ -2,19 +2,22 @@ package main;
 
 import java.util.Random;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Handler;
 import android.service.wallpaper.WallpaperService;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
+import android.view.WindowManager;
 
 public class MyWallpaper extends WallpaperService {
 
-	private static final int LCD_WIDTH = 72;
-	private static final int LCD_HEIGHT = 128;
+	private static int LCD_WIDTH = 72;
+	private static int LCD_HEIGHT = 128;
 
 	@Override
 	public Engine onCreateEngine() {
@@ -59,6 +62,7 @@ public class MyWallpaper extends WallpaperService {
 			p.setARGB(0xFF, 0x33, 0x33, 0x33);
 			p.setStrokeWidth(0.5f);
 			p.setTextSize(100);
+			initMatrix();
 			posx = 0;
 		}
 
@@ -73,13 +77,12 @@ public class MyWallpaper extends WallpaperService {
 		public void onSurfaceCreated(SurfaceHolder holder) {
 			// TODO Auto-generated method stub
 			super.onSurfaceCreated(holder);
-
+			initMatrix();
 			c = sh.lockCanvas();
 			width = c.getWidth();
 			height = c.getHeight();
 			pixelWidth = width / LCD_WIDTH;
 			pixelHeight = height / LCD_HEIGHT;
-			initMatrix();
 			try {
 				sh.unlockCanvasAndPost(c);
 			} catch (Exception e) {
@@ -138,7 +141,20 @@ public class MyWallpaper extends WallpaperService {
 		}
 
 		private void initMatrix() {
-			DisplayMetrics dm = new DisplayMetrics();
+			final WindowManager w = (WindowManager) getApplicationContext()
+					.getSystemService(Context.WINDOW_SERVICE);
+			final Display d = w.getDefaultDisplay();
+			final DisplayMetrics m = new DisplayMetrics();
+			int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+			
+			if (currentapiVersion >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
+				d.getRealMetrics(m);
+			} else {
+				d.getMetrics(m);
+			}
+			
+			LCD_WIDTH = m.widthPixels / 10;
+			LCD_HEIGHT = m.heightPixels / 10;
 			displayMatrix = new int[LCD_WIDTH][LCD_HEIGHT];
 			for (int i = 0; i < LCD_WIDTH; i++)
 				for (int j = 0; j < LCD_HEIGHT; j++)
