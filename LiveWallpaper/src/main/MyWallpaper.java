@@ -1,6 +1,7 @@
 package main;
 
 import java.util.Random;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -126,6 +127,7 @@ public class MyWallpaper extends WallpaperService {
 			}
 		}
 
+		@SuppressLint("NewApi")
 		private void initMatrix() {
 			final WindowManager w = (WindowManager) getApplicationContext()
 					.getSystemService(Context.WINDOW_SERVICE);
