@@ -33,9 +33,7 @@ public class MyWallpaper extends WallpaperService {
 		private int height = 0;
 		private int pixelWidth = 0;
 		private int pixelHeight = 0;
-		private boolean refresh = true;
 		private int[][] displayMatrix;
-		private int posx;
 
 		private Runnable mDraw = new Runnable() {
 
@@ -59,8 +57,6 @@ public class MyWallpaper extends WallpaperService {
 			p.setARGB(0xFF, 0x33, 0x33, 0x33);
 			p.setStrokeWidth(0.5f);
 			p.setTextSize(100);
-			initMatrix();
-			posx = 0;
 		}
 
 		@Override
@@ -96,13 +92,12 @@ public class MyWallpaper extends WallpaperService {
 			c = sh.lockCanvas();
 			drawBg(c);
 			drawMatrix();
-			initMatrix();
+			initMatrix();	// Called just to clean the matrix
 			for (int i = 0; i < LCD_WIDTH; i++)
 				for (int j = 0; j < LCD_HEIGHT; j++) {
 					if (r.nextBoolean())
 						drawPixel(i, j);
 				}
-
 			try {
 				sh.unlockCanvasAndPost(c);
 			} catch (Exception e) {
