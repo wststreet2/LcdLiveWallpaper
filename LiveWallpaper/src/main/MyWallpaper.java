@@ -33,6 +33,7 @@ public class MyWallpaper extends WallpaperService {
 		private int pixelWidth = 0;
 		private int pixelHeight = 0;
 		private int[][] displayMatrix;
+		private int framerate = 1000/2;
 
 		private Runnable mDraw = new Runnable() {
 
@@ -86,6 +87,16 @@ public class MyWallpaper extends WallpaperService {
 
 		}
 
+		@Override
+		public void onVisibilityChanged(boolean visible) {
+			super.onVisibilityChanged(visible);
+			if(visible)
+				mHandler.postDelayed(mDraw, framerate);
+			else
+				mHandler.removeCallbacks(mDraw);
+			
+		}
+
 		private void drawFrame() {
 			Random r = new Random();
 			c = sh.lockCanvas();
@@ -101,7 +112,7 @@ public class MyWallpaper extends WallpaperService {
 				sh.unlockCanvasAndPost(c);
 			} catch (Exception e) {
 			}
-			mHandler.postDelayed(mDraw, 1000 / 2);
+			mHandler.postDelayed(mDraw, framerate);
 		}
 
 		@Override
