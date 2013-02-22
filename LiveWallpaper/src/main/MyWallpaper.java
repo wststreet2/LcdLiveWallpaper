@@ -1,14 +1,12 @@
 package main;
 
 import java.util.Random;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Handler;
 import android.service.wallpaper.WallpaperService;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
