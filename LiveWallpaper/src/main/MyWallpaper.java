@@ -112,7 +112,7 @@ public class MyWallpaper extends WallpaperService {
 			int touchY = (int) event.getY() * LCD_HEIGHT / height;
 			try {
 				for (int i = touchX - 5; i <= touchX + 5; i++)
-					for (int j = touchY; j <= touchY + 5; j++)
+					for (int j = touchY - 5; j <= touchY + 5; j++)
 						displayMatrix[i][j] = 1;
 			} catch (Exception e) {
 			}
