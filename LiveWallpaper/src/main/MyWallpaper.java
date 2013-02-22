@@ -17,7 +17,7 @@ public class MyWallpaper extends WallpaperService {
 
 	private static int LCD_WIDTH = 72;
 	private static int LCD_HEIGHT = 128;
-
+	// TEST
 	@Override
 	public Engine onCreateEngine() {
 		return new MyWallpaperEngine();
