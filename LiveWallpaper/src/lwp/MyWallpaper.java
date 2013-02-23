@@ -1,4 +1,4 @@
-package main;
+package lwp;
 
 import java.util.Random;
 import android.annotation.SuppressLint;
