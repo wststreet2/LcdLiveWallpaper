@@ -71,14 +71,12 @@ public class MyWallpaper extends WallpaperService {
 
 		private void update() {
 
-			Random r = new Random();
-			initMatrix(); // Called just to clean the matrix
-			for (int i = 0; i < LCD_WIDTH; i++)
-				for (int j = 0; j < LCD_HEIGHT; j++) {
-					if (r.nextBoolean())
-						displayMatrix[i][j] = 1;
-				}
-
+			/*
+			 * Random r = new Random(); initMatrix(); // Called just to clean
+			 * the matrix for (int i = 0; i < LCD_WIDTH; i++) for (int j = 0; j
+			 * < LCD_HEIGHT; j++) { if (r.nextBoolean()) displayMatrix[i][j] =
+			 * 1; }
+			 */
 		}
 
 		private void drawMatrix() {
@@ -170,11 +168,14 @@ public class MyWallpaper extends WallpaperService {
 			int touchX = (int) event.getX() * LCD_WIDTH / width;
 			int touchY = (int) event.getY() * LCD_HEIGHT / height;
 			try {
-				for (int i = touchX - 5; i <= touchX + 5; i++)
-					for (int j = touchY - 5; j <= touchY + 5; j++)
-						displayMatrix[i][j] = 1;
+				// for (int i = touchX - 5; i <= touchX + 5; i++)
+				// for (int j = touchY - 5; j <= touchY + 5; j++)
+				displayMatrix[touchX][touchY] = 1;
 			} catch (Exception e) {
 			}
+
+			if (event.getAction() == MotionEvent.ACTION_UP)
+				initMatrix();
 		}
 
 		@Override
