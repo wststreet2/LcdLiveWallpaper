@@ -33,7 +33,7 @@ public class MyWallpaper extends WallpaperService {
 		private int pixelWidth = 0;
 		private int pixelHeight = 0;
 		private int[][] displayMatrix;
-		private int framerate = 1000/2;
+		private int framerate = 1000 / 2;
 
 		private Runnable mDraw = new Runnable() {
 
@@ -53,21 +53,31 @@ public class MyWallpaper extends WallpaperService {
 		}
 
 		private void drawFrame() {
-			Random r = new Random();
+			
 			c = sh.lockCanvas();
+			
+			update();
 			drawBg(c);
 			drawMatrix();
-			initMatrix();	// Called just to clean the matrix
-			for (int i = 0; i < LCD_WIDTH; i++)
-				for (int j = 0; j < LCD_HEIGHT; j++) {
-					if (r.nextBoolean())
-						drawPixel(i, j);
-				}
+			
 			try {
 				sh.unlockCanvasAndPost(c);
 			} catch (Exception e) {
 			}
 			mHandler.postDelayed(mDraw, framerate);
+			
+		}
+
+		private void update() {
+
+			Random r = new Random();
+			initMatrix(); // Called just to clean the matrix
+			for (int i = 0; i < LCD_WIDTH; i++)
+				for (int j = 0; j < LCD_HEIGHT; j++) {
+					if (r.nextBoolean())
+						displayMatrix[i][j] = 1;
+				}
+
 		}
 
 		private void drawMatrix() {
@@ -95,13 +105,13 @@ public class MyWallpaper extends WallpaperService {
 			final Display d = w.getDefaultDisplay();
 			final DisplayMetrics m = new DisplayMetrics();
 			int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-			
+
 			if (currentapiVersion >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
 				d.getRealMetrics(m);
 			} else {
 				d.getMetrics(m);
 			}
-			
+
 			LCD_WIDTH = m.widthPixels / 10;
 			LCD_HEIGHT = m.heightPixels / 10;
 			displayMatrix = new int[LCD_WIDTH][LCD_HEIGHT];
@@ -150,8 +160,6 @@ public class MyWallpaper extends WallpaperService {
 		@Override
 		public void onSurfaceRedrawNeeded(SurfaceHolder holder) {
 			super.onSurfaceRedrawNeeded(holder);
-			drawFrame();
-
 		}
 
 		@Override
@@ -171,11 +179,11 @@ public class MyWallpaper extends WallpaperService {
 		@Override
 		public void onVisibilityChanged(boolean visible) {
 			super.onVisibilityChanged(visible);
-			if(visible)
+			if (visible)
 				mHandler.postDelayed(mDraw, framerate);
 			else
 				mHandler.removeCallbacks(mDraw);
-			
+
 		}
 	}
 }
