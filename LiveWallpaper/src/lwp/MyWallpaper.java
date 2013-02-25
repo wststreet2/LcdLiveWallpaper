@@ -79,7 +79,8 @@ public class MyWallpaper extends WallpaperService {
 			Calendar cal = Calendar.getInstance();
 			SimpleDateFormat df = new SimpleDateFormat("HH:mm");
 			String formattedDate = df.format(cal.getTime());
-			displayMatrix = wC.writeLine(formattedDate, 5, 25, displayMatrix);
+			int clockAlign = ( LCD_WIDTH / 2 ) - 14;
+			displayMatrix = wC.writeLine(formattedDate, clockAlign, 25, displayMatrix);
 
 			/*
 			 * Random r = new Random(); initMatrix(); // Called just to clean
