@@ -74,6 +74,7 @@ public class MyWallpaper extends WallpaperService {
 
 		}
 
+		@SuppressLint("SimpleDateFormat")
 		private void update() {
 			initMatrix(); // Called just to clean the matrix
 
@@ -184,8 +185,8 @@ public class MyWallpaper extends WallpaperService {
 		public void onTouchEvent(MotionEvent event) {
 			super.onTouchEvent(event);
 
-			int touchX = (int) event.getX() * LCD_WIDTH / width;
-			int touchY = (int) event.getY() * LCD_HEIGHT / height;
+			//int touchX = (int) event.getX() * LCD_WIDTH / width;
+			//int touchY = (int) event.getY() * LCD_HEIGHT / height;
 			try {
 				// for (int i = touchX - 5; i <= touchX + 5; i++)
 				// for (int j = touchY - 5; j <= touchY + 5; j++)
