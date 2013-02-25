@@ -20,14 +20,6 @@ import android.view.WindowManager;
 
 public class MyWallpaper extends WallpaperService {
 
-	private static int LCD_WIDTH = 72;
-	private static int LCD_HEIGHT = 128;
-
-	@Override
-	public Engine onCreateEngine() {
-		return new MyWallpaperEngine();
-	}
-
 	private class MyWallpaperEngine extends Engine {
 		private Handler mHandler = new Handler();
 		private SurfaceHolder sh;
@@ -59,52 +51,20 @@ public class MyWallpaper extends WallpaperService {
 			} catch (Exception e) {
 			}
 		}
-        
-		
-		
+
 		private void drawFrame() {
-			
+
 			c = sh.lockCanvas();
 			drawBg(c);
 			update();
 			drawMatrix();
-			
+
 			try {
 				sh.unlockCanvasAndPost(c);
 			} catch (Exception e) {
 			}
 			mHandler.postDelayed(mDraw, refreshDelay);
 
-		}
-
-		@SuppressLint("SimpleDateFormat")
-		private void update() {
-			initMatrix(); // Called just to clean the matrix
-
-			Calendar cal = Calendar.getInstance();
-			SimpleDateFormat df;
-			int start = 0;
-			
-			if(touch % 2 == 1)
-			{
-			   df = new SimpleDateFormat("dd/MM/yy");
-			   start = (LCD_WIDTH/2) - 23;
-			}
-			else
-			{
-				df = new SimpleDateFormat("HH:mm");
-                start = (LCD_WIDTH / 2) - 14;				
-			}
-			String formattedDate = df.format(cal.getTime());
-			displayMatrix = wC.writeLine(formattedDate,start,25,displayMatrix);
-			
-
-			/*
-			 * Random r = new Random(); initMatrix(); // Called just to clean
-			 * the matrix for (int i = 0; i < LCD_WIDTH; i++) for (int j = 0; j
-			 * < LCD_HEIGHT; j++) { if (r.nextBoolean()) displayMatrix[i][j] =
-			 * 1; }
-			 */
 		}
 
 		private void drawMatrix() {
@@ -116,9 +76,9 @@ public class MyWallpaper extends WallpaperService {
 		}
 
 		private void drawPixel(int x, int y) {
-			
+
 			try {
-			
+
 				c.drawRect((x * pixelWidth) + margin, (y * pixelHeight)
 						+ margin, (x * pixelWidth) + pixelWidth - margin,
 						(y * pixelHeight) + pixelHeight - margin, p);
@@ -133,7 +93,7 @@ public class MyWallpaper extends WallpaperService {
 			final Display d = w.getDefaultDisplay();
 			final DisplayMetrics m = new DisplayMetrics();
 			int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-			
+
 			if (currentapiVersion >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
 				d.getRealMetrics(m);
 			} else {
@@ -200,8 +160,8 @@ public class MyWallpaper extends WallpaperService {
 		public void onTouchEvent(MotionEvent event) {
 			super.onTouchEvent(event);
 
-			//int touchX = (int) event.getX() * LCD_WIDTH / width;
-			//int touchY = (int) event.getY() * LCD_HEIGHT / height;
+			// int touchX = (int) event.getX() * LCD_WIDTH / width;
+			// int touchY = (int) event.getY() * LCD_HEIGHT / height;
 			try {
 				// for (int i = touchX - 5; i <= touchX + 5; i++)
 				// for (int j = touchY - 5; j <= touchY + 5; j++)
@@ -211,19 +171,55 @@ public class MyWallpaper extends WallpaperService {
 
 			if (event.getAction() == MotionEvent.ACTION_UP)
 				initMatrix();
-            
-			if(event.getAction() == MotionEvent.ACTION_DOWN)
+
+			if (event.getAction() == MotionEvent.ACTION_DOWN)
 				touch++;
 		}
 
 		@Override
 		public void onVisibilityChanged(boolean visible) {
 			super.onVisibilityChanged(visible);
-			if(visible)
+			if (visible)
 				mHandler.postDelayed(mDraw, framerate);
 			else
 				mHandler.removeCallbacks(mDraw);
-			
+
 		}
+
+		@SuppressLint("SimpleDateFormat")
+		private void update() {
+			initMatrix(); // Called just to clean the matrix
+
+			Calendar cal = Calendar.getInstance();
+			SimpleDateFormat df;
+			int start = 0;
+
+			if (touch % 2 == 1) {
+				df = new SimpleDateFormat("dd/MM/yy");
+				start = (LCD_WIDTH / 2) - 23;
+			} else {
+				df = new SimpleDateFormat("HH:mm");
+				start = (LCD_WIDTH / 2) - 14;
+			}
+			String formattedDate = df.format(cal.getTime());
+			displayMatrix = wC.writeLine(formattedDate, start, 25,
+					displayMatrix);
+
+			/*
+			 * Random r = new Random(); initMatrix(); // Called just to clean
+			 * the matrix for (int i = 0; i < LCD_WIDTH; i++) for (int j = 0; j
+			 * < LCD_HEIGHT; j++) { if (r.nextBoolean()) displayMatrix[i][j] =
+			 * 1; }
+			 */
+		}
+	}
+
+	private static int LCD_WIDTH = 72;
+
+	private static int LCD_HEIGHT = 128;
+
+	@Override
+	public Engine onCreateEngine() {
+		return new MyWallpaperEngine();
 	}
 }
