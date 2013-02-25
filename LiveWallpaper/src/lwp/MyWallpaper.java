@@ -1,6 +1,5 @@
 package lwp;
 
-import java.util.Random;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -35,6 +34,7 @@ public class MyWallpaper extends WallpaperService {
 		private int[][] displayMatrix;
 		private int framerate = 10;
 		private int refreshDelay = 1000 / framerate;
+	    private WriteClass wC = new WriteClass();
 
 		private Runnable mDraw = new Runnable() {
 
@@ -52,7 +52,9 @@ public class MyWallpaper extends WallpaperService {
 			} catch (Exception e) {
 			}
 		}
-
+        
+		
+		
 		private void drawFrame() {
 
 			mCanvas = mSurfaceHolder.lockCanvas();
@@ -61,6 +63,7 @@ public class MyWallpaper extends WallpaperService {
 			drawBg(mCanvas);
 			drawMatrix();
 
+		
 			try {
 				mSurfaceHolder.unlockCanvasAndPost(mCanvas);
 			} catch (Exception e) {
@@ -70,7 +73,10 @@ public class MyWallpaper extends WallpaperService {
 		}
 
 		private void update() {
-
+			initMatrix();
+            displayMatrix = wC.writeLine("1234",5,18,displayMatrix);
+			displayMatrix = wC.writeLine("56789", 5, 18, displayMatrix);
+			
 			/*
 			 * Random r = new Random(); initMatrix(); // Called just to clean
 			 * the matrix for (int i = 0; i < LCD_WIDTH; i++) for (int j = 0; j
@@ -90,6 +96,7 @@ public class MyWallpaper extends WallpaperService {
 		private void drawPixel(int x, int y) {
 			int margin = 1;
 			try {
+			
 				mCanvas.drawRect((x * pixelWidth) + margin, (y * pixelHeight)
 						+ margin, (x * pixelWidth) + pixelWidth - margin,
 						(y * pixelHeight) + pixelHeight - margin, pixelPaint);
