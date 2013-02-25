@@ -40,6 +40,7 @@ public class MyWallpaper extends WallpaperService {
 		private int[][] displayMatrix;
 		private int framerate = 1000/2;
 	    private WriteClass wC = new WriteClass();
+	    private int touch = 0;
 		//added
 		private int cWidth = 5;
 		private int cHeight = 7;
@@ -73,9 +74,21 @@ public class MyWallpaper extends WallpaperService {
 			//added
 		
 			Calendar cal = Calendar.getInstance();
-			SimpleDateFormat df = new SimpleDateFormat("HH:mm");
+			SimpleDateFormat df;
+			
+			if(touch == 1)
+			{
+				df = new SimpleDateFormat("dd/MM/");
+			}
+			else
+			{
+				df = new SimpleDateFormat("HH:mm");
+			}
+			
+			
 			String formattedDate = df.format(cal.getTime());
 			displayMatrix = wC.writeLine(formattedDate,5,25,displayMatrix);
+			//displayMatrix = wC.writeLine("//",5,25,displayMatrix);
 			
 			//displayMatrix = wC.writeLine("56789", 5, 18, displayMatrix);
 			drawMatrix();
@@ -177,14 +190,24 @@ public class MyWallpaper extends WallpaperService {
 		public void onTouchEvent(MotionEvent event) {
 			super.onTouchEvent(event);
 
-			int touchX = (int) event.getX() * LCD_WIDTH / width;
-			int touchY = (int) event.getY() * LCD_HEIGHT / height;
+			//int touchX = (int) event.getX() * LCD_WIDTH / width;
+			//int touchY = (int) event.getY() * LCD_HEIGHT / height;
+			
+			/*
 			try {
 				for (int i = touchX - 5; i <= touchX + 5; i++)
 					for (int j = touchY - 5; j <= touchY + 5; j++)
 						displayMatrix[i][j] = 1;
 			} catch (Exception e) {
+			}*/
+			touch++;
+			if(touch != 1)
+			{
+			   touch = 0;
 			}
+			
+			
+			
 		}
 
 		@Override

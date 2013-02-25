@@ -215,6 +215,11 @@ public class WriteClass {
 			        displayMatrix[x+1][lineNo - 5] = 1;
 			        
 			        break;
+			        
+		case '/': for(i = 0; i < 5; i++)
+			           displayMatrix[x+i][lineNo - i] = 1;
+		 
+		           break;
 			       
 		}
 	}
