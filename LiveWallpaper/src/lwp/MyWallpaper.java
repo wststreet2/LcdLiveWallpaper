@@ -1,11 +1,15 @@
 package lwp;
 
+//import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Handler;
 import android.service.wallpaper.WallpaperService;
+
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.MotionEvent;
@@ -34,7 +38,7 @@ public class MyWallpaper extends WallpaperService {
 		private int[][] displayMatrix;
 		private int framerate = 10;
 		private int refreshDelay = 1000 / framerate;
-	    private WriteClass wC = new WriteClass();
+		private WriteClass wC = new WriteClass();
 
 		private Runnable mDraw = new Runnable() {
 
@@ -52,9 +56,7 @@ public class MyWallpaper extends WallpaperService {
 			} catch (Exception e) {
 			}
 		}
-        
-		
-		
+
 		private void drawFrame() {
 
 			mCanvas = mSurfaceHolder.lockCanvas();
@@ -63,7 +65,6 @@ public class MyWallpaper extends WallpaperService {
 			drawBg(mCanvas);
 			drawMatrix();
 
-		
 			try {
 				mSurfaceHolder.unlockCanvasAndPost(mCanvas);
 			} catch (Exception e) {
@@ -73,10 +74,13 @@ public class MyWallpaper extends WallpaperService {
 		}
 
 		private void update() {
-			initMatrix();
-            displayMatrix = wC.writeLine("1234",5,18,displayMatrix);
-			displayMatrix = wC.writeLine("56789", 5, 18, displayMatrix);
-			
+			initMatrix(); // Called just to clean the matrix
+
+			Calendar cal = Calendar.getInstance();
+			SimpleDateFormat df = new SimpleDateFormat("HH:mm");
+			String formattedDate = df.format(cal.getTime());
+			displayMatrix = wC.writeLine(formattedDate, 5, 25, displayMatrix);
+
 			/*
 			 * Random r = new Random(); initMatrix(); // Called just to clean
 			 * the matrix for (int i = 0; i < LCD_WIDTH; i++) for (int j = 0; j
@@ -96,7 +100,7 @@ public class MyWallpaper extends WallpaperService {
 		private void drawPixel(int x, int y) {
 			int margin = 1;
 			try {
-			
+
 				mCanvas.drawRect((x * pixelWidth) + margin, (y * pixelHeight)
 						+ margin, (x * pixelWidth) + pixelWidth - margin,
 						(y * pixelHeight) + pixelHeight - margin, pixelPaint);
@@ -177,7 +181,7 @@ public class MyWallpaper extends WallpaperService {
 			try {
 				// for (int i = touchX - 5; i <= touchX + 5; i++)
 				// for (int j = touchY - 5; j <= touchY + 5; j++)
-				displayMatrix[touchX][touchY] = 1;
+				// displayMatrix[touchX][touchY] = 1;
 			} catch (Exception e) {
 			}
 
