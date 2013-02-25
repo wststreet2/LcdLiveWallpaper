@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.PixelFormat;
 import android.os.Handler;
 import android.service.wallpaper.WallpaperService;
 
@@ -22,9 +23,9 @@ public class MyWallpaper extends WallpaperService {
 
 	private class MyWallpaperEngine extends Engine {
 		private Handler mHandler = new Handler();
-		private SurfaceHolder sh;
-		private Canvas c = null;
-		private Paint p = null;
+		private SurfaceHolder mSurfaceHolder;
+		private Canvas mCanvas = null;
+		private Paint onPixelPaint = null;
 		private int width = 0;
 		private int height = 0;
 		private int pixelWidth = 0;
@@ -54,13 +55,13 @@ public class MyWallpaper extends WallpaperService {
 
 		private void drawFrame() {
 
-			c = sh.lockCanvas();
-			drawBg(c);
+			mCanvas = mSurfaceHolder.lockCanvas();
+			drawBg(mCanvas);
 			update();
 			drawMatrix();
 
 			try {
-				sh.unlockCanvasAndPost(c);
+				mSurfaceHolder.unlockCanvasAndPost(mCanvas);
 			} catch (Exception e) {
 			}
 			mHandler.postDelayed(mDraw, refreshDelay);
@@ -70,18 +71,30 @@ public class MyWallpaper extends WallpaperService {
 		private void drawMatrix() {
 			for (int i = 0; i < LCD_WIDTH; i++)
 				for (int j = 0; j < LCD_HEIGHT; j++) {
-					if (displayMatrix[i][j] != 0)
-						drawPixel(i, j);
+					//if (displayMatrix[i][j] != 0)
+						drawPixel(i, j, displayMatrix[i][j]);
 				}
 		}
 
-		private void drawPixel(int x, int y) {
+		private void drawPixel(int x, int y, int value) {
+
+			Paint offPixelPaint = new Paint();
+			offPixelPaint.setARGB(0x10, 0x33, 0x33, 0x33);
+			offPixelPaint.setAlpha(0x10);
+			offPixelPaint.setStrokeWidth(0.5f);
 
 			try {
-
-				c.drawRect((x * pixelWidth) + margin, (y * pixelHeight)
-						+ margin, (x * pixelWidth) + pixelWidth - margin,
-						(y * pixelHeight) + pixelHeight - margin, p);
+				if (value != 0) {
+					mCanvas.drawRect((x * pixelWidth) + margin,
+							(y * pixelHeight) + margin, (x * pixelWidth)
+									+ pixelWidth - margin, (y * pixelHeight)
+									+ pixelHeight - margin, onPixelPaint);
+				} else {
+					mCanvas.drawRect((x * pixelWidth) + margin,
+							(y * pixelHeight) + margin, (x * pixelWidth)
+									+ pixelWidth - margin, (y * pixelHeight)
+									+ pixelHeight - margin, offPixelPaint);
+				}
 			} catch (Exception e) {
 			}
 		}
@@ -115,11 +128,11 @@ public class MyWallpaper extends WallpaperService {
 		@Override
 		public void onCreate(SurfaceHolder surfaceHolder) {
 			super.onCreate(surfaceHolder);
-			sh = surfaceHolder;
-			p = new Paint();
-			p.setARGB(0xFF, 0x33, 0x33, 0x33);
-			p.setStrokeWidth(0.5f);
-			p.setTextSize(100);
+			mSurfaceHolder = surfaceHolder;
+			mSurfaceHolder.setFormat(PixelFormat.RGBA_8888);
+			onPixelPaint = new Paint();
+			onPixelPaint.setARGB(0xFF, 0x33, 0x33, 0x33);
+			onPixelPaint.setStrokeWidth(0.5f);
 		}
 
 		@Override
@@ -132,13 +145,13 @@ public class MyWallpaper extends WallpaperService {
 		public void onSurfaceCreated(SurfaceHolder holder) {
 			super.onSurfaceCreated(holder);
 			initMatrix();
-			c = sh.lockCanvas();
-			width = c.getWidth();
-			height = c.getHeight();
+			mCanvas = mSurfaceHolder.lockCanvas();
+			width = mCanvas.getWidth();
+			height = mCanvas.getHeight();
 			pixelWidth = width / LCD_WIDTH;
 			pixelHeight = height / LCD_HEIGHT;
 			try {
-				sh.unlockCanvasAndPost(c);
+				mSurfaceHolder.unlockCanvasAndPost(mCanvas);
 			} catch (Exception e) {
 			}
 		}
