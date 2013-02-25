@@ -202,15 +202,32 @@ public class WriteClass {
 			        displayMatrix[x + 3][lineNo - 1] = 1;
 			        	
 			        break;
+			        
+		case ':':  
+			        displayMatrix[x+1][lineNo - 1] = 1;
+			        displayMatrix[x+1][lineNo - 2] = 1;
+			        displayMatrix[x+1][lineNo - 4] = 1;
+			        displayMatrix[x+1][lineNo - 5] = 1;
+			        
+			        displayMatrix[x+1][lineNo - 1] = 1;
+			        displayMatrix[x+1][lineNo - 2] = 1;
+			        displayMatrix[x+1][lineNo - 4] = 1;
+			        displayMatrix[x+1][lineNo - 5] = 1;
+			        
+			        break;
+			       
 		}
 	}
+	
+	
+	
 	
 	
 	public int[][] writeLine(String s,int x,int lineNo, int [][] dispM) // lineNo e practic linia pe care va scrie, coordonata y cea mai de jos a literei/numarului
 	{
 		displayMatrix = dispM;
 		int i = 0;
-		int spacing = 2;
+		int spacing = 1;
 		
 		for(i = 0; i < s.length(); i++)
 		{

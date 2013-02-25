@@ -1,5 +1,8 @@
 package lwp;
 
+//import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Random;
 
 import android.annotation.SuppressLint;
@@ -8,12 +11,12 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Handler;
 import android.service.wallpaper.WallpaperService;
+
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.WindowManager;
-import java.lang.String;
 
 public class MyWallpaper extends WallpaperService {
 
@@ -68,8 +71,13 @@ public class MyWallpaper extends WallpaperService {
 			drawMatrix();
 			initMatrix();	// Called just to clean the matrix
 			//added
-			displayMatrix = wC.writeLine("1234",5,18,displayMatrix);
-			displayMatrix = wC.writeLine("56789", 5, 18, displayMatrix);
+		
+			Calendar cal = Calendar.getInstance();
+			SimpleDateFormat df = new SimpleDateFormat("HH:mm");
+			String formattedDate = df.format(cal.getTime());
+			displayMatrix = wC.writeLine(formattedDate,5,25,displayMatrix);
+			
+			//displayMatrix = wC.writeLine("56789", 5, 18, displayMatrix);
 			drawMatrix();
 			//end add
 		
