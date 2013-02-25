@@ -39,6 +39,7 @@ public class MyWallpaper extends WallpaperService {
 		private int framerate = 10;
 		private int refreshDelay = 1000 / framerate;
 		private WriteClass wC = new WriteClass();
+		float margin = 0.5f;
 
 		private Runnable mDraw = new Runnable() {
 
@@ -79,8 +80,10 @@ public class MyWallpaper extends WallpaperService {
 			Calendar cal = Calendar.getInstance();
 			SimpleDateFormat df = new SimpleDateFormat("HH:mm");
 			String formattedDate = df.format(cal.getTime());
-			int clockAlign = ( LCD_WIDTH / 2 ) - 14;
-			displayMatrix = wC.writeLine(formattedDate, clockAlign, 25, displayMatrix);
+			int clockAlign = (LCD_WIDTH / 2) - 14;
+
+			displayMatrix = wC.writeLine(formattedDate, clockAlign, 25,
+					displayMatrix);
 
 			/*
 			 * Random r = new Random(); initMatrix(); // Called just to clean
@@ -99,7 +102,7 @@ public class MyWallpaper extends WallpaperService {
 		}
 
 		private void drawPixel(int x, int y) {
-			int margin = 1;
+			
 			try {
 
 				mCanvas.drawRect((x * pixelWidth) + margin, (y * pixelHeight)
@@ -122,9 +125,13 @@ public class MyWallpaper extends WallpaperService {
 			} else {
 				d.getMetrics(m);
 			}
-
-			LCD_WIDTH = m.widthPixels / 10;
-			LCD_HEIGHT = m.heightPixels / 10;
+			if (m.heightPixels >= 500) {
+				LCD_WIDTH = m.widthPixels / 10;
+				LCD_HEIGHT = m.heightPixels / 10;
+			} else {
+				LCD_WIDTH = m.widthPixels / 5;
+				LCD_HEIGHT = m.heightPixels / 5;
+			}
 			displayMatrix = new int[LCD_WIDTH][LCD_HEIGHT];
 			for (int i = 0; i < LCD_WIDTH; i++)
 				for (int j = 0; j < LCD_HEIGHT; j++)
