@@ -36,7 +36,7 @@ public class MyWallpaper extends WallpaperService {
 		private int pixelHeight = 0;
 		private int[][] displayMatrix;
 		private int framerate = 1000/2;
-	   
+	    private WriteClass wC = new WriteClass();
 		//added
 		private int cWidth = 5;
 		private int cHeight = 7;
@@ -59,222 +59,8 @@ public class MyWallpaper extends WallpaperService {
 			}
 		}
         
-		//added start
 		
-		void setCharacter(char c,int x, int lineNo)
-		{
-			int i = 0;
-			
-			switch(c)
-			{
-			case '0': 
-				     
-					  for(i = lineNo - 1; i >lineNo - cHeight + 1; i--)
-					  {
-						  displayMatrix[x][i] = 1;
-						  displayMatrix[x+4][i] = 1;
-					  }
-					  
-					  for(i = x + 1; i < x + cWidth - 1 ; i++)
-					  {
-						  displayMatrix[i][lineNo] = 1;
-						  displayMatrix[i][lineNo - 6] = 1;
-					  }
-				      
-					  displayMatrix[x + 1][lineNo - 2] = 1;
-					  displayMatrix[x + 2][lineNo - 3] = 1;
-					  displayMatrix[x + 3][lineNo - 4] = 1;
-					  
-				      break;
-			
-			case '1':
-				     displayMatrix[x+1][lineNo] = 1;
-				     displayMatrix[x+3][lineNo] = 1;
-				      
-				      for(i = lineNo; i >= lineNo - cHeight + 1; i--)
-				      {
-				    	  displayMatrix[x+2][i] = 1;
-				      }
-				      
-				      displayMatrix[x+1][lineNo - cHeight + 2 ] = 1;
-				      break;
-				      
-			case '2': 
-				      for(i = x; i < x + 5; i++)
-				    	  displayMatrix[i][lineNo] = 1;
-				      
-				      for(i = x + 1; i < x + cWidth - 1 ; i++)
-				      {
-						  displayMatrix[i][lineNo - 6] = 1;
-					  }
-				      
-				      displayMatrix[x+1][lineNo -1] = 1;
-				      displayMatrix[x+2][lineNo -2] = 1;
-				      displayMatrix[x+3][lineNo -3] = 1;
-				      displayMatrix[x+4][lineNo -4] = 1;
-				      displayMatrix[x+4][lineNo -5] = 1;
-				      displayMatrix[x+4][lineNo -5] = 1;
-				      displayMatrix[x][lineNo - 5] = 1;
-				      
-				      break;
-				      
-			case '3':  for(i = x; i < x + 5; i++)
-		    	  		 displayMatrix[i][lineNo - 6] = 1;
-			
-						for(i = x + 1; i < x + cWidth - 1 ; i++)
-						{
-							displayMatrix[i][lineNo] = 1;
-						}
-				        
-						displayMatrix[x][lineNo - 1] = 1;
-						displayMatrix[x+4][lineNo - 1] = 1;
-						displayMatrix[x+4][lineNo - 2] = 1;
-						displayMatrix[x+3][lineNo - 3] = 1;
-						displayMatrix[x+2][lineNo - 4] = 1;
-						displayMatrix[x+3][lineNo - 5] = 1;
-						
-				        break;
-				        
-			case '4':   for(i = x; i < x + 5; i++)
-						{
-				            displayMatrix[i][lineNo - 2] = 1;
-						}
-			            
-			            for(i = lineNo; i >= lineNo - 6; i--)
-			            {
-			            	displayMatrix[x+3][i] = 1;
-			            }
-			            
-			            displayMatrix[x][lineNo - 3] = 1;
-			            displayMatrix[x+1][lineNo - 4] = 1;
-			            displayMatrix[x+2][lineNo - 5] = 1;
-				        
-				        break;
-				        
-			case '5':   for(i = x; i < x + 5; i++)
-					    {
-					 		 displayMatrix[i][lineNo - 6] = 1;
-				        }
-				        
-					    for(i = x; i < x + 4; i++)
-					    {
-							 displayMatrix[i][lineNo - 4] = 1;
-					    }
-					    
-					    for(i = x+1; i < x + 4; i++)
-						{
-				            displayMatrix[i][lineNo] = 1;
-						}
-					    
-					    for(i = lineNo - 1; i >= lineNo - 3; i--)
-					    {
-					    	displayMatrix[x+4][i] = 1;
-					    }
-					    
-					    displayMatrix[x][lineNo - 5] = 1;
-					    displayMatrix[x][lineNo - 1] = 1;
-					     
-				        break; 
-				        
-			case '6':
-						for(i = x + 1; i < x + 4; i++)
-						{
-						   displayMatrix[i][lineNo] = 1;
-						   displayMatrix[i][lineNo - 3] = 1;
-						}
-						
-						for(i = lineNo - 1; i >= lineNo - 4; i--)
-						{
-						   displayMatrix[x][i] = 1;
-						}
-						
-						displayMatrix[x + 4][lineNo - 1] = 1;
-						displayMatrix[x + 4][lineNo - 2] = 1;
-						displayMatrix[x + 1][lineNo - 5] = 1;
-						displayMatrix[x + 2][lineNo - 6] = 1;
-						displayMatrix[x + 3][lineNo - 6] = 1;
-				 
-				        break;
-				        
-			case '7':   
-				        for(i = x; i < x + 5; i++)
-				        {
-				        	displayMatrix[i][lineNo - 6] = 1;
-				        }
-				        
-				        for(i = lineNo - 4; i >= lineNo - 5; i--)
-				        {
-				            displayMatrix[x + 4][i] = 1;	
-				        }
-				        
-				        for(i = lineNo; i >= lineNo - 2; i--)
-				        {
-				            displayMatrix[x+2][i] = 1;
-				        }
-				        
-				        displayMatrix[x + 3][lineNo - 3] = 1;
-				        
-				        break;
-				        
-			case '8': 
-				        for(i = x + 1; i < x + 4; i++)
-				        {
-				        	displayMatrix[i][lineNo] = 1;
-				        	displayMatrix[i][lineNo - 3] = 1;
-				        	displayMatrix[i][lineNo - 6] = 1;
-				        }
-				        
-				        for(i = lineNo -1; i >= lineNo - 2; i--)
-				        {
-				        	displayMatrix[x][i] = 1;
-				        	displayMatrix[x + 4][i] = 1;
-				        }
-				        
-				        for(i = lineNo - 4; i >= lineNo - 5; i--)
-				        {
-				        	displayMatrix[x][i] = 1;
-				        	displayMatrix[x + 4][i] = 1;
-				        }
-				
-				        break;
-				        
-			case '9': 
-				        for(i = x + 1; i < x + 4; i++)
-				        {
-				           displayMatrix[i][lineNo - 3] = 1;
-				           displayMatrix[i][lineNo - 6] = 1;
-				        }
-				        
-				        for(i = lineNo - 2; i >= lineNo - 5; i--)
-				        {
-				           displayMatrix[x+4][i] = 1;
-				        }
-				        
-				        displayMatrix[x][lineNo - 4] = 1;
-				        displayMatrix[x][lineNo - 5] = 1;
-				        
-				        displayMatrix[x + 1][lineNo] = 1;
-				        displayMatrix[x + 2][lineNo] = 1;
-				        displayMatrix[x + 3][lineNo - 1] = 1;
-				        	
-				        break;
-			}
-		}
 		
-		private void writeLine(String s,int x,int lineNo) // lineNo e practic linia pe care va scrie, coordonata y cea mai de jos a literei/numarului
-		{
-			int i = 0;
-			int spacing = 2;
-			
-			for(i = 0; i < s.length(); i++)
-			{
-			   setCharacter(s.charAt(i),x,lineNo);
-			   x = x + cWidth + spacing;
-			}
-		
-		}
-		
-		//added end
 		private void drawFrame() {
 			Random r = new Random();
 			c = sh.lockCanvas();
@@ -282,21 +68,11 @@ public class MyWallpaper extends WallpaperService {
 			drawMatrix();
 			initMatrix();	// Called just to clean the matrix
 			//added
-			int x = 5,lineNo = 10;
-			String s = "01234";
-			writeLine(s,x,lineNo);
-			writeLine("56789",5,18);
-			
-			
+			displayMatrix = wC.writeLine("1234",5,18,displayMatrix);
+			displayMatrix = wC.writeLine("56789", 5, 18, displayMatrix);
 			drawMatrix();
 			//end add
-			/*
-			for (int i = 0; i < LCD_WIDTH; i++)
-				for (int j = 0; j < LCD_HEIGHT; j++) {
-					if (r.nextBoolean())
-						drawPixel(i, j);
-				}
-			*/
+		
 			try {
 				sh.unlockCanvasAndPost(c);
 			} catch (Exception e) {
