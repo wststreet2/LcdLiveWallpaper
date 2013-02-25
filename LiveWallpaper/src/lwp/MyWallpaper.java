@@ -3,6 +3,8 @@ package lwp;
 //import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Random;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -28,9 +30,9 @@ public class MyWallpaper extends WallpaperService {
 
 	private class MyWallpaperEngine extends Engine {
 		private Handler mHandler = new Handler();
-		private SurfaceHolder mSurfaceHolder;
-		private Canvas mCanvas = null;
-		private Paint pixelPaint = null;
+		private SurfaceHolder sh;
+		private Canvas c = null;
+		private Paint p = null;
 		private int width = 0;
 		private int height = 0;
 		private int pixelWidth = 0;
@@ -40,7 +42,7 @@ public class MyWallpaper extends WallpaperService {
 		private int refreshDelay = 1000 / framerate;
 		private WriteClass wC = new WriteClass();
 		float margin = 0.5f;
-
+		private int touch = 0;
 		private Runnable mDraw = new Runnable() {
 
 			public void run() {
@@ -57,17 +59,18 @@ public class MyWallpaper extends WallpaperService {
 			} catch (Exception e) {
 			}
 		}
-
+        
+		
+		
 		private void drawFrame() {
-
-			mCanvas = mSurfaceHolder.lockCanvas();
-
+			
+			c = sh.lockCanvas();
+			drawBg(c);
 			update();
-			drawBg(mCanvas);
 			drawMatrix();
-
+			
 			try {
-				mSurfaceHolder.unlockCanvasAndPost(mCanvas);
+				sh.unlockCanvasAndPost(c);
 			} catch (Exception e) {
 			}
 			mHandler.postDelayed(mDraw, refreshDelay);
@@ -79,12 +82,22 @@ public class MyWallpaper extends WallpaperService {
 			initMatrix(); // Called just to clean the matrix
 
 			Calendar cal = Calendar.getInstance();
-			SimpleDateFormat df = new SimpleDateFormat("HH:mm");
+			SimpleDateFormat df;
+			int start = 0;
+			
+			if(touch % 2 == 1)
+			{
+			   df = new SimpleDateFormat("dd/MM/yy");
+			   start = (LCD_WIDTH/2) - 23;
+			}
+			else
+			{
+				df = new SimpleDateFormat("HH:mm");
+                start = (LCD_WIDTH / 2) - 14;				
+			}
 			String formattedDate = df.format(cal.getTime());
-			int clockAlign = (LCD_WIDTH / 2) - 14;
-
-			displayMatrix = wC.writeLine(formattedDate, clockAlign, 25,
-					displayMatrix);
+			displayMatrix = wC.writeLine(formattedDate,start,25,displayMatrix);
+			
 
 			/*
 			 * Random r = new Random(); initMatrix(); // Called just to clean
@@ -105,10 +118,10 @@ public class MyWallpaper extends WallpaperService {
 		private void drawPixel(int x, int y) {
 			
 			try {
-
-				mCanvas.drawRect((x * pixelWidth) + margin, (y * pixelHeight)
+			
+				c.drawRect((x * pixelWidth) + margin, (y * pixelHeight)
 						+ margin, (x * pixelWidth) + pixelWidth - margin,
-						(y * pixelHeight) + pixelHeight - margin, pixelPaint);
+						(y * pixelHeight) + pixelHeight - margin, p);
 			} catch (Exception e) {
 			}
 		}
@@ -120,7 +133,7 @@ public class MyWallpaper extends WallpaperService {
 			final Display d = w.getDefaultDisplay();
 			final DisplayMetrics m = new DisplayMetrics();
 			int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-
+			
 			if (currentapiVersion >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
 				d.getRealMetrics(m);
 			} else {
@@ -142,11 +155,11 @@ public class MyWallpaper extends WallpaperService {
 		@Override
 		public void onCreate(SurfaceHolder surfaceHolder) {
 			super.onCreate(surfaceHolder);
-			mSurfaceHolder = surfaceHolder;
-			pixelPaint = new Paint();
-			pixelPaint.setARGB(0xFF, 0x33, 0x33, 0x33);
-			pixelPaint.setStrokeWidth(0.5f);
-			pixelPaint.setTextSize(100);
+			sh = surfaceHolder;
+			p = new Paint();
+			p.setARGB(0xFF, 0x33, 0x33, 0x33);
+			p.setStrokeWidth(0.5f);
+			p.setTextSize(100);
 		}
 
 		@Override
@@ -159,13 +172,13 @@ public class MyWallpaper extends WallpaperService {
 		public void onSurfaceCreated(SurfaceHolder holder) {
 			super.onSurfaceCreated(holder);
 			initMatrix();
-			mCanvas = mSurfaceHolder.lockCanvas();
-			width = mCanvas.getWidth();
-			height = mCanvas.getHeight();
+			c = sh.lockCanvas();
+			width = c.getWidth();
+			height = c.getHeight();
 			pixelWidth = width / LCD_WIDTH;
 			pixelHeight = height / LCD_HEIGHT;
 			try {
-				mSurfaceHolder.unlockCanvasAndPost(mCanvas);
+				sh.unlockCanvasAndPost(c);
 			} catch (Exception e) {
 			}
 		}
@@ -179,6 +192,8 @@ public class MyWallpaper extends WallpaperService {
 		@Override
 		public void onSurfaceRedrawNeeded(SurfaceHolder holder) {
 			super.onSurfaceRedrawNeeded(holder);
+			drawFrame();
+
 		}
 
 		@Override
@@ -196,16 +211,19 @@ public class MyWallpaper extends WallpaperService {
 
 			if (event.getAction() == MotionEvent.ACTION_UP)
 				initMatrix();
+            
+			if(event.getAction() == MotionEvent.ACTION_DOWN)
+				touch++;
 		}
 
 		@Override
 		public void onVisibilityChanged(boolean visible) {
 			super.onVisibilityChanged(visible);
-			if (visible)
-				mHandler.postDelayed(mDraw, refreshDelay);
+			if(visible)
+				mHandler.postDelayed(mDraw, framerate);
 			else
 				mHandler.removeCallbacks(mDraw);
-
+			
 		}
 	}
 }

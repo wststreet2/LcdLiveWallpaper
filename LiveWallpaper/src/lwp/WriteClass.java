@@ -110,6 +110,7 @@ public class WriteClass {
 			break;
 
 		case '6':
+
 			for (i = x + 1; i < x + 4; i++) {
 				displayMatrix[i][lineNo] = 1;
 				displayMatrix[i][lineNo - 3] = 1;
@@ -192,6 +193,12 @@ public class WriteClass {
 			displayMatrix[x + 1][lineNo - 2] = 1;
 			displayMatrix[x + 1][lineNo - 4] = 1;
 			displayMatrix[x + 1][lineNo - 5] = 1;
+
+			break;
+
+		case '/':
+			for (i = 0; i < 5; i++)
+				displayMatrix[x + i][lineNo - i] = 1;
 
 			break;
 
