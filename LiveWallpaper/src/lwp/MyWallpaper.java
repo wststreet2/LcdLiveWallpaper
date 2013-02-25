@@ -31,7 +31,7 @@ public class MyWallpaper extends WallpaperService {
 		private int pixelWidth = 0;
 		private int pixelHeight = 0;
 		private int[][] displayMatrix;
-		private int framerate = 10;
+		private int framerate = 2;
 		private int refreshDelay = 1000 / framerate;
 		private WriteClass wC = new WriteClass();
 		float margin = 0.5f;
@@ -71,17 +71,14 @@ public class MyWallpaper extends WallpaperService {
 		private void drawMatrix() {
 			for (int i = 0; i < LCD_WIDTH; i++)
 				for (int j = 0; j < LCD_HEIGHT; j++) {
-					//if (displayMatrix[i][j] != 0)
+					if (displayMatrix[i][j] != 0)
 						drawPixel(i, j, displayMatrix[i][j]);
 				}
 		}
 
 		private void drawPixel(int x, int y, int value) {
 
-			Paint offPixelPaint = new Paint();
-			offPixelPaint.setARGB(0x10, 0x33, 0x33, 0x33);
-			offPixelPaint.setAlpha(0x10);
-			offPixelPaint.setStrokeWidth(0.5f);
+			
 
 			try {
 				if (value != 0) {
@@ -90,6 +87,10 @@ public class MyWallpaper extends WallpaperService {
 									+ pixelWidth - margin, (y * pixelHeight)
 									+ pixelHeight - margin, onPixelPaint);
 				} else {
+					Paint offPixelPaint = new Paint();
+					offPixelPaint.setARGB(0x10, 0x33, 0x33, 0x33);
+					offPixelPaint.setStrokeWidth(0.5f);
+					
 					mCanvas.drawRect((x * pixelWidth) + margin,
 							(y * pixelHeight) + margin, (x * pixelWidth)
 									+ pixelWidth - margin, (y * pixelHeight)
