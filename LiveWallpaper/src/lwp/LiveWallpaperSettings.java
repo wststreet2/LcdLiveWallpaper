@@ -3,18 +3,30 @@ package lwp;
 
 import org.kamehamehaaa.android.livewallpaper.R;
 
+import com.google.ads.*;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.widget.LinearLayout;
 
 public class LiveWallpaperSettings extends PreferenceActivity
     implements SharedPreferences.OnSharedPreferenceChangeListener {
+	
+	AdView adView;
 
-    @SuppressWarnings("deprecation")
 	@Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        addPreferencesFromResource(R.xml.settings);
+        setContentView(R.layout.settings);
+
+        adView = new AdView(this, AdSize.BANNER, "");
+
+        LinearLayout layout = (LinearLayout)findViewById(R.id.mainLayout);
+
+        layout.addView(adView);
+
+        adView.loadAd(new AdRequest());
     }
 
     @Override
