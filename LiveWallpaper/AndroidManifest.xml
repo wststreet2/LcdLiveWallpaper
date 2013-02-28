@@ -19,8 +19,7 @@
         <activity
             android:name="lwp.LiveWallpaperSettings"
             android:exported="true"
-            android:label="livewallpaper_settings"
-            android:theme="@android:style/Theme.Light.WallpaperSettings" >
+            android:label="livewallpaper_settings" >
         </activity>
 
         <service
