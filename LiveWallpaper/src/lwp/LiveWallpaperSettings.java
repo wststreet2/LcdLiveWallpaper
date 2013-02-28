@@ -3,11 +3,8 @@ package lwp;
 
 import org.kamehamehaaa.android.livewallpaper.R;
 
-import com.google.ads.*;
-
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Looper;
 import android.preference.PreferenceActivity;
 
 public class LiveWallpaperSettings extends PreferenceActivity

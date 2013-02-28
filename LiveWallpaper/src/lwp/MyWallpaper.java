@@ -1,9 +1,6 @@
 package lwp;
 
 //import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Random;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -31,11 +28,12 @@ public class MyWallpaper extends WallpaperService {
 		private int pixelWidth = 0;
 		private int pixelHeight = 0;
 		private int[][] displayMatrix;
-		private int framerate = 2;
+		private int framerate = 1;
 		private int refreshDelay = 1000 / framerate;
 		private WriteClass wC = new WriteClass();
 		float margin = 0.5f;
-		private int touch = 0;
+		private EyeCandy eyeCandy = new EyeCandyRandom();
+
 		private Runnable mDraw = new Runnable() {
 
 			public void run() {
@@ -78,8 +76,6 @@ public class MyWallpaper extends WallpaperService {
 
 		private void drawPixel(int x, int y, int value) {
 
-			
-
 			try {
 				if (value != 0) {
 					mCanvas.drawRect((x * pixelWidth) + margin,
@@ -90,7 +86,7 @@ public class MyWallpaper extends WallpaperService {
 					Paint offPixelPaint = new Paint();
 					offPixelPaint.setARGB(0x10, 0x33, 0x33, 0x33);
 					offPixelPaint.setStrokeWidth(0.5f);
-					
+
 					mCanvas.drawRect((x * pixelWidth) + margin,
 							(y * pixelHeight) + margin, (x * pixelWidth)
 									+ pixelWidth - margin, (y * pixelHeight)
@@ -166,7 +162,7 @@ public class MyWallpaper extends WallpaperService {
 		@Override
 		public void onSurfaceRedrawNeeded(SurfaceHolder holder) {
 			super.onSurfaceRedrawNeeded(holder);
-			drawFrame();
+			//drawFrame();
 
 		}
 
@@ -176,18 +172,12 @@ public class MyWallpaper extends WallpaperService {
 
 			// int touchX = (int) event.getX() * LCD_WIDTH / width;
 			// int touchY = (int) event.getY() * LCD_HEIGHT / height;
-			try {
-				// for (int i = touchX - 5; i <= touchX + 5; i++)
-				// for (int j = touchY - 5; j <= touchY + 5; j++)
-				// displayMatrix[touchX][touchY] = 1;
-			} catch (Exception e) {
-			}
 
 			if (event.getAction() == MotionEvent.ACTION_UP)
 				initMatrix();
 
 			if (event.getAction() == MotionEvent.ACTION_DOWN)
-				touch++;
+				wC.incTouch();
 		}
 
 		@Override
@@ -204,36 +194,28 @@ public class MyWallpaper extends WallpaperService {
 		private void update() {
 			initMatrix(); // Called just to clean the matrix
 
-			Calendar cal = Calendar.getInstance();
-			SimpleDateFormat df;
-			int start = 0;
-
-			if (touch % 2 == 1) {
-				df = new SimpleDateFormat("dd/MM/yy");
-				start = (LCD_WIDTH / 2) - 23;
-			} else {
-				df = new SimpleDateFormat("HH:mm");
-				start = (LCD_WIDTH / 2) - 14;
+			if (eyeCandy != null) {
+				displayMatrix = eyeCandy.draw(displayMatrix);
 			}
-			String formattedDate = df.format(cal.getTime());
-			displayMatrix = wC.writeLine(formattedDate, start, 25,
-					displayMatrix);
 
-			/*
-			 * Random r = new Random(); initMatrix(); // Called just to clean
-			 * the matrix for (int i = 0; i < LCD_WIDTH; i++) for (int j = 0; j
-			 * < LCD_HEIGHT; j++) { if (r.nextBoolean()) displayMatrix[i][j] =
-			 * 1; }
-			 */
+			displayMatrix = wC.drawDateTime(displayMatrix);
+
 		}
 	}
 
 	private static int LCD_WIDTH = 72;
-
 	private static int LCD_HEIGHT = 128;
 
 	@Override
 	public Engine onCreateEngine() {
 		return new MyWallpaperEngine();
+	}
+
+	public static int getLCD_WIDTH() {
+		return LCD_WIDTH;
+	}
+
+	public static int getLCD_HEIGHT() {
+		return LCD_HEIGHT;
 	}
 }

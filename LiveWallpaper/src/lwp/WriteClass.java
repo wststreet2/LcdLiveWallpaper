@@ -1,10 +1,48 @@
 package lwp;
 
+import android.annotation.SuppressLint;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class WriteClass {
 	private int[][] displayMatrix;
 	private int cHeight = 7, cWidth = 5;
+	private int touch = 0;
 
-	void setCharacter(char c, int x, int lineNo) {
+	@SuppressLint("SimpleDateFormat")
+	public int[][] drawDateTime(int[][] matrix) {
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat df;
+		int start = 0;
+
+		if (touch % 2 == 1) {
+			df = new SimpleDateFormat("dd/MM/yy");
+			start = (MyWallpaper.getLCD_WIDTH() / 2) - 23;
+
+			for (int i = (MyWallpaper.getLCD_WIDTH() / 2) - 24; i <= (MyWallpaper
+					.getLCD_WIDTH() / 2) + 24; i++)
+				for (int j = 18; j <= 26; j++) {
+					matrix[i][j] = 0;
+				}
+		} else {
+			df = new SimpleDateFormat("HH:mm");
+			start = (MyWallpaper.getLCD_WIDTH() / 2) - 14;
+
+			for (int i = (MyWallpaper.getLCD_WIDTH() / 2) - 15; i <= (MyWallpaper
+					.getLCD_WIDTH() / 2) + 15; i++)
+				for (int j = 18; j <= 26; j++) {
+					matrix[i][j] = 0;
+				}
+		}
+		String formattedDate = df.format(cal.getTime());
+		return this.writeLine(formattedDate, start, 25, matrix);
+	}
+
+	public void incTouch() {
+		touch++;
+	}
+
+	int[][] setCharacter(char c, int x, int lineNo, int[][] displayMatrix) {
 		int i = 0;
 
 		switch (c) {
@@ -203,24 +241,12 @@ public class WriteClass {
 			break;
 
 		}
+		return displayMatrix;
 	}
 
-	public int[][] writeLine(String s, int x, int lineNo, int[][] dispM) // lineNo
-																			// e
-																			// practic
-																			// linia
-																			// pe
-																			// care
-																			// va
-																			// scrie,
-																			// coordonata
-																			// y
-																			// cea
-																			// mai
-																			// de
-																			// jos
-																			// a
-																			// literei/numarului
+	public int[][] writeLine(String s, int x, int lineNo, int[][] dispM)
+	// lineNo e practic linia pe care va scrie, coordonata y cea mai de jos a
+	// literei/numarului
 	{
 		displayMatrix = dispM;
 		int i = 0;
@@ -228,7 +254,8 @@ public class WriteClass {
 
 		for (i = 0; i < s.length(); i++) {
 			try {
-				setCharacter(s.charAt(i), x, lineNo);
+				displayMatrix = setCharacter(s.charAt(i), x, lineNo,
+						displayMatrix);
 			} catch (Exception e) {
 			}
 			x = x + cWidth + spacing;
