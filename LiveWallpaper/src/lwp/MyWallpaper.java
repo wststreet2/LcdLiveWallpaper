@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.service.wallpaper.WallpaperService;
 
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -32,7 +33,7 @@ public class MyWallpaper extends WallpaperService {
 		private int refreshDelay = 1000 / framerate;
 		private WriteClass wC = new WriteClass();
 		float margin = 0.5f;
-		private EyeCandy eyeCandy = new EyeCandyRandom();
+		private EyeCandy eyeCandy = new EyeCandyGradient();
 
 		private Runnable mDraw = new Runnable() {
 
