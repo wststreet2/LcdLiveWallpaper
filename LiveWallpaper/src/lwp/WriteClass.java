@@ -18,21 +18,9 @@ public class WriteClass {
 		if (touch % 2 == 1) {
 			df = new SimpleDateFormat("dd/MM/yy");
 			start = (MyWallpaper.getLCD_WIDTH() / 2) - 23;
-
-			for (int i = (MyWallpaper.getLCD_WIDTH() / 2) - 24; i <= (MyWallpaper
-					.getLCD_WIDTH() / 2) + 24; i++)
-				for (int j = 18; j <= 26; j++) {
-					matrix[i][j] = 0;
-				}
 		} else {
 			df = new SimpleDateFormat("HH:mm");
 			start = (MyWallpaper.getLCD_WIDTH() / 2) - 14;
-
-			for (int i = (MyWallpaper.getLCD_WIDTH() / 2) - 15; i <= (MyWallpaper
-					.getLCD_WIDTH() / 2) + 15; i++)
-				for (int j = 18; j <= 26; j++) {
-					matrix[i][j] = 0;
-				}
 		}
 		String formattedDate = df.format(cal.getTime());
 		return this.writeLine(formattedDate, start, 25, matrix);
@@ -44,6 +32,11 @@ public class WriteClass {
 
 	int[][] setCharacter(char c, int x, int lineNo, int[][] displayMatrix) {
 		int i = 0;
+
+		for (int j = lineNo - 7; j <= lineNo + 1; j++)
+			for (int k = x - 1; k <= x + 5; k++) {
+				displayMatrix[k][j] = 0;
+			}
 
 		switch (c) {
 		case '0':
