@@ -2,6 +2,7 @@ package lwp;
 
 //import java.sql.Date;
 
+import android.R;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -16,6 +17,7 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.WindowManager;
+import android.widget.Spinner;
 
 public class MyWallpaper extends WallpaperService {
 
@@ -34,6 +36,7 @@ public class MyWallpaper extends WallpaperService {
 		private WriteClass wC = new WriteClass();
 		float margin = 0.5f;
 		private EyeCandy eyeCandy = new EyeCandyGradient();
+		
 
 		private Runnable mDraw = new Runnable() {
 
@@ -131,6 +134,7 @@ public class MyWallpaper extends WallpaperService {
 			onPixelPaint = new Paint();
 			onPixelPaint.setARGB(0xFF, 0x33, 0x33, 0x33);
 			onPixelPaint.setStrokeWidth(0.5f);
+			
 		}
 
 		@Override
