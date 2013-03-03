@@ -16,6 +16,8 @@ public final class R {
     }
     public static final class id {
         public static final int adView=0x7f070001;
+        public static final int checkDate=0x7f070007;
+        public static final int checkTime=0x7f070006;
         public static final int eyeCandyTextView=0x7f070002;
         public static final int mainLayout=0x7f070000;
         public static final int spinner1=0x7f070003;
