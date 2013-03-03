@@ -1,7 +1,5 @@
 package lwp;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import org.kamehamehaaa.android.livewallpaper.R;
 
@@ -9,9 +7,8 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 
+@SuppressWarnings("deprecation")
 public class LiveWallpaperSettings extends PreferenceActivity implements
 		OnSharedPreferenceChangeListener {
 
