@@ -3,7 +3,6 @@ package lwp;
 //import java.sql.Date;
 
 import android.annotation.SuppressLint;
-import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Canvas;
@@ -14,7 +13,6 @@ import android.preference.PreferenceManager;
 import android.service.wallpaper.WallpaperService;
 
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -162,10 +160,14 @@ public class MyWallpaper extends WallpaperService {
 
 			
 			SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+			
 			String candySetting = sharedPref.getString("eye_candy", "None");
-
+			Boolean clockEnabled = sharedPref.getBoolean("show_clock", false);
+			Boolean dateEnabled = sharedPref.getBoolean("show_date", false);
 			setEyeCandy(candySetting);
-
+			WriteClass.setTime(clockEnabled);
+			WriteClass.setDate(dateEnabled);
+			
 		}
 
 		@Override

@@ -19,7 +19,8 @@
         <activity
             android:name="lwp.LiveWallpaperSettings"
             android:exported="true"
-            android:label="@string/settings_title" >
+            android:label="@string/settings_title"
+            android:icon="@drawable/ic_launcher" >
         </activity>
 
         <service
