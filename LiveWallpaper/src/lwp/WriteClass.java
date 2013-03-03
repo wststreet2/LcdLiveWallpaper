@@ -30,22 +30,24 @@ public class WriteClass {
 		
 		int start = 0;
 		
+		
 		if(dispDate == true)
 		{
 			df = new SimpleDateFormat("dd/MM/yy");
 			start = (MyWallpaper.getLCD_WIDTH() / 2) - 23;
 			formattedDate = df.format(cal.getTime());
 			matrix = writeLine(formattedDate, start, 33, matrix);
-	    }
+		}
 		
 		if(dispTime == true)
 		{
-			df = new SimpleDateFormat("HH:mm");
+	    	df = new SimpleDateFormat("HH:mm");
 			start = (MyWallpaper.getLCD_WIDTH() / 2) - 14;
 			formattedDate = df.format(cal.getTime());
+			matrix = writeLine(formattedDate, start, 25, matrix);
 		}	
 		
-		return this.writeLine(formattedDate, start, 25, matrix);
+		return matrix;
 	}
 
 	public void incTouch() {

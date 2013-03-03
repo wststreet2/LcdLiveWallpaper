@@ -48,25 +48,11 @@ public class LiveWallpaperSettings extends PreferenceActivity implements
 		}
 		else if(key.equals("show_clock"))
 		{
-			if(sharedPreferences.getBoolean(key, false) == true)
-			{
-				WriteClass.setTime(true);
-			}
-			else
-			{
-				WriteClass.setTime(false);
-			}
+			WriteClass.setTime(sharedPreferences.getBoolean(key, false));
 		}
 		else if(key.equals("show_date"))
 		{
-			if(sharedPreferences.getBoolean(key, false) == true)
-			{
-				WriteClass.setDate(true);
-			}
-			else
-			{
-				WriteClass.setTime(false);
-			}
+			WriteClass.setDate(sharedPreferences.getBoolean(key, false));
 		}
 	}
 
