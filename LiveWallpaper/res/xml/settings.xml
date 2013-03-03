@@ -1,28 +1,34 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:key="livewallpaper_settings"
-    android:title="LiveWallpaperSettings" >
+    android:title="@string/settings_title" >
 
     <lwp.AdmobPreference android:key="ad" />
 
     <ListPreference
-        android:key="eye_candy"
-        android:title="EyeCandy"
+        android:defaultValue="None"
         android:dialogTitle="EyeCandy"
-        android:summary="Select what the background pixels should look like"
         android:entries="@array/eyeCandyArray"
         android:entryValues="@array/eyeCandyArray"
-        android:defaultValue="None" />
-    
+        android:key="eye_candy"
+        android:summary="Select what the background pixels should look like"
+        android:title="EyeCandy" />
+
     <CheckBoxPreference
         android:defaultValue="true"
         android:key="show_clock"
         android:summary="Enable to show the time on the virtual LCD"
         android:title="Show Clock" />
-    
     <CheckBoxPreference
         android:defaultValue="true"
         android:key="show_date"
         android:summary="Enable to show the date on the virtual LCD"
         android:title="Show Date" />
-    
+
+    <EditTextPreference
+        android:defaultValue="10"
+        android:inputType="number"
+        android:key="frame_rate"
+        android:summary="How many times per second should the screen refresh? Lower values mean better battery life."
+        android:title="Frame Rate" />
+
 </PreferenceScreen>

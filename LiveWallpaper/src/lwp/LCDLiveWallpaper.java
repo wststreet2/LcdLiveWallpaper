@@ -18,7 +18,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.WindowManager;
 
-public class MyWallpaper extends WallpaperService {
+public class LCDLiveWallpaper extends WallpaperService {
 
 	private class MyWallpaperEngine extends Engine {
 		private Handler mHandler = new Handler();
@@ -30,16 +30,15 @@ public class MyWallpaper extends WallpaperService {
 		private int pixelWidth = 0;
 		private int pixelHeight = 0;
 		private int[][] displayMatrix;
-		private int framerate = 1;
 		private int refreshDelay = 1000 / framerate;
 		private WriteClass wC = new WriteClass();
 		float margin = 0.5f;
-		
 
 		private Runnable mDraw = new Runnable() {
 
 			public void run() {
 				drawFrame();
+				refreshDelay = 1000 / framerate;
 			}
 
 		};
@@ -158,16 +157,17 @@ public class MyWallpaper extends WallpaperService {
 			} catch (Exception e) {
 			}
 
-			
-			SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-			
+			SharedPreferences sharedPref = PreferenceManager
+					.getDefaultSharedPreferences(context);
+
 			String candySetting = sharedPref.getString("eye_candy", "None");
 			Boolean clockEnabled = sharedPref.getBoolean("show_clock", false);
 			Boolean dateEnabled = sharedPref.getBoolean("show_date", false);
 			setEyeCandy(candySetting);
 			WriteClass.setTime(clockEnabled);
 			WriteClass.setDate(dateEnabled);
-			
+			setFramerate(sharedPref.getString("frame_rate", "10"));
+
 		}
 
 		@Override
@@ -201,7 +201,7 @@ public class MyWallpaper extends WallpaperService {
 		public void onVisibilityChanged(boolean visible) {
 			super.onVisibilityChanged(visible);
 			if (visible)
-				mHandler.postDelayed(mDraw, framerate);
+				mHandler.postDelayed(mDraw, refreshDelay);
 			else
 				mHandler.removeCallbacks(mDraw);
 
@@ -225,6 +225,7 @@ public class MyWallpaper extends WallpaperService {
 	private static int LCD_HEIGHT = 128;
 	private static EyeCandy eyeCandy = null;
 	private static Context context = null;
+	private static int framerate = 1;
 
 	public static int getLCD_WIDTH() {
 		return LCD_WIDTH;
@@ -250,6 +251,14 @@ public class MyWallpaper extends WallpaperService {
 		}
 
 	}
-	
-	
+
+	public static void setFramerate(String value) {
+		int f = Integer.parseInt(value);
+
+		if (f != 0)
+			framerate = f;
+		else
+			framerate = 10;
+	}
+
 }
