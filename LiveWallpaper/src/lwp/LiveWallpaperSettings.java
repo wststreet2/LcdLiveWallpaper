@@ -42,15 +42,15 @@ public class LiveWallpaperSettings extends PreferenceActivity implements
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 			String key) {
 		// TODO Auto-generated method stub
-		if(key.endsWith("eye_candy"))
+		if(key.equals("eye_candy"))
 		{
 			MyWallpaper.setEyeCandy(sharedPreferences.getString(key, "None"));
 		}
-		else if(key.endsWith("show_clock"))
+		else if(key.equals("show_clock"))
 		{
 			
 		}
-		else if(key.endsWith("show_date"))
+		else if(key.equals("show_date"))
 		{
 			
 		}

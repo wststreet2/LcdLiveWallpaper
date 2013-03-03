@@ -3,14 +3,18 @@ package lwp;
 //import java.sql.Date;
 
 import android.annotation.SuppressLint;
+import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.service.wallpaper.WallpaperService;
 
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -111,9 +115,12 @@ public class MyWallpaper extends WallpaperService {
 			if (m.heightPixels >= 500) {
 				LCD_WIDTH = m.widthPixels / 10;
 				LCD_HEIGHT = m.heightPixels / 10;
-			} else {
+			} else if (m.heightPixels > 400) {
 				LCD_WIDTH = m.widthPixels / 5;
 				LCD_HEIGHT = m.heightPixels / 5;
+			} else {
+				LCD_WIDTH = m.widthPixels / 4;
+				LCD_HEIGHT = m.heightPixels / 4;
 			}
 			displayMatrix = new int[LCD_WIDTH][LCD_HEIGHT];
 			for (int i = 0; i < LCD_WIDTH; i++)
@@ -129,10 +136,7 @@ public class MyWallpaper extends WallpaperService {
 			onPixelPaint = new Paint();
 			onPixelPaint.setARGB(0xFF, 0x33, 0x33, 0x33);
 			onPixelPaint.setStrokeWidth(0.5f);
-			
-			setEyeCandy(getSharedPreferences(
-					LiveWallpaperSettings.getPrefsName(), 0).getString(
-					"eyeCandy", "None"));
+
 		}
 
 		@Override
@@ -154,6 +158,13 @@ public class MyWallpaper extends WallpaperService {
 				mSurfaceHolder.unlockCanvasAndPost(mCanvas);
 			} catch (Exception e) {
 			}
+
+			
+			SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+			String candySetting = sharedPref.getString("eye_candy", "None");
+
+			setEyeCandy(candySetting);
+
 		}
 
 		@Override
@@ -210,6 +221,7 @@ public class MyWallpaper extends WallpaperService {
 	private static int LCD_WIDTH = 72;
 	private static int LCD_HEIGHT = 128;
 	private static EyeCandy eyeCandy = null;
+	private static Context context = null;
 
 	public static int getLCD_WIDTH() {
 		return LCD_WIDTH;
@@ -221,6 +233,7 @@ public class MyWallpaper extends WallpaperService {
 
 	@Override
 	public Engine onCreateEngine() {
+		context = getApplicationContext();
 		return new MyWallpaperEngine();
 	}
 
