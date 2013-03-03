@@ -1,9 +1,28 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-        android:title="LiveWallpaperSettings"
-        android:key="livewallpaper_settings">
+    android:key="livewallpaper_settings"
+    android:title="LiveWallpaperSettings" >
+
+    <lwp.AdmobPreference android:key="ad" />
 
     <ListPreference
-            android:key="test"
-            android:title="@string/settings_title" />
-
+        android:key="eye_candy"
+        android:title="EyeCandy"
+        android:dialogTitle="EyeCandy"
+        android:summary="Select what the background pixels should look like"
+        android:entries="@array/eyeCandyArray"
+        android:entryValues="@array/eyeCandyArray"
+        android:defaultValue="None" />
+    
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="show_clock"
+        android:summary="Enable to show the time on the virtual LCD"
+        android:title="Show Clock" />
+    
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="show_date"
+        android:summary="Enable to show the date on the virtual LCD"
+        android:title="Show Date" />
+    
 </PreferenceScreen>
