@@ -2,7 +2,6 @@ package lwp;
 
 //import java.sql.Date;
 
-import android.R;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -12,12 +11,10 @@ import android.os.Handler;
 import android.service.wallpaper.WallpaperService;
 
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.WindowManager;
-import android.widget.Spinner;
 
 public class MyWallpaper extends WallpaperService {
 
@@ -35,8 +32,6 @@ public class MyWallpaper extends WallpaperService {
 		private int refreshDelay = 1000 / framerate;
 		private WriteClass wC = new WriteClass();
 		float margin = 0.5f;
-		private EyeCandy eyeCandy = new EyeCandyGradient();
-		
 
 		private Runnable mDraw = new Runnable() {
 
@@ -135,6 +130,9 @@ public class MyWallpaper extends WallpaperService {
 			onPixelPaint.setARGB(0xFF, 0x33, 0x33, 0x33);
 			onPixelPaint.setStrokeWidth(0.5f);
 			
+			setEyeCandy(getSharedPreferences(
+					LiveWallpaperSettings.getPrefsName(), 0).getString(
+					"eyeCandy", "None"));
 		}
 
 		@Override
@@ -167,7 +165,7 @@ public class MyWallpaper extends WallpaperService {
 		@Override
 		public void onSurfaceRedrawNeeded(SurfaceHolder holder) {
 			super.onSurfaceRedrawNeeded(holder);
-			//drawFrame();
+			// drawFrame();
 
 		}
 
@@ -208,13 +206,10 @@ public class MyWallpaper extends WallpaperService {
 		}
 	}
 
+	// Static stuff goes here
 	private static int LCD_WIDTH = 72;
 	private static int LCD_HEIGHT = 128;
-
-	@Override
-	public Engine onCreateEngine() {
-		return new MyWallpaperEngine();
-	}
+	private static EyeCandy eyeCandy = null;
 
 	public static int getLCD_WIDTH() {
 		return LCD_WIDTH;
@@ -222,5 +217,21 @@ public class MyWallpaper extends WallpaperService {
 
 	public static int getLCD_HEIGHT() {
 		return LCD_HEIGHT;
+	}
+
+	@Override
+	public Engine onCreateEngine() {
+		return new MyWallpaperEngine();
+	}
+
+	public static void setEyeCandy(String name) {
+		if (name.equalsIgnoreCase("None")) {
+			eyeCandy = null;
+		} else if (name.equalsIgnoreCase("Gradient")) {
+			eyeCandy = new EyeCandyGradient();
+		} else if (name.equalsIgnoreCase("Random")) {
+			eyeCandy = new EyeCandyRandom();
+		}
+
 	}
 }
