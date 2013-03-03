@@ -9,21 +9,41 @@ public class WriteClass {
 	private int cHeight = 7, cWidth = 5;
 	private int touch = 0;
 
+	private static boolean dispDate = false;
+	private static boolean dispTime = false;
+	
+	public static void setTime(boolean val)
+	{ 
+	   dispTime = val;
+	}
+	
+	public static void setDate(boolean val)
+	{
+		dispDate = val;
+	}
+	
 	@SuppressLint("SimpleDateFormat")
 	public int[][] drawDateTime(int[][] matrix) {
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat df;
+		String formattedDate = "";
+		
 		int start = 0;
 		
+		if(dispDate == true)
+		{
 			df = new SimpleDateFormat("dd/MM/yy");
 			start = (MyWallpaper.getLCD_WIDTH() / 2) - 23;
-			String formattedDate = df.format(cal.getTime());
+			formattedDate = df.format(cal.getTime());
 			matrix = writeLine(formattedDate, start, 33, matrix);
-			
+	    }
+		
+		if(dispTime == true)
+		{
 			df = new SimpleDateFormat("HH:mm");
 			start = (MyWallpaper.getLCD_WIDTH() / 2) - 14;
 			formattedDate = df.format(cal.getTime());
-			
+		}	
 		
 		return this.writeLine(formattedDate, start, 25, matrix);
 	}

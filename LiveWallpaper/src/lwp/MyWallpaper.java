@@ -36,6 +36,7 @@ public class MyWallpaper extends WallpaperService {
 		private int refreshDelay = 1000 / framerate;
 		private WriteClass wC = new WriteClass();
 		float margin = 0.5f;
+		
 
 		private Runnable mDraw = new Runnable() {
 
@@ -247,4 +248,6 @@ public class MyWallpaper extends WallpaperService {
 		}
 
 	}
+	
+	
 }
