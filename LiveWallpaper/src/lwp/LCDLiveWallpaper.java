@@ -255,7 +255,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 	public static void setFramerate(String value) {
 		int f = Integer.parseInt(value);
 
-		if (f != 0)
+		if (f > 0)
 			framerate = f;
 		else
 			framerate = 10;
