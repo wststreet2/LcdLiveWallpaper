@@ -14,15 +14,17 @@ public class WriteClass {
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat df;
 		int start = 0;
-
-		if (touch % 2 == 1) {
+		
 			df = new SimpleDateFormat("dd/MM/yy");
 			start = (MyWallpaper.getLCD_WIDTH() / 2) - 23;
-		} else {
+			String formattedDate = df.format(cal.getTime());
+			matrix = writeLine(formattedDate, start, 33, matrix);
+			
 			df = new SimpleDateFormat("HH:mm");
 			start = (MyWallpaper.getLCD_WIDTH() / 2) - 14;
-		}
-		String formattedDate = df.format(cal.getTime());
+			formattedDate = df.format(cal.getTime());
+			
+		
 		return this.writeLine(formattedDate, start, 25, matrix);
 	}
 
