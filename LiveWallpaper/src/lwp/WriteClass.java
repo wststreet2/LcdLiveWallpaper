@@ -11,6 +11,7 @@ public class WriteClass {
 
 	private static boolean dispDate = false;
 	private static boolean dispTime = false;
+	public static String clockType = "";
 	
 	public static void setTime(boolean val)
 	{ 
@@ -20,6 +21,11 @@ public class WriteClass {
 	public static void setDate(boolean val)
 	{
 		dispDate = val;
+	}
+	
+	public static void setClockType(String cT)
+	{
+		clockType = cT;
 	}
 	
 	public int[] getBinary(int number)
@@ -210,10 +216,17 @@ public class WriteClass {
 		
 		if(dispTime == true)
 		{
-	    	df = new SimpleDateFormat("HH:mm");
-			start = (LCDLiveWallpaper.getLCD_WIDTH() / 2) - 14;
-			formattedDate = df.format(cal.getTime());
-			matrix = writeLine(formattedDate, start, 25, matrix);
+		    if(clockType.equals("Decimal"))
+		    {
+		    	df = new SimpleDateFormat("HH:mm");
+		    	start = (LCDLiveWallpaper.getLCD_WIDTH() / 2) - 14;
+		    	formattedDate = df.format(cal.getTime());
+		    	matrix = writeLine(formattedDate, start, 25, matrix);
+		    }
+		    else if(clockType.equals("Binary"))
+		    {
+		    	matrix = drawBinaryWatch(matrix);
+		    }
 		}	
 		
 		return matrix;

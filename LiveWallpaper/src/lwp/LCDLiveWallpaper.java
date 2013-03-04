@@ -106,6 +106,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 			height = mCanvas.getHeight();
 			pixelWidth = width / LCD_WIDTH;
 			pixelHeight = height / LCD_HEIGHT;
+			WriteClass.clockType = "";
 			try {
 				mSurfaceHolder.unlockCanvasAndPost(mCanvas);
 			} catch (Exception e) {
@@ -222,9 +223,9 @@ public class LCDLiveWallpaper extends WallpaperService {
 			if (eyeCandy != null) {
 				displayMatrix = eyeCandy.draw(displayMatrix);
 			}
-
+            
 			displayMatrix = wC.drawDateTime(displayMatrix);
-			displayMatrix = wC.drawBinaryWatch(displayMatrix);
+			
 
 		}
 	}
