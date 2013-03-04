@@ -9,5 +9,10 @@
         <item name="random">Random</item>
         <item name="gradient">Gradient</item>
     </string-array>
+    
+    <string-array name="clockType">
+        <item name="decimal">Decimal</item>
+        <item name="binary">Binary</item>
+    </string-array>
 
 </resources>

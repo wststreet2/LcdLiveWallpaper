@@ -58,6 +58,10 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 		{
 			LCDLiveWallpaper.setFramerate(sharedPreferences.getString(key, "10"));
 		}
+		else if(key.equals("clock_type"))
+		{
+			// getString returneaza "decimal" sau "binary"
+		}
 	}
 
 }

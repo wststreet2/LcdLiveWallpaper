@@ -19,7 +19,15 @@
     <PreferenceCategory
         android:key="detail_set_cat"
         android:title="Enable &amp; Disable Features" >
-        <CheckBoxPreference
+        <ListPreference
+            android:defaultValue="decimal"
+            android:dialogTitle="Clock Style"
+            android:entries="@array/clockType"
+            android:entryValues="@array/clockType"
+            android:key="clock_type"
+            android:summary="Do you want the time in decimals or in binary (note: the lines for binary are //||\\\\ HH MM SS)"
+            android:title="Clock Type" />
+        <CheckBoxPreference
             android:defaultValue="true"
             android:key="show_clock"
             android:summary="Enable to show the time on the virtual LCD"
