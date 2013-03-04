@@ -3,9 +3,9 @@ package lwp;
 //import java.sql.Date;
 
 import android.annotation.SuppressLint;
-import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
@@ -14,13 +14,12 @@ import android.preference.PreferenceManager;
 import android.service.wallpaper.WallpaperService;
 
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.WindowManager;
 
-public class MyWallpaper extends WallpaperService {
+public class LCDLiveWallpaper extends WallpaperService {
 
 	private class MyWallpaperEngine extends Engine {
 		private Handler mHandler = new Handler();
@@ -32,16 +31,15 @@ public class MyWallpaper extends WallpaperService {
 		private int pixelWidth = 0;
 		private int pixelHeight = 0;
 		private int[][] displayMatrix;
-		private int framerate = 1;
 		private int refreshDelay = 1000 / framerate;
 		private WriteClass wC = new WriteClass();
 		float margin = 0.5f;
-		
 
 		private Runnable mDraw = new Runnable() {
 
 			public void run() {
 				drawFrame();
+				refreshDelay = 1000 / framerate;
 			}
 
 		};
@@ -60,8 +58,10 @@ public class MyWallpaper extends WallpaperService {
 			mCanvas = mSurfaceHolder.lockCanvas();
 			drawBg(mCanvas);
 			update();
-			drawMatrix();
-
+			try {
+				drawMatrix();
+			} catch (Exception e) {
+			}
 			try {
 				mSurfaceHolder.unlockCanvasAndPost(mCanvas);
 			} catch (Exception e) {
@@ -70,12 +70,13 @@ public class MyWallpaper extends WallpaperService {
 
 		}
 
-		private void drawMatrix() {
+		private void drawMatrix() throws IndexOutOfBoundsException {
 			for (int i = 0; i < LCD_WIDTH; i++)
 				for (int j = 0; j < LCD_HEIGHT; j++) {
 					if (displayMatrix[i][j] != 0)
 						drawPixel(i, j, displayMatrix[i][j]);
 				}
+
 		}
 
 		private void drawPixel(int x, int y, int value) {
@@ -100,14 +101,36 @@ public class MyWallpaper extends WallpaperService {
 			}
 		}
 
+		public void init() {
+			width = mCanvas.getWidth();
+			height = mCanvas.getHeight();
+			pixelWidth = width / LCD_WIDTH;
+			pixelHeight = height / LCD_HEIGHT;
+			try {
+				mSurfaceHolder.unlockCanvasAndPost(mCanvas);
+			} catch (Exception e) {
+			}
+
+			SharedPreferences sharedPref = PreferenceManager
+					.getDefaultSharedPreferences(context);
+
+			String candySetting = sharedPref.getString("eye_candy", "None");
+			Boolean clockEnabled = sharedPref.getBoolean("show_clock", true);
+			Boolean dateEnabled = sharedPref.getBoolean("show_date", false);
+			setEyeCandy(candySetting);
+			WriteClass.setTime(clockEnabled);
+			WriteClass.setDate(dateEnabled);
+			setFramerate(sharedPref.getString("frame_rate", "10"));
+		}
+
 		@SuppressLint("NewApi")
-		private void initMatrix() {
+		public void initMatrix() {
 			final WindowManager w = (WindowManager) getApplicationContext()
 					.getSystemService(Context.WINDOW_SERVICE);
 			final Display d = w.getDefaultDisplay();
 			final DisplayMetrics m = new DisplayMetrics();
 			int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-           
+
 			if (currentapiVersion >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
 				d.getRealMetrics(m);
 			} else {
@@ -123,7 +146,6 @@ public class MyWallpaper extends WallpaperService {
 				LCD_WIDTH = m.widthPixels / 4;
 				LCD_HEIGHT = m.heightPixels / 4;
 			}
-			
 			displayMatrix = new int[LCD_WIDTH][LCD_HEIGHT];
 			for (int i = 0; i < LCD_WIDTH; i++)
 				for (int j = 0; j < LCD_HEIGHT; j++)
@@ -152,20 +174,7 @@ public class MyWallpaper extends WallpaperService {
 			super.onSurfaceCreated(holder);
 			initMatrix();
 			mCanvas = mSurfaceHolder.lockCanvas();
-			width = mCanvas.getWidth();
-			height = mCanvas.getHeight();
-			pixelWidth = width / LCD_WIDTH;
-			pixelHeight = height / LCD_HEIGHT;
-			try {
-				mSurfaceHolder.unlockCanvasAndPost(mCanvas);
-			} catch (Exception e) {
-			}
-
-			
-			SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-			String candySetting = sharedPref.getString("eye_candy", "None");
-
-			setEyeCandy(candySetting);
+			init();
 
 		}
 
@@ -200,7 +209,7 @@ public class MyWallpaper extends WallpaperService {
 		public void onVisibilityChanged(boolean visible) {
 			super.onVisibilityChanged(visible);
 			if (visible)
-				mHandler.postDelayed(mDraw, framerate);
+				mHandler.postDelayed(mDraw, refreshDelay);
 			else
 				mHandler.removeCallbacks(mDraw);
 
@@ -224,6 +233,8 @@ public class MyWallpaper extends WallpaperService {
 	private static int LCD_HEIGHT = 128;
 	private static EyeCandy eyeCandy = null;
 	private static Context context = null;
+	private static int framerate = 1;
+	private static MyWallpaperEngine engine;
 
 	public static int getLCD_WIDTH() {
 		return LCD_WIDTH;
@@ -234,9 +245,19 @@ public class MyWallpaper extends WallpaperService {
 	}
 
 	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		// TODO Auto-generated method stub
+		super.onConfigurationChanged(newConfig);
+		engine.init();
+		engine.initMatrix();
+	}
+
+	@Override
 	public Engine onCreateEngine() {
 		context = getApplicationContext();
-		return new MyWallpaperEngine();
+		engine = new MyWallpaperEngine();
+
+		return engine;
 	}
 
 	public static void setEyeCandy(String name) {
@@ -249,6 +270,14 @@ public class MyWallpaper extends WallpaperService {
 		}
 
 	}
-	
-	
+
+	public static void setFramerate(String value) {
+		int f = Integer.parseInt(value);
+
+		if (f > 0)
+			framerate = f;
+		else
+			framerate = 10;
+	}
+
 }

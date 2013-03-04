@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.preference.PreferenceActivity;
 
 @SuppressWarnings("deprecation")
-public class LiveWallpaperSettings extends PreferenceActivity implements
+public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 		OnSharedPreferenceChangeListener {
 
 	private static final String PREFS_NAME = "LcdLiveWallpaperSettings";
@@ -44,15 +44,19 @@ public class LiveWallpaperSettings extends PreferenceActivity implements
 		// TODO Auto-generated method stub
 		if(key.equals("eye_candy"))
 		{
-			MyWallpaper.setEyeCandy(sharedPreferences.getString(key, "None"));
+			LCDLiveWallpaper.setEyeCandy(sharedPreferences.getString(key, "None"));
 		}
 		else if(key.equals("show_clock"))
 		{
-			WriteClass.setTime(sharedPreferences.getBoolean(key, false));
+			WriteClass.setTime(sharedPreferences.getBoolean(key, true));
 		}
 		else if(key.equals("show_date"))
 		{
 			WriteClass.setDate(sharedPreferences.getBoolean(key, false));
+		}
+		else if(key.equals("frame_rate"))
+		{
+			LCDLiveWallpaper.setFramerate(sharedPreferences.getString(key, "10"));
 		}
 	}
 

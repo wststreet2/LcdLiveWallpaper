@@ -27,8 +27,8 @@ public class EyeCandyGradient extends EyeCandy {
 
 	@Override
 	public void init() {
-		width = MyWallpaper.getLCD_WIDTH();
-		height = MyWallpaper.getLCD_HEIGHT();
+		width = LCDLiveWallpaper.getLCD_WIDTH();
+		height = LCDLiveWallpaper.getLCD_HEIGHT();
 		gradient = new int[width][height];
 		
 		drawGradient();
