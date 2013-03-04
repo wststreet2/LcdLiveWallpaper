@@ -11,7 +11,7 @@ public class WriteClass {
 
 	private static boolean dispDate = false;
 	private static boolean dispTime = false;
-	private static String clockType;
+	public static String clockType = "";
 	
 	public static void setTime(boolean val)
 	{ 
