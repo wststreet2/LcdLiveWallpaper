@@ -9,9 +9,9 @@ public class WriteClass {
 	private int cHeight = 7, cWidth = 5;
 	private int touch = 0;
 
-	private static boolean dispDate = false;
-	private static boolean dispTime = false;
-	public static String clockType = "";
+	public static boolean dispDate ;
+	public static boolean dispTime ;
+	public static String clockType ;
 	
 	public static void setTime(boolean val)
 	{ 
