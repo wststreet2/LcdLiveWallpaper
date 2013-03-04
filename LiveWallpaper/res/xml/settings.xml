@@ -40,5 +40,24 @@
             android:summary="How many times per second should the screen refresh? Lower values mean better battery life."
             android:title="Frame Rate" />
     </PreferenceCategory>
+    <PreferenceCategory
+        android:key="about_set_cat"
+        android:title="About" >
+        <Preference
+            android:summary="Cezar FLESERIU\nAndrei SIRBU"
+            android:title="Creators" >
+        </Preference>
+        <Preference
+            android:summary="http://www.twitter.com/wststreet"
+            android:title="Twitter" >
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://www.twitter.com/wststreet" />
+        </Preference>
+        <Preference
+            android:summary="to be added"
+            android:title="Email" >
+        </Preference>
+    </PreferenceCategory>
 
 </PreferenceScreen>
