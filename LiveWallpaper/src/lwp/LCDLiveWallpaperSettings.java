@@ -44,7 +44,7 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 		// TODO Auto-generated method stub
 		if(key.equals("eye_candy"))
 		{
-			LCDLiveWallpaper.setEyeCandy(sharedPreferences.getString(key, "None"));
+			LCDLiveWallpaper.setEyeCandy(sharedPreferences.getString(key, "none"));
 		}
 		else if(key.equals("show_clock"))
 		{

@@ -262,11 +262,11 @@ public class LCDLiveWallpaper extends WallpaperService {
 	}
 
 	public static void setEyeCandy(String name) {
-		if (name.equalsIgnoreCase("None")) {
+		if (name.equalsIgnoreCase("none")) {
 			eyeCandy = null;
-		} else if (name.equalsIgnoreCase("Gradient")) {
+		} else if (name.equalsIgnoreCase("gradient")) {
 			eyeCandy = new EyeCandyGradient();
-		} else if (name.equalsIgnoreCase("Random")) {
+		} else if (name.equalsIgnoreCase("random")) {
 			eyeCandy = new EyeCandyRandom();
 		}
 
