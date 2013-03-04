@@ -114,7 +114,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 			SharedPreferences sharedPref = PreferenceManager
 					.getDefaultSharedPreferences(context);
 
-			String candySetting = sharedPref.getString("eye_candy", "None");
+			String candySetting = sharedPref.getString("eye_candy", "none");
 			Boolean clockEnabled = sharedPref.getBoolean("show_clock", true);
 			Boolean dateEnabled = sharedPref.getBoolean("show_date", false);
 			setEyeCandy(candySetting);
@@ -273,7 +273,10 @@ public class LCDLiveWallpaper extends WallpaperService {
 	}
 
 	public static void setFramerate(String value) {
-		int f = Integer.parseInt(value);
+		int f = 10;
+
+		if (!value.isEmpty())
+			f = Integer.parseInt(value);
 
 		if (f > 0)
 			framerate = f;
