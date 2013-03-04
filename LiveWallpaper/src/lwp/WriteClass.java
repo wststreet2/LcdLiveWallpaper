@@ -142,7 +142,11 @@ public class WriteClass {
 		x = x + 12;
 
 		// minute
+		d = 0;
+		d1 = 0;
+		d2 = 0;
 		d = Integer.parseInt(values[1]);
+		
 		if (d > 10) {
 			d2 = d % 10;
 			d = d / 10;
@@ -155,6 +159,9 @@ public class WriteClass {
 		x = x + 10;
 
 		// secunde
+		d = 0;
+		d1 = 0;
+		d2 = 0;
 		d = Integer.parseInt(values[2]);
 		if (d > 10) {
 			d2 = d % 10;
@@ -162,7 +169,7 @@ public class WriteClass {
 		}
 		d1 = d;
 
-		matrix = drawH(matrix, d1, d2, x, lineNo - 2, 's');
+	    matrix = drawH(matrix, d1, d2, x, lineNo - 2, 's');
 
 		return matrix;
 	}
