@@ -9,231 +9,192 @@ public class WriteClass {
 	private int cHeight = 7, cWidth = 5;
 	private int touch = 0;
 
+	public static boolean dispDate;
+	public static boolean dispTime;
+	public static String clockType;
 
-	public static boolean dispDate ;
-	public static boolean dispTime ;
-	public static String clockType ;
-
-	
-	public static void setTime(boolean val)
-	{ 
-	   dispTime = val;
+	public static void setTime(boolean val) {
+		dispTime = val;
 	}
-	
-	public static void setDate(boolean val)
-	{
+
+	public static void setDate(boolean val) {
 		dispDate = val;
 	}
-	
-	public static void setClockType(String cT)
-	{
+
+	public static void setClockType(String cT) {
 		clockType = cT;
 	}
-	
-	public int[] getBinary(int number)
-	{
-		int [] b = new int[4];
+
+	public int[] getBinary(int number) {
+		int[] b = new int[4];
 		int i = 0;
-		
-        for(i = 0; i < 4; i++)
-        	b[i] = 0;
-		
-        
-        i = 0;
-        
-		while(number > 0)       //b[0] = lsb  , b[3] = msb
+
+		for (i = 0; i < 4; i++)
+			b[i] = 0;
+
+		i = 0;
+
+		while (number > 0) // b[0] = lsb , b[3] = msb
 		{
-            b[i++] = number % 2;
-            number = number / 2;
+			b[i++] = number % 2;
+			number = number / 2;
 		}
-		
+
 		return b;
 	}
-	
-	public int[][] drawH(int [][]mat,int d1,int d2,int x, int lineNo, char option) // option selects draw for hour / minute / second
+
+	public int[][] drawH(int[][] mat, int d1, int d2, int x, int lineNo,
+			char option) // option selects draw for hour / minute / second
 	{
-		int [] bin;
+		int[] bin;
 		int i = 0;
 		int auxLineNo = lineNo;
 		int auxX = x;
-		
-		if(d1 > 0)
-		{
-		   bin = getBinary(d1);
-		   
-		   for(i = 0; i < 4; i++)
-		   {
-			  if(bin[i] == 1)
-			  {
-				 mat[auxX][auxLineNo] = 1;
-			  }
-			  
-			  if(option == 'h')
-			  {
-				  auxLineNo -= 2;
-				  auxX += 2;
-			  }
-			  else if(option == 'm')
-			  {
-				  auxLineNo -= 2;
-			  }
-			  else if(option == 's')
-			  {
-				  auxLineNo -= 2;
-				  auxX -= 2;
-			  }
-				 
-		   }
-		}
-		
-		auxLineNo = lineNo;
-		auxX = x + 2;
-		
-		if(d2 > 0)
-		{
-			bin = getBinary(d2);
-			
-			for(i = 0; i < 4; i++)
-			{
-				if(bin[i] == 1)
-				{
-				   mat[auxX][auxLineNo] = 1;
+
+		if (d1 > 0) {
+			bin = getBinary(d1);
+
+			for (i = 0; i < 4; i++) {
+				if (bin[i] == 1) {
+					mat[auxX][auxLineNo] = 1;
 				}
-				
-				if(option == 'h')
-				{
+
+				if (option == 'h') {
 					auxLineNo -= 2;
 					auxX += 2;
-				}
-				else if(option == 'm')
-				{
+				} else if (option == 'm') {
 					auxLineNo -= 2;
+				} else if (option == 's') {
+					auxLineNo -= 2;
+					auxX -= 2;
 				}
-				else if(option == 's')
-				{
+
+			}
+		}
+
+		auxLineNo = lineNo;
+		auxX = x + 2;
+
+		if (d2 > 0) {
+			bin = getBinary(d2);
+
+			for (i = 0; i < 4; i++) {
+				if (bin[i] == 1) {
+					mat[auxX][auxLineNo] = 1;
+				}
+
+				if (option == 'h') {
+					auxLineNo -= 2;
+					auxX += 2;
+				} else if (option == 'm') {
+					auxLineNo -= 2;
+				} else if (option == 's') {
 					auxLineNo -= 2;
 					auxX -= 2;
 				}
 			}
 		}
-		
+
 		return mat;
 	}
-	
-	public int[][] drawBinaryWatch(int[][] matrix)
-	{
-		
+
+	public int[][] drawBinaryWatch(int[][] matrix) {
+
 		int i = 0, j = 0;
 		int width = 27, height = 11;
-		int x , lineNo = 45; // left starting  point at x , line at y = 40
+		int x, lineNo = 45; // left starting point at x , line at y = 40
 		SimpleDateFormat df;
 		String formattedDate = "";
 		Calendar cal = Calendar.getInstance();
 		df = new SimpleDateFormat("HH:mm:ss");
-		
+
 		formattedDate = df.format(cal.getTime());
-		
-		String [] values = formattedDate.split(":");
-		
-		
-		
-		
-		x = (LCDLiveWallpaper.getLCD_WIDTH() /2) - 14;
-		
-		for(i = x; i < x + width; i++)
-		{
-		   for(j = lineNo ; j > lineNo - height ; j--)
-		   {
-			   matrix[i][j] = 0;
-			   
-			   if(i == x || i == x+width - 1)
-				   matrix[i][j] = 1;
-			   
-			   if(j == lineNo || j == lineNo - height + 1)
-				   matrix[i][j] = 1;
-		   }
+
+		String[] values = formattedDate.split(":");
+
+		x = (LCDLiveWallpaper.getLCD_WIDTH() / 2) - 14;
+
+		for (i = x; i < x + width; i++) {
+			for (j = lineNo; j > lineNo - height; j--) {
+				matrix[i][j] = 0;
+
+				if (i == x || i == x + width - 1)
+					matrix[i][j] = 1;
+
+				if (j == lineNo || j == lineNo - height + 1)
+					matrix[i][j] = 1;
+			}
 		}
-		
-	     int d = 0, d1 = 0, d2 = 0;
-		//pt ore
-		
+
+		int d = 0, d1 = 0, d2 = 0;
+		// pt ore
+
 		d = Integer.parseInt(values[0]);
-		if(d > 10)
-		{
-		   d2 = d %10;
-		   d = d/10;
+		if (d > 10) {
+			d2 = d % 10;
+			d = d / 10;
 		}
 		d1 = d; // most significant digit
-		
-		
-		//matrix = drawH(matrix,d1,d2,x + 2, lineNo - 2, 'h');
-		matrix = drawH(matrix,d1,d2,x + 2 , lineNo - 2, 'h');
-	
+
+		// matrix = drawH(matrix,d1,d2,x + 2, lineNo - 2, 'h');
+		matrix = drawH(matrix, d1, d2, x + 2, lineNo - 2, 'h');
+
 		x = x + 12;
-		
-		// minute 
+
+		// minute
 		d = Integer.parseInt(values[1]);
-		if(d>10)
-		{
-			d2 = d % 10;
-			d = d/10;
-		}
-		d1 = d;
-		
-		//matrix = drawH(matrix,d1,d2,x , lineNo - 2,'m');
-		matrix = drawH(matrix,d1,d2,x , lineNo - 2,'m');
-		
-		x = x + 10;
-		
-		//secunde
-		d = Integer.parseInt(values[2]);
-		if(d > 10)
-		{
+		if (d > 10) {
 			d2 = d % 10;
 			d = d / 10;
 		}
 		d1 = d;
-		
-		matrix = drawH(matrix,d1,d2,x , lineNo - 2,'s');
-		
+
+		// matrix = drawH(matrix,d1,d2,x , lineNo - 2,'m');
+		matrix = drawH(matrix, d1, d2, x, lineNo - 2, 'm');
+
+		x = x + 10;
+
+		// secunde
+		d = Integer.parseInt(values[2]);
+		if (d > 10) {
+			d2 = d % 10;
+			d = d / 10;
+		}
+		d1 = d;
+
+		matrix = drawH(matrix, d1, d2, x, lineNo - 2, 's');
+
 		return matrix;
 	}
-	
+
 	@SuppressLint("SimpleDateFormat")
 	public int[][] drawDateTime(int[][] matrix) {
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat df;
 		String formattedDate = "";
-		
+
 		int start = 0;
-		
-		
-		if(dispDate == true)
-		{
+
+		if (dispDate == true) {
 			df = new SimpleDateFormat("dd/MM/yy");
 			start = (LCDLiveWallpaper.getLCD_WIDTH() / 2) - 23;
 			formattedDate = df.format(cal.getTime());
 			matrix = writeLine(formattedDate, start, 33, matrix);
 		}
-		
-		if(dispTime == true)
-		{
-		    if(clockType.equalsIgnoreCase("Decimal"))
-		    {
-		    	df = new SimpleDateFormat("HH:mm");
-		    	start = (LCDLiveWallpaper.getLCD_WIDTH() / 2) - 14;
-		    	formattedDate = df.format(cal.getTime());
-		    	matrix = writeLine(formattedDate, start, 25, matrix);
-		    }
-		    else if(clockType.equalsIgnoreCase("Binary"))
-		    {
-		    	matrix = drawBinaryWatch(matrix);
-		    }
-		}	
-		
+
+		if (dispTime == true) {
+			if (clockType.equalsIgnoreCase("Decimal")) {
+				df = new SimpleDateFormat("HH:mm");
+				start = (LCDLiveWallpaper.getLCD_WIDTH() / 2) - 14;
+				formattedDate = df.format(cal.getTime());
+				matrix = writeLine(formattedDate, start, 25, matrix);
+			} else if (clockType.equalsIgnoreCase("Binary")) {
+				matrix = drawBinaryWatch(matrix);
+			}
+		}
+
 		return matrix;
 	}
-	
 
 	public void incTouch() {
 		touch++;
