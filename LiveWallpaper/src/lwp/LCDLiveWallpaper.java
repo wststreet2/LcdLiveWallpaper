@@ -58,8 +58,10 @@ public class LCDLiveWallpaper extends WallpaperService {
 			mCanvas = mSurfaceHolder.lockCanvas();
 			drawBg(mCanvas);
 			update();
-			drawMatrix();
-
+			try {
+				drawMatrix();
+			} catch (Exception e) {
+			}
 			try {
 				mSurfaceHolder.unlockCanvasAndPost(mCanvas);
 			} catch (Exception e) {
@@ -68,15 +70,13 @@ public class LCDLiveWallpaper extends WallpaperService {
 
 		}
 
-		private void drawMatrix() {
+		private void drawMatrix() throws IndexOutOfBoundsException {
 			for (int i = 0; i < LCD_WIDTH; i++)
 				for (int j = 0; j < LCD_HEIGHT; j++) {
 					if (displayMatrix[i][j] != 0)
-						try {
-							drawPixel(i, j, displayMatrix[i][j]);
-						} catch (Exception e) {
-						}
+						drawPixel(i, j, displayMatrix[i][j]);
 				}
+
 		}
 
 		private void drawPixel(int x, int y, int value) {
