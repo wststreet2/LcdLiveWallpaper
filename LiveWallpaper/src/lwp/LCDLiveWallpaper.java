@@ -115,12 +115,14 @@ public class LCDLiveWallpaper extends WallpaperService {
 			SharedPreferences sharedPref = PreferenceManager
 					.getDefaultSharedPreferences(context);
 
-			String candySetting = sharedPref.getString("eye_candy", "none");
+			String candySetting = sharedPref.getString("eye_candy", "gradient");
 			Boolean clockEnabled = sharedPref.getBoolean("show_clock", true);
 			Boolean dateEnabled = sharedPref.getBoolean("show_date", false);
+			String clockType = sharedPref.getString("clock_type", "decimal");
 			setEyeCandy(candySetting);
 			WriteClass.setTime(clockEnabled);
 			WriteClass.setDate(dateEnabled);
+			WriteClass.setClockType(clockType);
 			setFramerate(sharedPref.getString("frame_rate", "10"));
 		}
 

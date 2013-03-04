@@ -44,7 +44,7 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 		// TODO Auto-generated method stub
 		if(key.equals("eye_candy"))
 		{
-			LCDLiveWallpaper.setEyeCandy(sharedPreferences.getString(key, "none"));
+			LCDLiveWallpaper.setEyeCandy(sharedPreferences.getString(key, "gradient"));
 		}
 		else if(key.equals("show_clock"))
 		{
@@ -61,7 +61,7 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 		else if(key.equals("clock_type"))
 		{
 			// getString returneaza "decimal" sau "binary"
-			WriteClass.setClockType(sharedPreferences.getString(key, ""));
+			WriteClass.setClockType(sharedPreferences.getString(key, "decimal"));
 		}
 	}
 

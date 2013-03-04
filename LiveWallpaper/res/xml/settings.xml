@@ -8,7 +8,7 @@
         android:key="bg_set_cat"
         android:title="Background Settings" >
         <ListPreference
-            android:defaultValue="none"
+            android:defaultValue="gradient"
             android:dialogTitle="EyeCandy"
             android:entries="@array/eyeCandyArray"
             android:entryValues="@array/eyeCandyArray"
