@@ -9,9 +9,11 @@ public class WriteClass {
 	private int cHeight = 7, cWidth = 5;
 	private int touch = 0;
 
+
 	public static boolean dispDate ;
 	public static boolean dispTime ;
 	public static String clockType ;
+
 	
 	public static void setTime(boolean val)
 	{ 
@@ -216,14 +218,14 @@ public class WriteClass {
 		
 		if(dispTime == true)
 		{
-		    if(clockType.equals("Decimal"))
+		    if(clockType.equalsIgnoreCase("Decimal"))
 		    {
 		    	df = new SimpleDateFormat("HH:mm");
 		    	start = (LCDLiveWallpaper.getLCD_WIDTH() / 2) - 14;
 		    	formattedDate = df.format(cal.getTime());
 		    	matrix = writeLine(formattedDate, start, 25, matrix);
 		    }
-		    else if(clockType.equals("Binary"))
+		    else if(clockType.equalsIgnoreCase("Binary"))
 		    {
 		    	matrix = drawBinaryWatch(matrix);
 		    }

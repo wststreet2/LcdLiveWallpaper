@@ -117,12 +117,14 @@ public class LCDLiveWallpaper extends WallpaperService {
 			SharedPreferences sharedPref = PreferenceManager
 					.getDefaultSharedPreferences(context);
 
-			String candySetting = sharedPref.getString("eye_candy", "None");
+			String candySetting = sharedPref.getString("eye_candy", "gradient");
 			Boolean clockEnabled = sharedPref.getBoolean("show_clock", true);
 			Boolean dateEnabled = sharedPref.getBoolean("show_date", false);
+			String clockType = sharedPref.getString("clock_type", "decimal");
 			setEyeCandy(candySetting);
 			WriteClass.setTime(clockEnabled);
 			WriteClass.setDate(dateEnabled);
+			WriteClass.setClockType(clockType);
 			setFramerate(sharedPref.getString("frame_rate", "10"));
 		}
 
@@ -265,18 +267,21 @@ public class LCDLiveWallpaper extends WallpaperService {
 	}
 
 	public static void setEyeCandy(String name) {
-		if (name.equalsIgnoreCase("None")) {
+		if (name.equalsIgnoreCase("none")) {
 			eyeCandy = null;
-		} else if (name.equalsIgnoreCase("Gradient")) {
+		} else if (name.equalsIgnoreCase("gradient")) {
 			eyeCandy = new EyeCandyGradient();
-		} else if (name.equalsIgnoreCase("Random")) {
+		} else if (name.equalsIgnoreCase("random")) {
 			eyeCandy = new EyeCandyRandom();
 		}
 
 	}
 
 	public static void setFramerate(String value) {
-		int f = Integer.parseInt(value);
+		int f = 10;
+
+		if (!value.isEmpty())
+			f = Integer.parseInt(value);
 
 		if (f > 0)
 			framerate = f;
