@@ -107,7 +107,7 @@ public class MyWallpaper extends WallpaperService {
 			final Display d = w.getDefaultDisplay();
 			final DisplayMetrics m = new DisplayMetrics();
 			int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-
+           
 			if (currentapiVersion >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
 				d.getRealMetrics(m);
 			} else {
@@ -123,6 +123,7 @@ public class MyWallpaper extends WallpaperService {
 				LCD_WIDTH = m.widthPixels / 4;
 				LCD_HEIGHT = m.heightPixels / 4;
 			}
+			
 			displayMatrix = new int[LCD_WIDTH][LCD_HEIGHT];
 			for (int i = 0; i < LCD_WIDTH; i++)
 				for (int j = 0; j < LCD_HEIGHT; j++)

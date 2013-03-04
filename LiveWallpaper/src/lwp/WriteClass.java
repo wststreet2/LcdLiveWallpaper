@@ -49,6 +49,7 @@ public class WriteClass {
 		
 		return matrix;
 	}
+	
 
 	public void incTouch() {
 		touch++;
