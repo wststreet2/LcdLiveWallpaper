@@ -224,6 +224,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 			}
 
 			displayMatrix = wC.drawDateTime(displayMatrix);
+			displayMatrix = wC.drawBinaryWatch(displayMatrix);
 
 		}
 	}
