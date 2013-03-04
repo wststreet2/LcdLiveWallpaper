@@ -72,7 +72,10 @@ public class LCDLiveWallpaper extends WallpaperService {
 			for (int i = 0; i < LCD_WIDTH; i++)
 				for (int j = 0; j < LCD_HEIGHT; j++) {
 					if (displayMatrix[i][j] != 0)
-						drawPixel(i, j, displayMatrix[i][j]);
+						try {
+							drawPixel(i, j, displayMatrix[i][j]);
+						} catch (Exception e) {
+						}
 				}
 		}
 
@@ -98,8 +101,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 			}
 		}
 
-		public void init()
-		{
+		public void init() {
 			width = mCanvas.getWidth();
 			height = mCanvas.getHeight();
 			pixelWidth = width / LCD_WIDTH;
@@ -120,7 +122,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 			WriteClass.setDate(dateEnabled);
 			setFramerate(sharedPref.getString("frame_rate", "10"));
 		}
-		
+
 		@SuppressLint("NewApi")
 		public void initMatrix() {
 			final WindowManager w = (WindowManager) getApplicationContext()
