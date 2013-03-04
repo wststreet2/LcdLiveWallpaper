@@ -115,7 +115,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 					.getDefaultSharedPreferences(context);
 
 			String candySetting = sharedPref.getString("eye_candy", "None");
-			Boolean clockEnabled = sharedPref.getBoolean("show_clock", false);
+			Boolean clockEnabled = sharedPref.getBoolean("show_clock", true);
 			Boolean dateEnabled = sharedPref.getBoolean("show_date", false);
 			setEyeCandy(candySetting);
 			WriteClass.setTime(clockEnabled);

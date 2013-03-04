@@ -48,7 +48,7 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 		}
 		else if(key.equals("show_clock"))
 		{
-			WriteClass.setTime(sharedPreferences.getBoolean(key, false));
+			WriteClass.setTime(sharedPreferences.getBoolean(key, true));
 		}
 		else if(key.equals("show_date"))
 		{
