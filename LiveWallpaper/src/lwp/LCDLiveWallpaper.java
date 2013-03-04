@@ -5,6 +5,7 @@ package lwp;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
@@ -97,8 +98,31 @@ public class LCDLiveWallpaper extends WallpaperService {
 			}
 		}
 
+		public void init()
+		{
+			width = mCanvas.getWidth();
+			height = mCanvas.getHeight();
+			pixelWidth = width / LCD_WIDTH;
+			pixelHeight = height / LCD_HEIGHT;
+			try {
+				mSurfaceHolder.unlockCanvasAndPost(mCanvas);
+			} catch (Exception e) {
+			}
+
+			SharedPreferences sharedPref = PreferenceManager
+					.getDefaultSharedPreferences(context);
+
+			String candySetting = sharedPref.getString("eye_candy", "None");
+			Boolean clockEnabled = sharedPref.getBoolean("show_clock", false);
+			Boolean dateEnabled = sharedPref.getBoolean("show_date", false);
+			setEyeCandy(candySetting);
+			WriteClass.setTime(clockEnabled);
+			WriteClass.setDate(dateEnabled);
+			setFramerate(sharedPref.getString("frame_rate", "10"));
+		}
+		
 		@SuppressLint("NewApi")
-		private void initMatrix() {
+		public void initMatrix() {
 			final WindowManager w = (WindowManager) getApplicationContext()
 					.getSystemService(Context.WINDOW_SERVICE);
 			final Display d = w.getDefaultDisplay();
@@ -148,25 +172,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 			super.onSurfaceCreated(holder);
 			initMatrix();
 			mCanvas = mSurfaceHolder.lockCanvas();
-			width = mCanvas.getWidth();
-			height = mCanvas.getHeight();
-			pixelWidth = width / LCD_WIDTH;
-			pixelHeight = height / LCD_HEIGHT;
-			try {
-				mSurfaceHolder.unlockCanvasAndPost(mCanvas);
-			} catch (Exception e) {
-			}
-
-			SharedPreferences sharedPref = PreferenceManager
-					.getDefaultSharedPreferences(context);
-
-			String candySetting = sharedPref.getString("eye_candy", "None");
-			Boolean clockEnabled = sharedPref.getBoolean("show_clock", false);
-			Boolean dateEnabled = sharedPref.getBoolean("show_date", false);
-			setEyeCandy(candySetting);
-			WriteClass.setTime(clockEnabled);
-			WriteClass.setDate(dateEnabled);
-			setFramerate(sharedPref.getString("frame_rate", "10"));
+			init();
 
 		}
 
@@ -226,6 +232,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 	private static EyeCandy eyeCandy = null;
 	private static Context context = null;
 	private static int framerate = 1;
+	private static MyWallpaperEngine engine;
 
 	public static int getLCD_WIDTH() {
 		return LCD_WIDTH;
@@ -236,9 +243,19 @@ public class LCDLiveWallpaper extends WallpaperService {
 	}
 
 	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		// TODO Auto-generated method stub
+		super.onConfigurationChanged(newConfig);
+		engine.init();
+		engine.initMatrix();
+	}
+
+	@Override
 	public Engine onCreateEngine() {
 		context = getApplicationContext();
-		return new MyWallpaperEngine();
+		engine = new MyWallpaperEngine();
+
+		return engine;
 	}
 
 	public static void setEyeCandy(String name) {
