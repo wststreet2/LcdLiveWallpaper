@@ -222,9 +222,9 @@ public class LCDLiveWallpaper extends WallpaperService {
 			if (eyeCandy != null) {
 				displayMatrix = eyeCandy.draw(displayMatrix);
 			}
-
+            
 			displayMatrix = wC.drawDateTime(displayMatrix);
-			displayMatrix = wC.drawBinaryWatch(displayMatrix);
+			
 
 		}
 	}
