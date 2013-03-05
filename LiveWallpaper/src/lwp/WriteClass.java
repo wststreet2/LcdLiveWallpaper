@@ -130,7 +130,7 @@ public class WriteClass {
 		// pt ore
 
 		d = Integer.parseInt(values[0]);
-		if (d > 10) {
+		if (d > 9) {
 			d2 = d % 10;
 			d = d / 10;
 		}
@@ -147,7 +147,7 @@ public class WriteClass {
 		d2 = 0;
 		d = Integer.parseInt(values[1]);
 		
-		if (d > 10) {
+		if (d > 9) {
 			d2 = d % 10;
 			d = d / 10;
 		}
@@ -163,7 +163,7 @@ public class WriteClass {
 		d1 = 0;
 		d2 = 0;
 		d = Integer.parseInt(values[2]);
-		if (d > 10) {
+		if (d > 9) {
 			d2 = d % 10;
 			d = d / 10;
 		}
