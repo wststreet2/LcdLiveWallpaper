@@ -34,7 +34,16 @@ public class EyeCandyGradient extends EyeCandy {
 	}
 
 	private void drawGradient() {
-		for (int i = 0; i < height; i++) {
+		int margin = 5;
+		for (int i = 0; i < margin; i++)
+			for (int j = 0; j < width; j++)
+				gradient[j][i] = 0;
+
+		for (int i = height - (2*margin); i < height; i++)
+			for (int j = 0; j < width; j++)
+				gradient[j][i] = 255;
+
+		for (int i = 0 + margin; i < (height - margin) + 1; i++) {
 			for (int j = 0; j < width; j++)
 				gradient[j][i] = (int) (i * (255.0 / height));
 		}
@@ -52,7 +61,7 @@ public class EyeCandyGradient extends EyeCandy {
 				for (int k = i - 1; k <= i + 1; k++)
 					for (int l = j - 1; l <= j + 1; l++) {
 						if (k < width && l < height) {
-							if (r.nextInt(100) <= 100 * (original / 255.0))
+							if (r.nextInt(100) < 100 * (original / 255.0))
 								gradient[k][l] = 0;
 							else
 								gradient[k][l] = 1;
