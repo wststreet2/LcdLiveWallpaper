@@ -109,6 +109,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 			WriteClass.dispTime = false;
 			WriteClass.dispDate = false;
 			WriteClass.clockType = "";
+			WriteClass.blackBinary = true;
 			try {
 				mSurfaceHolder.unlockCanvasAndPost(mCanvas);
 			} catch (Exception e) {

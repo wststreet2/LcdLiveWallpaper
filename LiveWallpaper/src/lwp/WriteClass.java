@@ -12,6 +12,7 @@ public class WriteClass {
 	public static boolean dispDate;
 	public static boolean dispTime;
 	public static String clockType;
+	public static boolean blackBinary;
 
 	public static void setTime(boolean val) {
 		dispTime = val;
@@ -56,7 +57,14 @@ public class WriteClass {
 
 			for (i = 0; i < 4; i++) {
 				if (bin[i] == 1) {
-					mat[auxX][auxLineNo] = 1;
+					if(blackBinary == true)
+					{
+						mat[auxX][auxLineNo] = 0;
+					}
+					else
+					{
+						mat[auxX][auxLineNo] = 1;
+					}
 				}
 
 				if (option == 'h') {
@@ -80,7 +88,14 @@ public class WriteClass {
 
 			for (i = 0; i < 4; i++) {
 				if (bin[i] == 1) {
-					mat[auxX][auxLineNo] = 1;
+					if(blackBinary == true)
+					{
+						mat[auxX][auxLineNo] = 0;
+					}
+					else
+					{
+						mat[auxX][auxLineNo] = 1;
+					}
 				}
 
 				if (option == 'h') {
@@ -102,7 +117,7 @@ public class WriteClass {
 
 		int i = 0, j = 0;
 		int width = 27, height = 11;
-		int x, lineNo = 45; // left starting point at x , line at y = 40
+		int x, lineNo = 47; // left starting point at x , line at y = 40
 		SimpleDateFormat df;
 		String formattedDate = "";
 		Calendar cal = Calendar.getInstance();
@@ -116,13 +131,30 @@ public class WriteClass {
 
 		for (i = x; i < x + width; i++) {
 			for (j = lineNo; j > lineNo - height; j--) {
-				matrix[i][j] = 0;
+				if(blackBinary == true)
+					matrix[i][j] = 1;
+				else
+				   matrix[i][j] = 0;
 
 				if (i == x || i == x + width - 1)
-					matrix[i][j] = 1;
+					if(blackBinary == true)
+					{
+						matrix[i][j] = 0;
+					}
+					else
+					{
+						matrix[i][j] = 1;
+					}
 
 				if (j == lineNo || j == lineNo - height + 1)
-					matrix[i][j] = 1;
+					if(blackBinary == true)
+					{
+						matrix[i][j] = 0;
+					}
+					else
+					{
+						matrix[i][j] = 1;
+					}
 			}
 		}
 
