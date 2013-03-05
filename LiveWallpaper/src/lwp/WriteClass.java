@@ -165,9 +165,13 @@ public class WriteClass {
 		if (d > 9) {
 			d2 = d % 10;
 			d = d / 10;
+			d1 = d; // most significant digit
 		}
-		d1 = d; // most significant digit
-
+		else
+		{
+			d2 = d;
+		}
+           
 		// matrix = drawH(matrix,d1,d2,x + 2, lineNo - 2, 'h');
 		matrix = drawH(matrix, d1, d2, x + 2, lineNo - 2, 'h');
 
@@ -182,8 +186,12 @@ public class WriteClass {
 		if (d > 9) {
 			d2 = d % 10;
 			d = d / 10;
+			d1 = d;
 		}
-		d1 = d;
+		else
+		{
+			d2 = d;
+		}
 
 		// matrix = drawH(matrix,d1,d2,x , lineNo - 2,'m');
 		matrix = drawH(matrix, d1, d2, x, lineNo - 2, 'm');
@@ -198,8 +206,13 @@ public class WriteClass {
 		if (d > 9) {
 			d2 = d % 10;
 			d = d / 10;
+			d1 = d;
 		}
-		d1 = d;
+		else
+		{
+			d2 = d;
+		}
+		
 
 	    matrix = drawH(matrix, d1, d2, x, lineNo - 2, 's');
 
