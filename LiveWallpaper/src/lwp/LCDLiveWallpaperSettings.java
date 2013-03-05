@@ -41,7 +41,7 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 			String key) {
-		// TODO Auto-generated method stub
+		
 		if(key.equals("eye_candy"))
 		{
 			LCDLiveWallpaper.setEyeCandy(sharedPreferences.getString(key, "gradient"));
@@ -56,7 +56,7 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 		}
 		else if(key.equals("frame_rate"))
 		{
-			LCDLiveWallpaper.setFramerate(sharedPreferences.getString(key, "10"));
+			LCDLiveWallpaper.setFramerate(sharedPreferences.getString(key, "1"));
 		}
 		else if(key.equals("clock_type"))
 		{

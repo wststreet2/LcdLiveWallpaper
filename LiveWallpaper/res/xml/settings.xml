@@ -42,7 +42,7 @@
         android:key="perf_set_cat"
         android:title="Performance" >
         <EditTextPreference
-            android:defaultValue="10"
+            android:defaultValue="1"
             android:inputType="number"
             android:key="frame_rate"
             android:summary="How many times per second should the screen refresh? Lower values mean better battery life."

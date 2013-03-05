@@ -126,7 +126,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 			WriteClass.setTime(clockEnabled);
 			WriteClass.setDate(dateEnabled);
 			WriteClass.setClockType(clockType);
-			setFramerate(sharedPref.getString("frame_rate", "10"));
+			setFramerate(sharedPref.getString("frame_rate", "1"));
 		}
 
 		@SuppressLint("NewApi")
@@ -279,7 +279,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 	}
 
 	public static void setFramerate(String value) {
-		int f = 10;
+		int f = 1;
 
 		if (!value.isEmpty())
 			f = Integer.parseInt(value);
@@ -287,7 +287,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 		if (f > 0)
 			framerate = f;
 		else
-			framerate = 10;
+			framerate = 1;
 	}
 
 }
