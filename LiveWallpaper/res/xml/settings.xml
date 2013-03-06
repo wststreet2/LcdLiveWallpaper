@@ -15,6 +15,11 @@
             android:key="eye_candy"
             android:summary="Select what the background pixels should look like"
             android:title="EyeCandy" />
+
+        <Preference
+            android:key="color"
+            android:title="Color" >
+        </Preference>
     </PreferenceCategory>
     <PreferenceCategory
         android:key="detail_set_cat"
@@ -27,7 +32,8 @@
             android:key="clock_type"
             android:summary="Do you want the time in decimals or in binary (note: the lines for binary are //||\\\\ HH MM SS)"
             android:title="Clock Type" />
-        <CheckBoxPreference
+
+        <CheckBoxPreference
             android:defaultValue="true"
             android:key="show_clock"
             android:summary="Enable to show the time on the virtual LCD"

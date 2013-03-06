@@ -1,6 +1,5 @@
 package lwp;
 
-
 import org.kamehamehaaa.android.livewallpaper.R;
 
 import android.content.SharedPreferences;
@@ -10,7 +9,7 @@ import android.preference.PreferenceActivity;
 
 @SuppressWarnings("deprecation")
 public class LCDLiveWallpaperSettings extends PreferenceActivity implements
-		OnSharedPreferenceChangeListener {
+		OnSharedPreferenceChangeListener{
 
 	private static final String PREFS_NAME = "LcdLiveWallpaperSettings";
 
@@ -41,27 +40,24 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 			String key) {
-		
-		if(key.equals("eye_candy"))
-		{
-			LCDLiveWallpaper.setEyeCandy(sharedPreferences.getString(key, "gradient"));
-		}
-		else if(key.equals("show_clock"))
-		{
+
+		if (key.equals("eye_candy")) {
+			LCDLiveWallpaper.setEyeCandy(sharedPreferences.getString(key,
+					"gradient"));
+		} else if (key.equals("show_clock")) {
 			WriteClass.setTime(sharedPreferences.getBoolean(key, true));
-		}
-		else if(key.equals("show_date"))
-		{
+		} else if (key.equals("show_date")) {
 			WriteClass.setDate(sharedPreferences.getBoolean(key, false));
-		}
-		else if(key.equals("frame_rate"))
-		{
-			LCDLiveWallpaper.setFramerate(sharedPreferences.getString(key, "1"));
-		}
-		else if(key.equals("clock_type"))
-		{
+		} else if (key.equals("frame_rate")) {
+			LCDLiveWallpaper
+					.setFramerate(sharedPreferences.getString(key, "1"));
+		} else if (key.equals("clock_type")) {
 			// getString returneaza "decimal" sau "binary"
-			WriteClass.setClockType(sharedPreferences.getString(key, "decimal"));
+			WriteClass
+					.setClockType(sharedPreferences.getString(key, "decimal"));
+		} else if (key.equals("color")) {
+			ColorPickerDialog d = new ColorPickerDialog(getApplicationContext(), null, key, 0, 0);
+			d.show();
 		}
 	}
 
