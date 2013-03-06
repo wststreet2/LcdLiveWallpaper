@@ -2,6 +2,9 @@ package lwp;
 
 //import java.sql.Date;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -58,10 +61,8 @@ public class LCDLiveWallpaper extends WallpaperService {
 			mCanvas = mSurfaceHolder.lockCanvas();
 			drawBg(mCanvas);
 			update();
-			try {
-				drawMatrix();
-			} catch (Exception e) {
-			}
+
+			drawMatrix();
 			try {
 				mSurfaceHolder.unlockCanvasAndPost(mCanvas);
 			} catch (Exception e) {
@@ -73,8 +74,11 @@ public class LCDLiveWallpaper extends WallpaperService {
 		private void drawMatrix() throws IndexOutOfBoundsException {
 			for (int i = 0; i < LCD_WIDTH; i++)
 				for (int j = 0; j < LCD_HEIGHT; j++) {
-					if (displayMatrix[i][j] != 0)
-						drawPixel(i, j, displayMatrix[i][j]);
+					try {
+						if (displayMatrix[i][j] != 0)
+							drawPixel(i, j, displayMatrix[i][j]);
+					} catch (Exception e) {
+					}
 				}
 
 		}
@@ -225,12 +229,17 @@ public class LCDLiveWallpaper extends WallpaperService {
 		private void update() {
 			initMatrix(); // Called just to clean the matrix
 
-			if (eyeCandy != null) {
+			SimpleDateFormat df = new SimpleDateFormat("HH:mm");
+			Calendar cal = Calendar.getInstance();
+
+			if (df.format(cal.getTime()).equals("03:14")) {
+				new EyeCandyPI().draw(displayMatrix);
+			} else if (eyeCandy != null) {
 				displayMatrix = eyeCandy.draw(displayMatrix);
+
 			}
-            
+
 			displayMatrix = wC.drawDateTime(displayMatrix);
-			
 
 		}
 	}
