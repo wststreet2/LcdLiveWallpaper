@@ -49,7 +49,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 
 		private void drawBg(Canvas c) {
 			Paint bg = new Paint();
-			bg.setARGB(0xFF, 0x88, 0xAA, 0x88);
+			bg.setARGB(0xFF, 0x99, 0xAA, 0x99);
 			try {
 				c.drawRect(0, 0, width, height, bg);
 			} catch (Exception e) {
