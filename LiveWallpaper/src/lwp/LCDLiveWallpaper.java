@@ -74,11 +74,8 @@ public class LCDLiveWallpaper extends WallpaperService {
 		private void drawMatrix() throws IndexOutOfBoundsException {
 			for (int i = 0; i < LCD_WIDTH; i++)
 				for (int j = 0; j < LCD_HEIGHT; j++) {
-					try {
-						if (displayMatrix[i][j] != 0)
-							drawPixel(i, j, displayMatrix[i][j]);
-					} catch (Exception e) {
-					}
+					if (displayMatrix[i][j] != 0)
+						drawPixel(i, j, displayMatrix[i][j]);
 				}
 
 		}
@@ -114,10 +111,13 @@ public class LCDLiveWallpaper extends WallpaperService {
 			WriteClass.dispDate = false;
 			WriteClass.clockType = "";
 			WriteClass.blackBinary = true;
+
 			try {
 				mSurfaceHolder.unlockCanvasAndPost(mCanvas);
 			} catch (Exception e) {
 			}
+
+			initMatrix();
 
 			SharedPreferences sharedPref = PreferenceManager
 					.getDefaultSharedPreferences(context);
@@ -177,6 +177,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 		public void onSurfaceChanged(SurfaceHolder holder, int format,
 				int width, int height) {
 			super.onSurfaceChanged(holder, format, width, height);
+			mSurfaceHolder = holder;
 		}
 
 		@Override
@@ -208,11 +209,12 @@ public class LCDLiveWallpaper extends WallpaperService {
 			// int touchX = (int) event.getX() * LCD_WIDTH / width;
 			// int touchY = (int) event.getY() * LCD_HEIGHT / height;
 
-			if (event.getAction() == MotionEvent.ACTION_UP)
+			if (event.getAction() == MotionEvent.ACTION_UP) {
 				initMatrix();
-
+			}
 			if (event.getAction() == MotionEvent.ACTION_DOWN)
 				wC.incTouch();
+
 		}
 
 		@Override
