@@ -1,9 +1,12 @@
 package lwp;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+@SuppressLint("SimpleDateFormat")
 public class WriteClass {
 	private int[][] displayMatrix;
 	private int cHeight = 7, cWidth = 5;
@@ -56,12 +59,9 @@ public class WriteClass {
 
 			for (i = 0; i < 4; i++) {
 				if (bin[i] == 1) {
-					if(blackBinary == true)
-					{
+					if (blackBinary == true) {
 						mat[auxX][auxLineNo] = 0;
-					}
-					else
-					{
+					} else {
 						mat[auxX][auxLineNo] = 1;
 					}
 				}
@@ -87,12 +87,9 @@ public class WriteClass {
 
 			for (i = 0; i < 4; i++) {
 				if (bin[i] == 1) {
-					if(blackBinary == true)
-					{
+					if (blackBinary == true) {
 						mat[auxX][auxLineNo] = 0;
-					}
-					else
-					{
+					} else {
 						mat[auxX][auxLineNo] = 1;
 					}
 				}
@@ -112,7 +109,7 @@ public class WriteClass {
 		return mat;
 	}
 
-	public int[][] drawBinaryWatch(int[][] matrix) {
+	public int[][] drawBinaryWatch(int[][] matrix){
 
 		int i = 0, j = 0;
 		int width = 27, height = 11;
@@ -130,28 +127,22 @@ public class WriteClass {
 
 		for (i = x; i < x + width; i++) {
 			for (j = lineNo; j > lineNo - height; j--) {
-				if(blackBinary == true)
+				if (blackBinary == true)
 					matrix[i][j] = 1;
 				else
-				   matrix[i][j] = 0;
+					matrix[i][j] = 0;
 
 				if (i == x || i == x + width - 1)
-					if(blackBinary == true)
-					{
+					if (blackBinary == true) {
 						matrix[i][j] = 0;
-					}
-					else
-					{
+					} else {
 						matrix[i][j] = 1;
 					}
 
 				if (j == lineNo || j == lineNo - height + 1)
-					if(blackBinary == true)
-					{
+					if (blackBinary == true) {
 						matrix[i][j] = 0;
-					}
-					else
-					{
+					} else {
 						matrix[i][j] = 1;
 					}
 			}
@@ -165,12 +156,10 @@ public class WriteClass {
 			d2 = d % 10;
 			d = d / 10;
 			d1 = d; // most significant digit
-		}
-		else
-		{
+		} else {
 			d2 = d;
 		}
-           
+
 		// matrix = drawH(matrix,d1,d2,x + 2, lineNo - 2, 'h');
 		matrix = drawH(matrix, d1, d2, x + 2, lineNo - 2, 'h');
 
@@ -181,14 +170,12 @@ public class WriteClass {
 		d1 = 0;
 		d2 = 0;
 		d = Integer.parseInt(values[1]);
-		
+
 		if (d > 9) {
 			d2 = d % 10;
 			d = d / 10;
 			d1 = d;
-		}
-		else
-		{
+		} else {
 			d2 = d;
 		}
 
@@ -206,14 +193,11 @@ public class WriteClass {
 			d2 = d % 10;
 			d = d / 10;
 			d1 = d;
-		}
-		else
-		{
+		} else {
 			d2 = d;
 		}
-		
 
-	    matrix = drawH(matrix, d1, d2, x, lineNo - 2, 's');
+		matrix = drawH(matrix, d1, d2, x, lineNo - 2, 's');
 
 		return matrix;
 	}
@@ -226,27 +210,27 @@ public class WriteClass {
 
 		int start = 0;
 
-		if (dispDate == true) {
-			df = new SimpleDateFormat("dd/MM/yy");
-			start = (LCDLiveWallpaper.getLCD_WIDTH() / 2) - 23;
-			formattedDate = df.format(cal.getTime());
-			matrix = writeLine(formattedDate, start, 33, matrix);
-		}
-
-		if (dispTime == true) {
-			if (clockType.equalsIgnoreCase("Decimal")) {
-				df = new SimpleDateFormat("HH:mm");
-				start = (LCDLiveWallpaper.getLCD_WIDTH() / 2) - 14;
+			if (dispDate == true) {
+				df = new SimpleDateFormat("dd/MM/yy");
+				start = (LCDLiveWallpaper.getLCD_WIDTH() / 2) - 23;
 				formattedDate = df.format(cal.getTime());
-				matrix = writeLine(formattedDate, start, 25, matrix);
-			} else if (clockType.equalsIgnoreCase("Binary")) {
-				matrix = drawBinaryWatch(matrix);
+				matrix = writeLine(formattedDate, start, 33, matrix);
 			}
-		}
+
+			if (dispTime == true) {
+				if (clockType.equalsIgnoreCase("Decimal")) {
+					df = new SimpleDateFormat("HH:mm");
+					start = (LCDLiveWallpaper.getLCD_WIDTH() / 2) - 14;
+					formattedDate = df.format(cal.getTime());
+					matrix = writeLine(formattedDate, start, 25, matrix);
+				} else if (clockType.equalsIgnoreCase("Binary")) {
+					matrix = drawBinaryWatch(matrix);
+				}
+			}
+	
 
 		return matrix;
 	}
-
 
 	int[][] setCharacter(char c, int x, int lineNo, int[][] displayMatrix) {
 		int i = 0;
