@@ -274,7 +274,6 @@ public class LCDLiveWallpaper extends WallpaperService {
 	public Engine onCreateEngine() {
 		context = getApplicationContext();
 		engine = new MyWallpaperEngine();
-
 		return engine;
 	}
 

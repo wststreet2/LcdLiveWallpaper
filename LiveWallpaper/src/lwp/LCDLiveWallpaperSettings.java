@@ -2,9 +2,12 @@ package lwp;
 
 import org.kamehamehaaa.android.livewallpaper.R;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
+import android.preference.Preference;
+import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 
 @SuppressWarnings("deprecation")
@@ -12,6 +15,7 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 		OnSharedPreferenceChangeListener{
 
 	private static final String PREFS_NAME = "LcdLiveWallpaperSettings";
+	private final Context ctx = this;
 
 	public static String getPrefsName() {
 		return PREFS_NAME;
@@ -20,6 +24,22 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 	protected void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		addPreferencesFromResource(R.xml.settings);
+		
+		Preference color = (Preference)findPreference("color");
+		color.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+			
+			public boolean onPreferenceClick(Preference preference) {
+				ColorPickerDialog d = new ColorPickerDialog(ctx, new ColorPickerDialog.OnColorChangedListener() {
+					
+					public void colorChanged(String key, int color) {
+						// TODO Auto-generated method stub
+						
+					}
+				}, "color", 0x99AA99, 0x99AA99);
+				d.show();
+				return false;
+			}
+		});
 	}
 
 	@Override
@@ -55,10 +75,7 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 			// getString returneaza "decimal" sau "binary"
 			WriteClass
 					.setClockType(sharedPreferences.getString(key, "decimal"));
-		} else if (key.equals("color")) {
-			ColorPickerDialog d = new ColorPickerDialog(getApplicationContext(), null, key, 0, 0);
-			d.show();
-		}
+		} 
 	}
 
 }
