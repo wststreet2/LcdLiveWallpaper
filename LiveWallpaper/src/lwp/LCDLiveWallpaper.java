@@ -236,12 +236,14 @@ public class LCDLiveWallpaper extends WallpaperService {
 
 			if (df.format(cal.getTime()).equals("03:14")) {
 				new EyeCandyPI().draw(displayMatrix);
+			} else if (df.format(cal.getTime()).equals("13:37")) {
+				new EyeCandyLeet().draw(displayMatrix);
 			} else if (eyeCandy != null) {
 				displayMatrix = eyeCandy.draw(displayMatrix);
-
+				displayMatrix = wC.drawDateTime(displayMatrix);
+			} else {
+				displayMatrix = wC.drawDateTime(displayMatrix);
 			}
-
-			displayMatrix = wC.drawDateTime(displayMatrix);
 
 		}
 	}
