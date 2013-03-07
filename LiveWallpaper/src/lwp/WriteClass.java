@@ -7,7 +7,6 @@ import java.util.Calendar;
 public class WriteClass {
 	private int[][] displayMatrix;
 	private int cHeight = 7, cWidth = 5;
-	private int touch = 0;
 
 	public static boolean dispDate;
 	public static boolean dispTime;
@@ -248,9 +247,6 @@ public class WriteClass {
 		return matrix;
 	}
 
-	public void incTouch() {
-		touch++;
-	}
 
 	int[][] setCharacter(char c, int x, int lineNo, int[][] displayMatrix) {
 		int i = 0;

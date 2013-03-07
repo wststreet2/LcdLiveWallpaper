@@ -17,6 +17,7 @@ import android.preference.PreferenceManager;
 import android.service.wallpaper.WallpaperService;
 
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -52,6 +53,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 			try {
 				c.drawRect(0, 0, width, height, bg);
 			} catch (Exception e) {
+				Log.e("LCDLiveWallpaper", "exception", e);
 			}
 		}
 
@@ -65,6 +67,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 			try {
 				mSurfaceHolder.unlockCanvasAndPost(mCanvas);
 			} catch (Exception e) {
+				Log.e("LCDLiveWallpaper", "exception", e);
 			}
 			mHandler.postDelayed(mDraw, refreshDelay);
 
@@ -98,10 +101,14 @@ public class LCDLiveWallpaper extends WallpaperService {
 									+ pixelHeight - margin, offPixelPaint);
 				}
 			} catch (Exception e) {
+				Log.e("LCDLiveWallpaper", "exception", e);
 			}
 		}
 
 		public void init() {
+			if (mCanvas == null && mSurfaceHolder == null)
+				return;
+
 			width = mCanvas.getWidth();
 			height = mCanvas.getHeight();
 			pixelWidth = width / LCD_WIDTH;
@@ -111,10 +118,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 			WriteClass.clockType = "";
 			WriteClass.blackBinary = true;
 
-			try {
-				mSurfaceHolder.unlockCanvasAndPost(mCanvas);
-			} catch (Exception e) {
-			}
+			
 
 			initMatrix();
 
@@ -179,14 +183,28 @@ public class LCDLiveWallpaper extends WallpaperService {
 				int width, int height) {
 			super.onSurfaceChanged(holder, format, width, height);
 			mSurfaceHolder = holder;
+			mCanvas = holder.lockCanvas();
+			init();
+			initMatrix();
+			try {
+				mSurfaceHolder.unlockCanvasAndPost(mCanvas);
+			} catch (Exception e) {
+				Log.e("LCDLiveWallpaper", "exception", e);
+			}
 		}
 
 		@Override
 		public void onSurfaceCreated(SurfaceHolder holder) {
 			super.onSurfaceCreated(holder);
-			initMatrix();
-			mCanvas = mSurfaceHolder.lockCanvas();
+			mSurfaceHolder = holder;
+			mCanvas = holder.lockCanvas();
 			init();
+			initMatrix();
+			try {
+				mSurfaceHolder.unlockCanvasAndPost(mCanvas);
+			} catch (Exception e) {
+				Log.e("LCDLiveWallpaper", "exception", e);
+			}
 
 		}
 
@@ -206,15 +224,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 		@Override
 		public void onTouchEvent(MotionEvent event) {
 			super.onTouchEvent(event);
-
-			// int touchX = (int) event.getX() * LCD_WIDTH / width;
-			// int touchY = (int) event.getY() * LCD_HEIGHT / height;
-
-			if (event.getAction() == MotionEvent.ACTION_UP) {
-				initMatrix();
-			}
-			if (event.getAction() == MotionEvent.ACTION_DOWN)
-				wC.incTouch();
+			
 
 		}
 
@@ -269,8 +279,13 @@ public class LCDLiveWallpaper extends WallpaperService {
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
-		engine.init();
-		engine.initMatrix();
+		try {
+			engine.init();
+			engine.initMatrix();
+		} catch (Exception e) {
+			Log.e("LCDLiveWallpaper", "exception", e);
+		}
+		
 	}
 
 	@Override
@@ -315,6 +330,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 				b = Integer.parseInt(color.substring(4, 6), 16);
 			}
 		} catch (Exception e) {
+			Log.e("LCDLiveWallpaper", "exception", e);
 		}
 		bg.setARGB(0xFF, r, g, b);
 	}

@@ -19,7 +19,8 @@
         <EditTextPreference
             android:key="color"
             android:title="Background Color"
-            android:summary="[0xRRGGBB] Good ideas: 0x 0x88AA88, 0x99AA99" >
+            android:summary="[0xRRGGBB] Good ideas: 0x88AA88, 0x99AA99, 0x888888, 0x999999" >
+            
         </EditTextPreference>
     </PreferenceCategory>
     <PreferenceCategory
