@@ -109,8 +109,6 @@ public class LCDLiveWallpaper extends WallpaperService {
 			if (mCanvas == null && mSurfaceHolder == null)
 				return;
 
-			if (!firstrun)
-				firstrun = false;
 
 			width = mCanvas.getWidth();
 			height = mCanvas.getHeight();
@@ -267,7 +265,6 @@ public class LCDLiveWallpaper extends WallpaperService {
 	private static int framerate = 1;
 	private static MyWallpaperEngine engine;
 	private static Paint bg = new Paint();
-	private static boolean firstrun = true;
 
 	public static int getLCD_WIDTH() {
 		return LCD_WIDTH;
