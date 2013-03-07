@@ -48,7 +48,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 		};
 
 		private void drawBg(Canvas c) {
-			
+
 			try {
 				c.drawRect(0, 0, width, height, bg);
 			} catch (Exception e) {
@@ -307,11 +307,14 @@ public class LCDLiveWallpaper extends WallpaperService {
 		int r = 0x99;
 		int g = 0xAA;
 		int b = 0x99;
-		if (string.length() == 8) {
-			String color = string.split("[x|X]")[1];
-			r = Integer.parseInt(color.substring(0,2), 16);
-			g = Integer.parseInt(color.substring(2,4), 16);
-			b = Integer.parseInt(color.substring(4,6), 16);
+		try {
+			if (string.length() == 8) {
+				String color = string.split("[x|X]")[1];
+				r = Integer.parseInt(color.substring(0, 2), 16);
+				g = Integer.parseInt(color.substring(2, 4), 16);
+				b = Integer.parseInt(color.substring(4, 6), 16);
+			}
+		} catch (Exception e) {
 		}
 		bg.setARGB(0xFF, r, g, b);
 	}
