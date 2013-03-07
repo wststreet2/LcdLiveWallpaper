@@ -48,8 +48,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 		};
 
 		private void drawBg(Canvas c) {
-			Paint bg = new Paint();
-			bg.setARGB(0xFF, 0x99, 0xAA, 0x99);
+			
 			try {
 				c.drawRect(0, 0, width, height, bg);
 			} catch (Exception e) {
@@ -126,11 +125,13 @@ public class LCDLiveWallpaper extends WallpaperService {
 			Boolean clockEnabled = sharedPref.getBoolean("show_clock", true);
 			Boolean dateEnabled = sharedPref.getBoolean("show_date", false);
 			String clockType = sharedPref.getString("clock_type", "decimal");
+			String bgColor = sharedPref.getString("color", "0x99AA99");
 			setEyeCandy(candySetting);
 			WriteClass.setTime(clockEnabled);
 			WriteClass.setDate(dateEnabled);
 			WriteClass.setClockType(clockType);
 			setFramerate(sharedPref.getString("frame_rate", "1"));
+			setBgColor(bgColor);
 		}
 
 		@SuppressLint("NewApi")
@@ -255,6 +256,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 	private static Context context = null;
 	private static int framerate = 1;
 	private static MyWallpaperEngine engine;
+	private static Paint bg = new Paint();
 
 	public static int getLCD_WIDTH() {
 		return LCD_WIDTH;
@@ -266,7 +268,6 @@ public class LCDLiveWallpaper extends WallpaperService {
 
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
-		// TODO Auto-generated method stub
 		super.onConfigurationChanged(newConfig);
 		engine.init();
 		engine.initMatrix();
@@ -300,6 +301,19 @@ public class LCDLiveWallpaper extends WallpaperService {
 			framerate = f;
 		else
 			framerate = 1;
+	}
+
+	public static void setBgColor(String string) {
+		int r = 0x99;
+		int g = 0xAA;
+		int b = 0x99;
+		if (string.length() == 8) {
+			String color = string.split("[x|X]")[1];
+			r = Integer.parseInt(color.substring(0,2), 16);
+			g = Integer.parseInt(color.substring(2,4), 16);
+			b = Integer.parseInt(color.substring(4,6), 16);
+		}
+		bg.setARGB(0xFF, r, g, b);
 	}
 
 }

@@ -16,10 +16,11 @@
             android:summary="Select what the background pixels should look like"
             android:title="EyeCandy" />
 
-        <Preference
+        <EditTextPreference
             android:key="color"
-            android:title="Color" >
-        </Preference>
+            android:title="Background Color"
+            android:summary="[0xRRGGBB] Good ideas: 0x 0x88AA88, 0x99AA99" >
+        </EditTextPreference>
     </PreferenceCategory>
     <PreferenceCategory
         android:key="detail_set_cat"
