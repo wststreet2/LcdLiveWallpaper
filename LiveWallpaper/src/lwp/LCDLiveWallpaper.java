@@ -109,7 +109,6 @@ public class LCDLiveWallpaper extends WallpaperService {
 			if (mCanvas == null && mSurfaceHolder == null)
 				return;
 
-
 			width = mCanvas.getWidth();
 			height = mCanvas.getHeight();
 			pixelWidth = width / LCD_WIDTH;
@@ -118,15 +117,12 @@ public class LCDLiveWallpaper extends WallpaperService {
 			WriteClass.dispDate = false;
 			WriteClass.clockType = "";
 			WriteClass.blackBinary = true;
-			
+
 			initMatrix();
-			
-			if(LCD_WIDTH >= 55)
-			{
-			   WriteClass.watchSize = 1;
-			}
-			else
-			{
+
+			if (LCD_WIDTH >= 55) {
+				WriteClass.watchSize = 1;
+			} else {
 				WriteClass.watchSize = 0;
 			}
 
@@ -138,10 +134,15 @@ public class LCDLiveWallpaper extends WallpaperService {
 			Boolean dateEnabled = sharedPref.getBoolean("show_date", false);
 			String clockType = sharedPref.getString("clock_type", "decimal");
 			String bgColor = sharedPref.getString("color", "0x99AA99");
-			setEyeCandy(candySetting);
+			Boolean bigClock = sharedPref.getBoolean("big_clock", false);
+			Boolean blackClock = sharedPref.getBoolean("black_clock", false);
+
 			WriteClass.setTime(clockEnabled);
 			WriteClass.setDate(dateEnabled);
 			WriteClass.setClockType(clockType);
+			WriteClass.blackBinary = blackClock;
+			WriteClass.watchSize = bigClock ? 1 : 0;
+			setEyeCandy(candySetting);
 			setFramerate(sharedPref.getString("frame_rate", "1"));
 			setBgColor(bgColor);
 		}
@@ -162,18 +163,17 @@ public class LCDLiveWallpaper extends WallpaperService {
 			if (m.heightPixels >= 800) {
 				LCD_WIDTH = m.widthPixels / 10;
 				LCD_HEIGHT = m.heightPixels / 10;
-					
+
 			} else if (m.heightPixels > 480) {
 				LCD_WIDTH = m.widthPixels / 5;
 				LCD_HEIGHT = m.heightPixels / 5;
-				
+
 			} else {
 				LCD_WIDTH = m.widthPixels / 4;
 				LCD_HEIGHT = m.heightPixels / 4;
-				
+
 			}
-			
-			
+
 			displayMatrix = new int[LCD_WIDTH][LCD_HEIGHT];
 			for (int i = 0; i < LCD_WIDTH; i++)
 				for (int j = 0; j < LCD_HEIGHT; j++)

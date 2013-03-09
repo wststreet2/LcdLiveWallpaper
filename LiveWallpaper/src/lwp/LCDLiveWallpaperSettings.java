@@ -12,7 +12,7 @@ import android.preference.PreferenceActivity;
 
 @SuppressWarnings("deprecation")
 public class LCDLiveWallpaperSettings extends PreferenceActivity implements
-		OnSharedPreferenceChangeListener{
+		OnSharedPreferenceChangeListener {
 
 	private static final String PREFS_NAME = "LcdLiveWallpaperSettings";
 
@@ -58,8 +58,17 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 			// getString returneaza "decimal" sau "binary"
 			WriteClass
 					.setClockType(sharedPreferences.getString(key, "decimal"));
-		} else if (key.equals("color")){
-			LCDLiveWallpaper.setBgColor(sharedPreferences.getString(key, "0x99AA99"));
+		} else if (key.equals("color")) {
+			LCDLiveWallpaper.setBgColor(sharedPreferences.getString(key,
+					"0x99AA99"));
+		} else if (key.equals("big_clock")) {
+			if (sharedPreferences.getBoolean(key, false) == false)
+				WriteClass.watchSize = 0;
+			else
+				WriteClass.watchSize = 1;
+		} else if (key.equals("black_clock")) {
+			WriteClass.blackBinary = sharedPreferences.getBoolean(key, false);
+			
 		}
 	}
 
