@@ -117,7 +117,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 			WriteClass.dispTime = false;
 			WriteClass.dispDate = false;
 			WriteClass.clockType = "";
-			WriteClass.blackBinary = true;
+			WriteClass.blackBinary = false;
 			WriteClass.watchSize = 1; // big watch 
 
 			initMatrix();
