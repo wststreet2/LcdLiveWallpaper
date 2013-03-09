@@ -55,6 +55,16 @@ public class WriteClass {
 		int auxLineNo = lineNo;
 		int auxX = x;
         int incr ;
+        int blackWhite; // 0 - black , 1 - white
+        
+        if(blackBinary)
+        {
+        	blackWhite = 0;
+        }
+        else
+        {
+        	blackWhite = 1;
+        }
         
         if(watchSize == 0)
         {
@@ -71,15 +81,13 @@ public class WriteClass {
 
 			for (i = 0; i < 4; i++) {
 				if (bin[i] == 1) {
-					if (blackBinary == true) {
-						mat[auxX][auxLineNo] = 0;
+					
+						mat[auxX][auxLineNo] = blackWhite;
 						
-						mat[auxX][auxLineNo - 1] = 0;
-						mat[auxX - 1][auxLineNo] = 0;
-						mat[auxX - 1][auxLineNo - 1] = 0;
-					} else {
-						mat[auxX][auxLineNo] = 1;
-					}
+						mat[auxX][auxLineNo - 1] = blackWhite;
+						mat[auxX - 1][auxLineNo] = blackWhite;
+						mat[auxX - 1][auxLineNo - 1] = blackWhite;
+					
 				}
 
 				if (option == 'h') {
@@ -105,15 +113,13 @@ public class WriteClass {
 
 			for (i = 0; i < 4; i++) {
 				if (bin[i] == 1) {
-					if (blackBinary == true) {
-						mat[auxX][auxLineNo] = 0;
+					
+						mat[auxX][auxLineNo] = blackWhite;
 						
-						mat[auxX][auxLineNo - 1] = 0;
-						mat[auxX - 1][auxLineNo] = 0;
-						mat[auxX - 1][auxLineNo - 1] = 0;
-					} else {
-						mat[auxX][auxLineNo] = 1;
-					}
+						mat[auxX][auxLineNo - 1] = blackWhite;
+						mat[auxX - 1][auxLineNo] = blackWhite;
+						mat[auxX - 1][auxLineNo - 1] = blackWhite;
+					
 				}
 
 				if (option == 'h') {
