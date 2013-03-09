@@ -15,6 +15,7 @@ public class WriteClass {
 	public static boolean dispTime;
 	public static String clockType;
 	public static boolean blackBinary;
+	public static int watchSize;
 
 	public static void setTime(boolean val) {
 		dispTime = val;
@@ -53,7 +54,18 @@ public class WriteClass {
 		int i = 0;
 		int auxLineNo = lineNo;
 		int auxX = x;
-
+        int incr ;
+        
+        if(watchSize == 0)
+        {
+        	incr = 2;
+        }
+        else
+        {
+        	incr = 4;
+        }
+		
+		
 		if (d1 > 0) {
 			bin = getBinary(d1);
 
@@ -61,26 +73,32 @@ public class WriteClass {
 				if (bin[i] == 1) {
 					if (blackBinary == true) {
 						mat[auxX][auxLineNo] = 0;
+						
+						mat[auxX][auxLineNo - 1] = 0;
+						mat[auxX - 1][auxLineNo] = 0;
+						mat[auxX - 1][auxLineNo - 1] = 0;
 					} else {
 						mat[auxX][auxLineNo] = 1;
 					}
 				}
 
 				if (option == 'h') {
-					auxLineNo -= 2;
-					auxX += 2;
+					auxLineNo -= incr;
+					auxX += incr;
+				
 				} else if (option == 'm') {
-					auxLineNo -= 2;
+					
+					auxLineNo -= incr;
 				} else if (option == 's') {
-					auxLineNo -= 2;
-					auxX -= 2;
+					auxLineNo -= incr;
+					auxX -= incr;
 				}
 
 			}
 		}
 
 		auxLineNo = lineNo;
-		auxX = x + 2;
+		auxX = x + incr;
 
 		if (d2 > 0) {
 			bin = getBinary(d2);
@@ -89,19 +107,23 @@ public class WriteClass {
 				if (bin[i] == 1) {
 					if (blackBinary == true) {
 						mat[auxX][auxLineNo] = 0;
+						
+						mat[auxX][auxLineNo - 1] = 0;
+						mat[auxX - 1][auxLineNo] = 0;
+						mat[auxX - 1][auxLineNo - 1] = 0;
 					} else {
 						mat[auxX][auxLineNo] = 1;
 					}
 				}
 
 				if (option == 'h') {
-					auxLineNo -= 2;
-					auxX += 2;
+					auxLineNo -= incr;
+					auxX += incr;
 				} else if (option == 'm') {
-					auxLineNo -= 2;
+					auxLineNo -= incr;
 				} else if (option == 's') {
-					auxLineNo -= 2;
-					auxX -= 2;
+					auxLineNo -= incr;
+					auxX -= incr;
 				}
 			}
 		}
@@ -112,18 +134,36 @@ public class WriteClass {
 	public int[][] drawBinaryWatch(int[][] matrix){
 
 		int i = 0, j = 0;
-		int width = 27, height = 11;
-		int x, lineNo = 47; // left starting point at x , line at y = 40
+		int width , height ;
+		int x, lineNo ; // left starting point at x , line at y = 40
 		SimpleDateFormat df;
 		String formattedDate = "";
 		Calendar cal = Calendar.getInstance();
 		df = new SimpleDateFormat("HH:mm:ss");
-
+        
+		
+		
+		if(watchSize == 0)
+		{
+			lineNo = 47;
+			width = 27;
+			height = 11;
+			x = (LCDLiveWallpaper.getLCD_WIDTH() / 2) - 14;
+			
+		}
+		else
+		{
+			lineNo = 58;
+			width = 54;
+			height = 22;
+			x = (LCDLiveWallpaper.getLCD_WIDTH() / 2) - 27;
+			
+		}
+		
 		formattedDate = df.format(cal.getTime());
 
 		String[] values = formattedDate.split(":");
-
-		x = (LCDLiveWallpaper.getLCD_WIDTH() / 2) - 14;
+        
 
 		for (i = x; i < x + width; i++) {
 			for (j = lineNo; j > lineNo - height; j--) {
@@ -161,9 +201,18 @@ public class WriteClass {
 		}
 
 		// matrix = drawH(matrix,d1,d2,x + 2, lineNo - 2, 'h');
-		matrix = drawH(matrix, d1, d2, x + 2, lineNo - 2, 'h');
+		if(watchSize == 0)
+		{
+			matrix = drawH(matrix, d1, d2, x + 2, lineNo - 2, 'h');
+			x = x + 12;
+		}
+		else
+		{
+			matrix = drawH(matrix, d1, d2, x + 4, lineNo - 4, 'h');
+			x = x + 24;
+		}
 
-		x = x + 12;
+		
 
 		// minute
 		d = 0;
@@ -180,9 +229,18 @@ public class WriteClass {
 		}
 
 		// matrix = drawH(matrix,d1,d2,x , lineNo - 2,'m');
-		matrix = drawH(matrix, d1, d2, x, lineNo - 2, 'm');
+		if(watchSize == 0)
+		{
+			matrix = drawH(matrix, d1, d2, x, lineNo - 2, 'm');
+			x = x + 10;
+		}
+		else
+		{
+			matrix = drawH(matrix, d1, d2, x, lineNo - 4, 'm');
+			x = x + 20;
+		}
 
-		x = x + 10;
+		
 
 		// secunde
 		d = 0;
@@ -196,8 +254,15 @@ public class WriteClass {
 		} else {
 			d2 = d;
 		}
-
-		matrix = drawH(matrix, d1, d2, x, lineNo - 2, 's');
+        
+		if(watchSize == 0)
+		{
+			matrix = drawH(matrix, d1, d2, x, lineNo - 2, 's');
+		}
+		else
+		{
+			matrix = drawH(matrix, d1, d2, x, lineNo - 4, 's');
+		}
 
 		return matrix;
 	}

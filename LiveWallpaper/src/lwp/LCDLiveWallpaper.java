@@ -118,6 +118,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 			WriteClass.dispDate = false;
 			WriteClass.clockType = "";
 			WriteClass.blackBinary = true;
+			WriteClass.watchSize = 1; // big watch 
 
 			initMatrix();
 
@@ -150,15 +151,18 @@ public class LCDLiveWallpaper extends WallpaperService {
 			} else {
 				d.getMetrics(m);
 			}
-			if (m.heightPixels >= 500) {
+			if (m.heightPixels >= 540) {
 				LCD_WIDTH = m.widthPixels / 10;
 				LCD_HEIGHT = m.heightPixels / 10;
+				WriteClass.watchSize = 1;
 			} else if (m.heightPixels > 400) {
 				LCD_WIDTH = m.widthPixels / 5;
 				LCD_HEIGHT = m.heightPixels / 5;
+				WriteClass.watchSize = 0;
 			} else {
 				LCD_WIDTH = m.widthPixels / 4;
 				LCD_HEIGHT = m.heightPixels / 4;
+				WriteClass.watchSize = 0;
 			}
 			displayMatrix = new int[LCD_WIDTH][LCD_HEIGHT];
 			for (int i = 0; i < LCD_WIDTH; i++)
