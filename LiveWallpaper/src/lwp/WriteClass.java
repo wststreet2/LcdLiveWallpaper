@@ -81,12 +81,15 @@ public class WriteClass {
 
 			for (i = 0; i < 4; i++) {
 				if (bin[i] == 1) {
-					
-						mat[auxX][auxLineNo] = blackWhite;
-						
+					   
+					 if(watchSize == 1)
+					 {
 						mat[auxX][auxLineNo - 1] = blackWhite;
 						mat[auxX - 1][auxLineNo] = blackWhite;
 						mat[auxX - 1][auxLineNo - 1] = blackWhite;
+					 }
+					 mat[auxX][auxLineNo] = blackWhite;
+						
 					
 				}
 
@@ -114,11 +117,13 @@ public class WriteClass {
 			for (i = 0; i < 4; i++) {
 				if (bin[i] == 1) {
 					
-						mat[auxX][auxLineNo] = blackWhite;
-						
+					if(watchSize == 1)
+					 {
 						mat[auxX][auxLineNo - 1] = blackWhite;
 						mat[auxX - 1][auxLineNo] = blackWhite;
 						mat[auxX - 1][auxLineNo - 1] = blackWhite;
+					 }
+					 mat[auxX][auxLineNo] = blackWhite;
 					
 				}
 
