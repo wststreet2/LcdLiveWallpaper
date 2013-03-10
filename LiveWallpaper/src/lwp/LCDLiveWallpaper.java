@@ -120,11 +120,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 
 			initMatrix();
 
-			if (LCD_WIDTH >= 55) {
-				WriteClass.watchSize = 1;
-			} else {
-				WriteClass.watchSize = 0;
-			}
+			
 
 			SharedPreferences sharedPref = PreferenceManager
 					.getDefaultSharedPreferences(context);
@@ -145,6 +141,10 @@ public class LCDLiveWallpaper extends WallpaperService {
 			setEyeCandy(candySetting);
 			setFramerate(sharedPref.getString("frame_rate", "1"));
 			setBgColor(bgColor);
+			
+			if (LCD_WIDTH < 55) {
+				WriteClass.watchSize = 2;
+			}
 		}
 
 		@SuppressLint("NewApi")

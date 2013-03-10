@@ -18,9 +18,8 @@
 
         <EditTextPreference
             android:key="color"
-            android:title="Background Color"
-            android:summary="[0xRRGGBB] Good ideas: 0x88AA88, 0x99AA99, 0x888888, 0x999999" >
-            
+            android:summary="[0xRRGGBB] Good ideas: 0x88AA88, 0x99AA99, 0x888888, 0x999999"
+            android:title="Background Color" >
         </EditTextPreference>
     </PreferenceCategory>
     <PreferenceCategory
@@ -34,18 +33,19 @@
             android:key="clock_type"
             android:summary="Do you want the time in decimals or in binary (note: the lines for binary are //||\\\\ HH MM SS)"
             android:title="Clock Type" />
-		<CheckBoxPreference
-		    android:defaultValue="false"
-		    android:key="black_clock"
-		    android:title="Black Binary Clock"
-		    android:summary="Invert the colors of the binary clock"
-		    ></CheckBoxPreference>
+
         <CheckBoxPreference
-		    android:defaultValue="false"
-		    android:key="big_clock"
-		    android:title="Big Binary Clock"
-		    android:summary="Show bigger binary clock (if it fits your screen)"
-		    ></CheckBoxPreference>
+            android:defaultValue="false"
+            android:key="black_clock"
+            android:summary="Invert the colors of the binary clock"
+            android:title="Black Binary Clock" >
+        </CheckBoxPreference>
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="big_clock"
+            android:summary="Show bigger binary clock (if it fits your screen)"
+            android:title="Big Binary Clock" >
+        </CheckBoxPreference>
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="show_clock"
@@ -82,8 +82,11 @@
                 android:data="http://www.twitter.com/wststreet" />
         </Preference>
         <Preference
-            android:summary="to be added"
+            android:summary="wststreet2@gmail.com"
             android:title="Email" >
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="mailto:wststreet2@gmail.com" />
         </Preference>
     </PreferenceCategory>
 
