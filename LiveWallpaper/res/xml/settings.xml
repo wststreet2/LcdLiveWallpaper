@@ -24,7 +24,7 @@
     </PreferenceCategory>
     <PreferenceCategory
         android:key="detail_set_cat"
-        android:title="Enable &amp; Disable Features" >
+        android:title="Date and Time" >
         <ListPreference
             android:defaultValue="decimal"
             android:dialogTitle="Clock Style"
@@ -33,7 +33,14 @@
             android:key="clock_type"
             android:summary="Do you want the time in decimals or in binary (note: the lines for binary are //||\\\\ HH MM SS)"
             android:title="Clock Type" />
-
+		<ListPreference
+		    android:defaultValue="european"
+		    android:dialogTitle="Date Format"
+		    android:entries="@array/dateFormat"
+		    android:entryValues="@array/dateFormat"
+		    android:key="date_format"
+		    android:title="Date Format"
+		     />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="black_clock"

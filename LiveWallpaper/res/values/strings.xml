@@ -15,5 +15,11 @@
         <item name="decimal">Decimal</item>
         <item name="binary">Binary</item>
     </string-array>
+    
+    <string-array name="dateFormat">
+        <item name="european">DD/MM/YY</item>
+        <item name="american">MM/DD/YY</item>
+        <item name="japanese">YY/MM/DD</item>
+    </string-array>
 
 </resources>

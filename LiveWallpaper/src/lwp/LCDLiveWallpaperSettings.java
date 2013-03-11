@@ -67,6 +67,13 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 		} else if (key.equals("black_clock")) {
 			WriteClass.blackBinary = sharedPreferences.getBoolean(key, false);
 			
+		} else if (key.equals("date_format")) {
+			// sharedPreferences.getString(key, "european");
+			// returneaza "european" by default
+			// poate returna: european, american, japanese
+			// European: DD/MM/YY
+			// American: MM/DD/YY
+			// Japanese: YY/MM/DD
 		}
 	}
 
