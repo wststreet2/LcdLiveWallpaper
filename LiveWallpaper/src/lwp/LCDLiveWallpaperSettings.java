@@ -74,6 +74,7 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 			// European: DD/MM/YY
 			// American: MM/DD/YY
 			// Japanese: YY/MM/DD
+			WriteClass.dateType = sharedPreferences.getString(key, "european");
 		}
 	}
 

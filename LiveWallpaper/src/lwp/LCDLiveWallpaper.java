@@ -108,6 +108,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 			WriteClass.dispDate = false;
 			WriteClass.clockType = "";
 			WriteClass.blackBinary = true;
+			//WriteClass.dateType = "european";
 
 			initMatrix();
 
