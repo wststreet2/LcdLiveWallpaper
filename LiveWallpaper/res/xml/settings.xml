@@ -75,11 +75,11 @@
             android:title="Creators" >
         </Preference>
         <Preference
-            android:summary="http://www.twitter.com/wststreet"
-            android:title="Twitter" >
+            android:summary="Opens http://www.kamehamehaaa.org/ there you can find a paypal donate widget"
+            android:title="Donate" >
             <intent
                 android:action="android.intent.action.VIEW"
-                android:data="http://www.twitter.com/wststreet" />
+                android:data="http://www.kamehamehaaa.org/" />
         </Preference>
         <Preference
             android:summary="wststreet2@gmail.com"
