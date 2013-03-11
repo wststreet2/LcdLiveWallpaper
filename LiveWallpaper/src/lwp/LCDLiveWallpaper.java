@@ -160,11 +160,11 @@ public class LCDLiveWallpaper extends WallpaperService {
 			} else {
 				d.getMetrics(m);
 			}
-			if (m.heightPixels >= 800) {
+			if (m.widthPixels >= 480) {
 				LCD_WIDTH = m.widthPixels / 10;
 				LCD_HEIGHT = m.heightPixels / 10;
 
-			} else if (m.heightPixels > 480) {
+			} else if (m.widthPixels > 320) {
 				LCD_WIDTH = m.widthPixels / 5;
 				LCD_HEIGHT = m.heightPixels / 5;
 
