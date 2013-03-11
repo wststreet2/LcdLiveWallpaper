@@ -2,6 +2,6 @@ package lwp;
 
 public abstract class EyeCandy {
 
-	public abstract int[][] draw(int[][] matrix);
+	public abstract boolean[][] draw(boolean[][] matrix);
 	public abstract void init();
 }

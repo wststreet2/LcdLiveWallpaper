@@ -5,7 +5,7 @@ import java.util.Random;
 public class EyeCandyGradient extends EyeCandy {
 
 	private int[][] gradient;
-	private int[][] gradCopy;
+	private boolean[][] gradCopy;
 	private int width, height;
 
 	public EyeCandyGradient() {
@@ -13,12 +13,12 @@ public class EyeCandyGradient extends EyeCandy {
 	}
 
 	@Override
-	public final int[][] draw(int[][] matrix) {
-		gradCopy = new int[width][height];
+	public final boolean[][] draw(boolean[][] matrix) {
+		gradCopy = new boolean[width][height];
 
 		for (int i = 0; i < height; i++)
 			for (int j = 0; j < width; j++)
-				gradCopy[j][i] = gradient[j][i];
+				gradCopy[j][i] = gradient[j][i]==1?true:false;
 
 		return gradCopy;
 	}

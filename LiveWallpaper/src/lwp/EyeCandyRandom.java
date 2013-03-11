@@ -11,12 +11,12 @@ public class EyeCandyRandom extends EyeCandy {
 	}
 
 	@Override
-	public int[][] draw(int[][] matrix) {
+	public boolean[][] draw(boolean[][] matrix) {
 
 		for (int i = 0; i < LCDLiveWallpaper.getLCD_WIDTH(); i++)
 			for (int j = 0; j < LCDLiveWallpaper.getLCD_HEIGHT(); j++) {
 				if (r.nextBoolean())
-					matrix[i][j] = 1;
+					matrix[i][j] = true;
 			}
 
 		return matrix;

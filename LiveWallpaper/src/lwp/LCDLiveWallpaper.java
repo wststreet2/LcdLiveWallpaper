@@ -34,7 +34,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 		private int height = 0;
 		private int pixelWidth = 0;
 		private int pixelHeight = 0;
-		private int[][] displayMatrix;
+		private boolean[][] displayMatrix;
 		private int refreshDelay = 1000 / framerate;
 		private WriteClass wC = new WriteClass();
 		float margin = 0.5f;
@@ -76,29 +76,20 @@ public class LCDLiveWallpaper extends WallpaperService {
 		private void drawMatrix() throws IndexOutOfBoundsException {
 			for (int i = 0; i < LCD_WIDTH; i++)
 				for (int j = 0; j < LCD_HEIGHT; j++) {
-					if (displayMatrix[i][j] != 0)
+					if (displayMatrix[i][j])
 						drawPixel(i, j, displayMatrix[i][j]);
 				}
 
 		}
 
-		private void drawPixel(int x, int y, int value) {
+		private void drawPixel(int x, int y, boolean value) {
 
 			try {
-				if (value != 0) {
+				if (value) {
 					mCanvas.drawRect((x * pixelWidth) + margin,
 							(y * pixelHeight) + margin, (x * pixelWidth)
 									+ pixelWidth - margin, (y * pixelHeight)
 									+ pixelHeight - margin, onPixelPaint);
-				} else {
-					Paint offPixelPaint = new Paint();
-					offPixelPaint.setARGB(0x10, 0x33, 0x33, 0x33);
-					offPixelPaint.setStrokeWidth(0.5f);
-
-					mCanvas.drawRect((x * pixelWidth) + margin,
-							(y * pixelHeight) + margin, (x * pixelWidth)
-									+ pixelWidth - margin, (y * pixelHeight)
-									+ pixelHeight - margin, offPixelPaint);
 				}
 			} catch (Exception e) {
 				Log.e("LCDLiveWallpaper", "exception", e);
@@ -120,8 +111,6 @@ public class LCDLiveWallpaper extends WallpaperService {
 
 			initMatrix();
 
-			
-
 			SharedPreferences sharedPref = PreferenceManager
 					.getDefaultSharedPreferences(context);
 
@@ -141,7 +130,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 			setEyeCandy(candySetting);
 			setFramerate(sharedPref.getString("frame_rate", "1"));
 			setBgColor(bgColor);
-			
+
 			if (LCD_WIDTH < 55) {
 				WriteClass.watchSize = 2;
 			}
@@ -174,10 +163,10 @@ public class LCDLiveWallpaper extends WallpaperService {
 
 			}
 
-			displayMatrix = new int[LCD_WIDTH][LCD_HEIGHT];
+			displayMatrix = new boolean[LCD_WIDTH][LCD_HEIGHT];
 			for (int i = 0; i < LCD_WIDTH; i++)
 				for (int j = 0; j < LCD_HEIGHT; j++)
-					displayMatrix[i][j] = 0;
+					displayMatrix[i][j] = false;
 		}
 
 		@Override
