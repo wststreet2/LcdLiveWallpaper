@@ -17,9 +17,16 @@
             android:title="EyeCandy" />
 
         <EditTextPreference
+            android:defaultValue="0x88AA88"
             android:key="color"
             android:summary="[0xRRGGBB] Good ideas: 0x88AA88, 0x99AA99, 0x888888, 0x999999"
             android:title="Background Color" >
+        </EditTextPreference>
+        <EditTextPreference
+            android:defaultValue="0x333333"
+            android:key="pixel_color"
+            android:summary="[0xRRGGBB] Default: 0x333333 for light backgrounds, 0xffffff for dark ones"
+            android:title="Pixel Color" >
         </EditTextPreference>
     </PreferenceCategory>
     <PreferenceCategory
@@ -33,14 +40,14 @@
             android:key="clock_type"
             android:summary="Do you want the time in decimals or in binary (note: the lines for binary are //||\\\\ HH MM SS)"
             android:title="Clock Type" />
-		<ListPreference
-		    android:defaultValue="european"
-		    android:dialogTitle="Date Format"
-		    android:entries="@array/dateFormat"
-		    android:entryValues="@array/dateFormat"
-		    android:key="date_format"
-		    android:title="Date Format"
-		     />
+        <ListPreference
+            android:defaultValue="european"
+            android:dialogTitle="Date Format"
+            android:entries="@array/dateFormat"
+            android:entryValues="@array/dateFormat"
+            android:key="date_format"
+            android:title="Date Format" />
+
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="black_clock"

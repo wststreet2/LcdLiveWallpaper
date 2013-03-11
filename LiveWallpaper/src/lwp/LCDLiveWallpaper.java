@@ -29,7 +29,6 @@ public class LCDLiveWallpaper extends WallpaperService {
 		private Handler mHandler = new Handler();
 		private SurfaceHolder mSurfaceHolder = null;
 		private Canvas mCanvas = null;
-		private Paint onPixelPaint = null;
 		private int width = 0;
 		private int height = 0;
 		private int pixelWidth = 0;
@@ -148,11 +147,10 @@ public class LCDLiveWallpaper extends WallpaperService {
 			if (m.widthPixels >= 720) {
 				LCD_WIDTH = m.widthPixels / 10;
 				LCD_HEIGHT = m.heightPixels / 10;
-			} else if (m.widthPixels >= 480)
-			{
+			} else if (m.widthPixels >= 480) {
 				LCD_WIDTH = m.widthPixels / 7;
 				LCD_HEIGHT = m.heightPixels / 7;
-				
+
 			} else if (m.widthPixels > 320) {
 				LCD_WIDTH = m.widthPixels / 5;
 				LCD_HEIGHT = m.heightPixels / 5;
@@ -268,6 +266,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 	private static int framerate = 1;
 	private static MyWallpaperEngine engine;
 	private static Paint bg = new Paint();
+	private static Paint onPixelPaint = null;
 
 	public static int getLCD_WIDTH() {
 		return LCD_WIDTH;
@@ -333,6 +332,26 @@ public class LCDLiveWallpaper extends WallpaperService {
 			Log.e("LCDLiveWallpaper", "exception", e);
 		}
 		bg.setARGB(0xFF, r, g, b);
+	}
+
+	public static void setPxColor(String string) {
+		int r = 0x33;
+		int g = 0x33;
+		int b = 0x33;
+		
+		try {
+			if (string.length() == 8) {
+				String color = string.split("[x|X]")[1];
+				r = Integer.parseInt(color.substring(0, 2), 16);
+				g = Integer.parseInt(color.substring(2, 4), 16);
+				b = Integer.parseInt(color.substring(4, 6), 16);
+			}
+		} catch (Exception e) {
+			Log.e("LCDLiveWallpaper", "exception", e);
+		}
+		bg.setARGB(0xFF, r, g, b);
+		
+		onPixelPaint.setARGB(0xFF, r, g, b);
 	}
 
 }
