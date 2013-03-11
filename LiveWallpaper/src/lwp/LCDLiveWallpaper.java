@@ -352,8 +352,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 		} catch (Exception e) {
 			Log.e("LCDLiveWallpaper", "exception", e);
 		}
-		bg.setARGB(0xFF, r, g, b);
-		
+			
 		onPixelPaint.setARGB(0xFF, r, g, b);
 	}
 
