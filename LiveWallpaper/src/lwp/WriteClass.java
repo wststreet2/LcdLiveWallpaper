@@ -263,25 +263,14 @@ public class WriteClass {
 	@SuppressLint("SimpleDateFormat")
 	public boolean[][] drawDateTime(boolean[][] displayMatrix2) {
 		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat df =  new SimpleDateFormat("dd/MM/yy"); // european default
+		SimpleDateFormat df = new SimpleDateFormat(dateType); // european
+																// default
 		String formattedDate = "";
 
 		int start = 0;
 
 		if (dispDate == true) {
-			
-			
-			
-			
-			if(dateType.equalsIgnoreCase("american"))
-			{
-				df = new SimpleDateFormat("MM/DD/YY");
-			}
-			else if(dateType.equalsIgnoreCase("japanese"))
-			{
-				df = new SimpleDateFormat("YY/MM/DD");
-			}
-			
+
 			start = (LCDLiveWallpaper.getLCD_WIDTH() / 2) - 23;
 			formattedDate = df.format(cal.getTime());
 			try {

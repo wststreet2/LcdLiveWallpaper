@@ -17,9 +17,9 @@
     </string-array>
     
     <string-array name="dateFormat">
-        <item name="european">DD/MM/YY</item>
-        <item name="american">MM/DD/YY</item>
-        <item name="japanese">YY/MM/DD</item>
+        <item name="european">dd/MM/yy</item>
+        <item name="american">MM/dd/yy</item>
+        <item name="japanese">yy/MM/dd</item>
     </string-array>
 
 </resources>

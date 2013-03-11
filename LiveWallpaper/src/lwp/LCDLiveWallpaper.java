@@ -122,7 +122,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 			String bgColor = sharedPref.getString("color", "0x99AA99");
 			Boolean bigClock = sharedPref.getBoolean("big_clock", false);
 			Boolean blackClock = sharedPref.getBoolean("black_clock", false);
-			WriteClass.dateType = sharedPref.getString("date_format", "european");
+			WriteClass.dateType = sharedPref.getString("date_format", "dd/MM/yy");
 
 			WriteClass.setTime(clockEnabled);
 			WriteClass.setDate(dateEnabled);
