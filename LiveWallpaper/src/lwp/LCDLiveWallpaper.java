@@ -126,14 +126,10 @@ public class LCDLiveWallpaper extends WallpaperService {
 			WriteClass.setDate(dateEnabled);
 			WriteClass.setClockType(clockType);
 			WriteClass.blackBinary = blackClock;
-			WriteClass.watchSize = bigClock ? 1 : 0;
+			WriteClass.setBigBinary(bigClock);
 			setEyeCandy(candySetting);
 			setFramerate(sharedPref.getString("frame_rate", "1"));
 			setBgColor(bgColor);
-
-			if (LCD_WIDTH < 55) {
-				WriteClass.watchSize = 2;
-			}
 		}
 
 		@SuppressLint("NewApi")
@@ -149,10 +145,14 @@ public class LCDLiveWallpaper extends WallpaperService {
 			} else {
 				d.getMetrics(m);
 			}
-			if (m.widthPixels >= 480) {
+			if (m.widthPixels >= 720) {
 				LCD_WIDTH = m.widthPixels / 10;
 				LCD_HEIGHT = m.heightPixels / 10;
-
+			} else if (m.widthPixels >= 480)
+			{
+				LCD_WIDTH = m.widthPixels / 7;
+				LCD_HEIGHT = m.heightPixels / 7;
+				
 			} else if (m.widthPixels > 320) {
 				LCD_WIDTH = m.widthPixels / 5;
 				LCD_HEIGHT = m.heightPixels / 5;

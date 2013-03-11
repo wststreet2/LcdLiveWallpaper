@@ -62,10 +62,8 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 			LCDLiveWallpaper.setBgColor(sharedPreferences.getString(key,
 					"0x99AA99"));
 		} else if (key.equals("big_clock")) {
-			if (sharedPreferences.getBoolean(key, false) == false)
-				WriteClass.watchSize = 0;
-			else
-				WriteClass.watchSize = 1;
+			
+				WriteClass.bigBinary = sharedPreferences.getBoolean(key, false);
 		} else if (key.equals("black_clock")) {
 			WriteClass.blackBinary = sharedPreferences.getBoolean(key, false);
 			
