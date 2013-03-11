@@ -41,7 +41,7 @@
             android:summary="Do you want the time in decimals or in binary (note: the lines for binary are //||\\\\ HH MM SS)"
             android:title="Clock Type" />
         <ListPreference
-            android:defaultValue="european"
+            android:defaultValue="dd/MM/yy"
             android:dialogTitle="Date Format"
             android:entries="@array/dateFormat"
             android:entryValues="@array/dateFormat"

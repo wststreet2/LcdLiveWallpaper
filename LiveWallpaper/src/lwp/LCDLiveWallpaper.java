@@ -107,6 +107,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 			WriteClass.dispDate = false;
 			WriteClass.clockType = "";
 			WriteClass.blackBinary = true;
+			//WriteClass.dateType = "european";
 
 			initMatrix();
 
@@ -120,6 +121,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 			String bgColor = sharedPref.getString("color", "0x99AA99");
 			Boolean bigClock = sharedPref.getBoolean("big_clock", false);
 			Boolean blackClock = sharedPref.getBoolean("black_clock", false);
+			WriteClass.dateType = sharedPref.getString("date_format", "dd/MM/yy");
 
 			WriteClass.setTime(clockEnabled);
 			WriteClass.setDate(dateEnabled);
@@ -129,6 +131,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 			setEyeCandy(candySetting);
 			setFramerate(sharedPref.getString("frame_rate", "1"));
 			setBgColor(bgColor);
+			setPxColor(sharedPref.getString("pixel_color", "0x333333"));
 		}
 
 		@SuppressLint("NewApi")

@@ -16,6 +16,7 @@ public class WriteClass {
 	public static String clockType;
 	public static boolean blackBinary;
 	public static boolean bigBinary;
+	public static String dateType;
 
 	public static void setBigBinary(boolean bigBinary) {
 		if (LCDLiveWallpaper.getLCD_HEIGHT() >= 54)
@@ -262,13 +263,14 @@ public class WriteClass {
 	@SuppressLint("SimpleDateFormat")
 	public boolean[][] drawDateTime(boolean[][] displayMatrix2) {
 		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat df;
+		SimpleDateFormat df = new SimpleDateFormat(dateType); // european
+																// default
 		String formattedDate = "";
 
 		int start = 0;
 
 		if (dispDate == true) {
-			df = new SimpleDateFormat("dd/MM/yy");
+
 			start = (LCDLiveWallpaper.getLCD_WIDTH() / 2) - 23;
 			formattedDate = df.format(cal.getTime());
 			try {
