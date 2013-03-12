@@ -23,12 +23,12 @@ public class EyeCandyWaterfall extends EyeCandy {
 	private boolean[][] waterfall;
 	private boolean[][] waterfcopy;
 	private int width, height;
-	private wString[] assignedStrings;
+	private static wString[] assignedStrings;
 	private static short maxNrStrings;
-	private short currNrStrings;
+	private static short currNrStrings;
 	private static int chance;
 	private static boolean overlappedStrings;
-
+    private boolean wantlog = true;
 	public EyeCandyWaterfall() {
 		init();
 	}
@@ -36,9 +36,17 @@ public class EyeCandyWaterfall extends EyeCandy {
 	public static void setNrStrings(String nr) {
 		short temp = Short.valueOf(nr);
 		if (temp > 0)
+		{
 			maxNrStrings = Short.valueOf(nr);
+		    currNrStrings = 0;
+		    assignedStrings = new wString[maxNrStrings];
+		}
 		else
+		{
 			maxNrStrings = 50;
+			currNrStrings = 0;
+			assignedStrings = new wString[maxNrStrings];
+		}
 	}
 
 	public static void setAppearnceChance(int ch) {
@@ -54,7 +62,7 @@ public class EyeCandyWaterfall extends EyeCandy {
 		height = LCDLiveWallpaper.getLCD_HEIGHT();
 		waterfall = new boolean[width][height];
 		maxNrStrings = 70;
-		chance = 100;
+		chance = 80;
 		overlappedStrings = true;
 		assignedStrings = new wString[maxNrStrings];
 
@@ -111,19 +119,28 @@ public class EyeCandyWaterfall extends EyeCandy {
 
 			if (overlappedStrings) {
 				short length = (short) (4 + generator.nextInt(7));
-				short speed = (short) (1 + generator.nextInt(3));
+				short speed = (short) (1 + generator.nextInt(4));
 				seed = new wString(speed, length, (short) -length, (short) col);
-
+				if(wantlog)
+				{
+					Log.d("mywallpaper,speed", String.valueOf(speed));
+					Log.d("mywallpaper,nr of str", String.valueOf(currNrStrings));
+				}
 				addNewString(seed);
 
 			} else if (checkCol((short) col)) {
 				short length = (short) (4 + generator.nextInt(7));
-				short speed = (short) (1 + generator.nextInt(3));
+				short speed = (short) (1 + generator.nextInt(4));
 				seed = new wString(speed, length, (short) -length, (short) col);
 				addNewString(seed);
-				Log.d("mywallpaper,speed", String.valueOf(speed));
-				Log.d("mywallpaper,nr of str", String.valueOf(currNrStrings));
+				if(wantlog)
+				{
+					Log.d("mywallpaper,speed", String.valueOf(speed));
+					Log.d("mywallpaper,nr of str", String.valueOf(currNrStrings));
+				}
 			}
+			
+			
 		}
 
 	}
@@ -174,6 +191,7 @@ public class EyeCandyWaterfall extends EyeCandy {
 	public final boolean[][] draw(boolean[][] matrix) {
 
 		if (currNrStrings < maxNrStrings) {
+			for(int i = 0; i < 5; i++)
 			makeNewStr();
 		}
 
