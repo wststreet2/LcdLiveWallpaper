@@ -340,7 +340,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 				r = Integer.parseInt(color.substring(0, 2), 16);
 				g = Integer.parseInt(color.substring(2, 4), 16);
 				b = Integer.parseInt(color.substring(4, 6), 16);
-			}
+			} 
 		} catch (Exception e) {
 			Log.e("LCDLiveWallpaper", "exception", e);
 		}
