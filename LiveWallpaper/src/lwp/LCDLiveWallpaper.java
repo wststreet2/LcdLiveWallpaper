@@ -132,6 +132,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 			setFramerate(sharedPref.getString("frame_rate", "1"));
 			setBgColor(bgColor);
 			setPxColor(sharedPref.getString("pixel_color", "0x333333"));
+			EyeCandyRandom.setDensity(sharedPref.getInt("random_pixel_density", 50));
 		}
 
 		@SuppressLint("NewApi")
@@ -305,7 +306,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 		} else if (name.equalsIgnoreCase("random")) {
 			eyeCandy = new EyeCandyRandom();
 		} else if(name.equalsIgnoreCase("waterfall")){
-			eyeCandy = new EyeCandyWaterfall();
+			//eyeCandy = new EyeCandyWaterfall();
 		}
 
 	}

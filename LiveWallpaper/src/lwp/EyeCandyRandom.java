@@ -4,7 +4,8 @@ import java.util.Random;
 
 public class EyeCandyRandom extends EyeCandy {
 
-	Random r;
+	private Random r;
+	private static byte density = 50;
 
 	public EyeCandyRandom() {
 		init();
@@ -15,7 +16,7 @@ public class EyeCandyRandom extends EyeCandy {
 
 		for (int i = 0; i < LCDLiveWallpaper.getLCD_WIDTH(); i++)
 			for (int j = 0; j < LCDLiveWallpaper.getLCD_HEIGHT(); j++) {
-				if (r.nextBoolean())
+				if (r.nextInt(101) <= density)
 					matrix[i][j] = true;
 			}
 
@@ -25,6 +26,10 @@ public class EyeCandyRandom extends EyeCandy {
 	@Override
 	public void init() {
 		r = new Random();
+	}
+
+	public static void setDensity(int val) {
+		density = (byte)val;
 	}
 
 }

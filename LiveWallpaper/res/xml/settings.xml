@@ -16,6 +16,15 @@
             android:summary="Select what the background pixels should look like"
             android:title="EyeCandy" />
 
+        <lwp.SeekBarPreference
+            android:defaultValue="50"
+            android:dialogMessage="Density"
+            android:key="random_pixel_density"
+            android:max="100"
+            android:summary="How much of the random pixels should be active"
+            android:text="%"
+            android:title="Random Pixel Density" />
+
         <EditTextPreference
             android:defaultValue="0x88AA88"
             android:key="color"

@@ -72,6 +72,9 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 			WriteClass.dateType = sharedPreferences.getString(key, "dd/MM/yy");
 		} else if (key.equals("pixel_color")) {
 			LCDLiveWallpaper.setPxColor(sharedPreferences.getString(key, "0x333333"));
+		} else if(key.equals("random_pixel_density"))
+		{
+			EyeCandyRandom.setDensity(sharedPreferences.getInt(key, 50));
 		}
 	}
 
