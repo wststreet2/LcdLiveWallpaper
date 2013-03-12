@@ -1,4 +1,6 @@
-package lwp;
+package org.kamehamehaaa.android.livewallpaper.candies;
+
+import org.kamehamehaaa.android.livewallpaper.engine.LCDLiveWallpaper;
 
 public class EyeCandyLeet extends EyeCandy {
 

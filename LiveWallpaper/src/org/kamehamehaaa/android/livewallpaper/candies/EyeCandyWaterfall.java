@@ -1,6 +1,8 @@
-package lwp;
+package org.kamehamehaaa.android.livewallpaper.candies;
 
 import java.util.Random;
+
+import org.kamehamehaaa.android.livewallpaper.engine.LCDLiveWallpaper;
 
 import android.util.Log;
 
@@ -28,21 +30,24 @@ public class EyeCandyWaterfall extends EyeCandy {
 	private static short currNrStrings;
 	private static int chance;
 	private static boolean overlappedStrings;
-    private boolean wantlog = false;
+	private boolean wantlog = false;
+
 	public EyeCandyWaterfall() {
 		init();
 	}
 
 	public static void setNrStrings(String nr) {
-		short temp = Short.valueOf(nr);
-		if (temp > 0)
-		{
-			maxNrStrings = Short.valueOf(nr);
-		    currNrStrings = 0;
-		    assignedStrings = new wString[maxNrStrings];
+		short temp = 100;
+		try {
+			temp = Short.valueOf(nr);
+		} catch (Exception e) {
+			Log.e("LCDLiveWallpaper", "exception", e);
 		}
-		else
-		{
+		if (temp > 0) {
+			maxNrStrings = temp;
+			currNrStrings = 0;
+			assignedStrings = new wString[maxNrStrings];
+		} else {
 			maxNrStrings = 100;
 			currNrStrings = 0;
 			assignedStrings = new wString[maxNrStrings];
@@ -121,10 +126,10 @@ public class EyeCandyWaterfall extends EyeCandy {
 				short length = (short) (4 + generator.nextInt(7));
 				short speed = (short) (1 + generator.nextInt(4));
 				seed = new wString(speed, length, (short) -length, (short) col);
-				if(wantlog)
-				{
+				if (wantlog) {
 					Log.d("mywallpaper,speed", String.valueOf(speed));
-					Log.d("mywallpaper,nr of str", String.valueOf(currNrStrings));
+					Log.d("mywallpaper,nr of str",
+							String.valueOf(currNrStrings));
 				}
 				addNewString(seed);
 
@@ -133,14 +138,13 @@ public class EyeCandyWaterfall extends EyeCandy {
 				short speed = (short) (1 + generator.nextInt(4));
 				seed = new wString(speed, length, (short) -length, (short) col);
 				addNewString(seed);
-				if(wantlog)
-				{
+				if (wantlog) {
 					Log.d("mywallpaper,speed", String.valueOf(speed));
-					Log.d("mywallpaper,nr of str", String.valueOf(currNrStrings));
+					Log.d("mywallpaper,nr of str",
+							String.valueOf(currNrStrings));
 				}
 			}
-			
-			
+
 		}
 
 	}
@@ -191,8 +195,8 @@ public class EyeCandyWaterfall extends EyeCandy {
 	public final boolean[][] draw(boolean[][] matrix) {
 
 		if (currNrStrings < maxNrStrings) {
-			for(int i = 0; i < 5; i++)
-			makeNewStr();
+			for (int i = 0; i < 5; i++)
+				makeNewStr();
 		}
 
 		for (int i = 0; i < height; i++)

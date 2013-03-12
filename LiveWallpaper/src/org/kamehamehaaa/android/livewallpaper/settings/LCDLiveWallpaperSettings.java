@@ -1,6 +1,10 @@
-package lwp;
+package org.kamehamehaaa.android.livewallpaper.settings;
 
 import org.kamehamehaaa.android.livewallpaper.R;
+import org.kamehamehaaa.android.livewallpaper.candies.EyeCandyRandom;
+import org.kamehamehaaa.android.livewallpaper.candies.EyeCandyWaterfall;
+import org.kamehamehaaa.android.livewallpaper.engine.LCDLiveWallpaper;
+import org.kamehamehaaa.android.livewallpaper.engine.WriteClass;
 
 import android.content.Context;
 import android.content.SharedPreferences;

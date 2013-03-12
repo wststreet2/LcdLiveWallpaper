@@ -1,6 +1,8 @@
-package lwp;
+package org.kamehamehaaa.android.livewallpaper.candies;
 
 import java.util.Random;
+
+import org.kamehamehaaa.android.livewallpaper.engine.LCDLiveWallpaper;
 
 public class EyeCandyGradient extends EyeCandy {
 

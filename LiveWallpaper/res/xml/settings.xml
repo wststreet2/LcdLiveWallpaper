@@ -22,7 +22,7 @@
             <PreferenceScreen
                 android:key="random_pref_screen"
                 android:title="Random settings" >
-                <lwp.SeekBarPreference
+                <org.kamehamehaaa.android.livewallpaper.settings.SeekBarPreference
                     android:defaultValue="50"
                     android:dialogMessage="Density"
                     android:key="random_pixel_density"

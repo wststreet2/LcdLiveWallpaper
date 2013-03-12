@@ -1,9 +1,16 @@
-package lwp;
+package org.kamehamehaaa.android.livewallpaper.engine;
 
 //import java.sql.Date;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import org.kamehamehaaa.android.livewallpaper.candies.EyeCandy;
+import org.kamehamehaaa.android.livewallpaper.candies.EyeCandyGradient;
+import org.kamehamehaaa.android.livewallpaper.candies.EyeCandyLeet;
+import org.kamehamehaaa.android.livewallpaper.candies.EyeCandyPI;
+import org.kamehamehaaa.android.livewallpaper.candies.EyeCandyRandom;
+import org.kamehamehaaa.android.livewallpaper.candies.EyeCandyWaterfall;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

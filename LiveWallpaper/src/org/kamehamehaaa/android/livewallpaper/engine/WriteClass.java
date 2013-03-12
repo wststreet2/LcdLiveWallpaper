@@ -1,4 +1,4 @@
-package lwp;
+package org.kamehamehaaa.android.livewallpaper.engine;
 
 import android.annotation.SuppressLint;
 import android.util.Log;

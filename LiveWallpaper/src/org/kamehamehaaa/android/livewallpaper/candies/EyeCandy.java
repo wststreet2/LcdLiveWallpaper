@@ -1,4 +1,4 @@
-package lwp;
+package org.kamehamehaaa.android.livewallpaper.candies;
 
 public abstract class EyeCandy {
 

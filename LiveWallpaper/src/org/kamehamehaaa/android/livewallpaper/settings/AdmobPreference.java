@@ -1,4 +1,4 @@
-package lwp;
+package org.kamehamehaaa.android.livewallpaper.settings;
 
 import org.kamehamehaaa.android.livewallpaper.R;
 

@@ -1,4 +1,4 @@
-package lwp;
+package org.kamehamehaaa.android.livewallpaper.settings;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.Gravity;
