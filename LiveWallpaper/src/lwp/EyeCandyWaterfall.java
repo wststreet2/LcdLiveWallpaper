@@ -89,6 +89,7 @@ public class EyeCandyWaterfall extends EyeCandy{
 		   {
 			   assignedStrings[i] = s;
 			   currNrStrings++;
+			   break;
 		   }
 	   }
 	}
@@ -107,9 +108,9 @@ public class EyeCandyWaterfall extends EyeCandy{
 			   short length = (short)( 4 + generator.nextInt(7));
                short speed = (short)(1+generator.nextInt(1) );
 			   seed = new wString( speed,length , (short)-length, (short)col );
-			   Log.d("mywallpaper",String.valueOf(speed));
+			   Log.d("mywallpaper,speed",String.valueOf(speed));
 			   addNewString(seed);
-			   Log.d("mywallpaper",String.valueOf(currNrStrings));
+			   Log.d("mywallpaper,nr of str",String.valueOf(currNrStrings));
 			}
 		}
 		
