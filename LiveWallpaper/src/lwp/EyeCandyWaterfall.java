@@ -28,7 +28,7 @@ public class EyeCandyWaterfall extends EyeCandy {
 	private static short currNrStrings;
 	private static int chance;
 	private static boolean overlappedStrings;
-    private boolean wantlog = true;
+    private boolean wantlog = false;
 	public EyeCandyWaterfall() {
 		init();
 	}

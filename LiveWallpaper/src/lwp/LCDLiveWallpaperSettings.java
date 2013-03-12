@@ -78,7 +78,8 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 		} else if (key.equals("waterfall_overlap")) {
 			EyeCandyWaterfall.setOverlapping(sharedPreferences.getBoolean(key, true));
 		} else if (key.equals("waterfall_chance")) {
-			EyeCandyWaterfall.setAppearnceChance(sharedPreferences.getInt(key, 50));
+			//EyeCandyWaterfall.setAppearnceChance(sharedPreferences.getInt(key, 100));
+			EyeCandyWaterfall.setAppearnceChance(100);
 		} else if (key.equals("waterfall_strings")) {
 			EyeCandyWaterfall.setNrStrings(sharedPreferences.getString(key, "50"));
 		}
