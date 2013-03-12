@@ -97,7 +97,7 @@ public class EyeCandyWaterfall extends EyeCandy{
 		
 		if(giveLife())
 		{
-			int col = generator.nextInt(width + 1);
+			int col = generator.nextInt(width);
 			
 			if(checkCol((short)col))
 			{
@@ -117,7 +117,7 @@ public class EyeCandyWaterfall extends EyeCandy{
 		// incape sa afiseze tot stringul mergand in jos , fara sa iasa din partea de jos a ecranului
 		if(startline + len <= height )
 		{
-			for(int i = startline; i < startline + len - 1; i++)
+			for(int i = startline; i < startline + len ; i++)
 			{
 				waterfall[col][i]  = true;
 			}
