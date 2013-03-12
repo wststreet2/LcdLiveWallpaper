@@ -107,7 +107,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 			WriteClass.dispDate = false;
 			WriteClass.clockType = "";
 			WriteClass.blackBinary = true;
-			//WriteClass.dateType = "european";
+			// WriteClass.dateType = "european";
 
 			initMatrix();
 
@@ -121,7 +121,8 @@ public class LCDLiveWallpaper extends WallpaperService {
 			String bgColor = sharedPref.getString("color", "0x99AA99");
 			Boolean bigClock = sharedPref.getBoolean("big_clock", false);
 			Boolean blackClock = sharedPref.getBoolean("black_clock", false);
-			WriteClass.dateType = sharedPref.getString("date_format", "dd/MM/yy");
+			WriteClass.dateType = sharedPref.getString("date_format",
+					"dd/MM/yy");
 
 			WriteClass.setTime(clockEnabled);
 			WriteClass.setDate(dateEnabled);
@@ -132,6 +133,13 @@ public class LCDLiveWallpaper extends WallpaperService {
 			setFramerate(sharedPref.getString("frame_rate", "1"));
 			setBgColor(bgColor);
 			setPxColor(sharedPref.getString("pixel_color", "0x333333"));
+			EyeCandyRandom.setDensity(sharedPref.getInt("random_pixel_density",
+					50));
+			EyeCandyWaterfall.setOverlapping(sharedPref.getBoolean(
+					"waterfall_overlap", true));
+			EyeCandyWaterfall.setAppearnceChance(100);
+			EyeCandyWaterfall.setNrStrings(sharedPref.getString(
+					"waterfall_strings", "100"));
 		}
 
 		@SuppressLint("NewApi")
@@ -304,6 +312,8 @@ public class LCDLiveWallpaper extends WallpaperService {
 			eyeCandy = new EyeCandyGradient();
 		} else if (name.equalsIgnoreCase("random")) {
 			eyeCandy = new EyeCandyRandom();
+		} else if (name.equalsIgnoreCase("waterfall")) {
+			eyeCandy = new EyeCandyWaterfall();
 		}
 
 	}
@@ -341,7 +351,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 		int r = 0x33;
 		int g = 0x33;
 		int b = 0x33;
-		
+
 		try {
 			if (string.length() == 8) {
 				String color = string.split("[x|X]")[1];
@@ -352,7 +362,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 		} catch (Exception e) {
 			Log.e("LCDLiveWallpaper", "exception", e);
 		}
-			
+
 		onPixelPaint.setARGB(0xFF, r, g, b);
 	}
 
