@@ -43,7 +43,7 @@ public class EyeCandyWaterfall extends EyeCandy {
 		}
 		else
 		{
-			maxNrStrings = 50;
+			maxNrStrings = 100;
 			currNrStrings = 0;
 			assignedStrings = new wString[maxNrStrings];
 		}

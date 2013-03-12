@@ -35,7 +35,7 @@
                 android:key="waterfall_pref_screen"
                 android:title="Waterfall settings" >
                 <EditTextPreference
-                    android:defaultValue="10"
+                    android:defaultValue="100"
                     android:key="waterfall_strings"
                     android:title="Max Number of Strings" />
 

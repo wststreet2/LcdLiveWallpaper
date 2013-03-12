@@ -81,7 +81,7 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 			//EyeCandyWaterfall.setAppearnceChance(sharedPreferences.getInt(key, 100));
 			EyeCandyWaterfall.setAppearnceChance(100);
 		} else if (key.equals("waterfall_strings")) {
-			EyeCandyWaterfall.setNrStrings(sharedPreferences.getString(key, "50"));
+			EyeCandyWaterfall.setNrStrings(sharedPreferences.getString(key, "100"));
 		}
 	}
 

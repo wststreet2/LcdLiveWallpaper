@@ -139,7 +139,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 					"waterfall_overlap", true));
 			EyeCandyWaterfall.setAppearnceChance(100);
 			EyeCandyWaterfall.setNrStrings(sharedPref.getString(
-					"waterfall_strings", "50"));
+					"waterfall_strings", "100"));
 		}
 
 		@SuppressLint("NewApi")
