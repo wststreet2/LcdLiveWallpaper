@@ -102,7 +102,7 @@ public class EyeCandyWaterfall extends EyeCandy{
 			if(checkCol((short)col))
 			{
 			   short length = (short)( 4 + generator.nextInt(7));
-			   seed = new wString( (short)(1+generator.nextInt(2) ),length , (short)-length, (short)col );
+			   seed = new wString( (short)(1+generator.nextInt(1) ),length , (short)-length, (short)col );
 			   addNewString(seed);
 			   currNrStrings++;
 			}
@@ -149,7 +149,7 @@ public class EyeCandyWaterfall extends EyeCandy{
 			   {
 				 putString(assignedStrings[i].column, assignedStrings[i].startpos, assignedStrings[i].length );  
 			   }
-			   assignedStrings[i].startpos++;
+			   assignedStrings[i].startpos += assignedStrings[i].speed;
 				 
 			   if(assignedStrings[i].startpos > height)
 			   {
