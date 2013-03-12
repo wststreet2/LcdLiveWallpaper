@@ -36,7 +36,7 @@ public class EyeCandyWaterfall extends EyeCandy{
 		width = LCDLiveWallpaper.getLCD_WIDTH();
 		height = LCDLiveWallpaper.getLCD_HEIGHT();
 		waterfall = new boolean [width][height];
-		maxNrStrings = 40;
+		maxNrStrings = 70;
 		assignedStrings = new wString[maxNrStrings];
 		
 		for(int i = 0; i < maxNrStrings; i++)
@@ -69,7 +69,7 @@ public class EyeCandyWaterfall extends EyeCandy{
 		Random generator = new Random();
 		int value = generator.nextInt(101);
 		
-		if(value >= 0 && value <= 95)
+		if(value >= 0 && value <= 80)
 		{
 			return true;
 		}
