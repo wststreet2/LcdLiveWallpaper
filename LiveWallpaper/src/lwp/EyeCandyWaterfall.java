@@ -2,6 +2,8 @@ package lwp;
 
 import java.util.Random;
 
+import android.util.Log;
+
 class wString{
 	public short speed;
     public short length; 
@@ -86,6 +88,7 @@ public class EyeCandyWaterfall extends EyeCandy{
 		   if(assignedStrings[i] == null)
 		   {
 			   assignedStrings[i] = s;
+			   currNrStrings++;
 		   }
 	   }
 	}
@@ -102,9 +105,11 @@ public class EyeCandyWaterfall extends EyeCandy{
 			if(checkCol((short)col))
 			{
 			   short length = (short)( 4 + generator.nextInt(7));
-			   seed = new wString( (short)(1+generator.nextInt(1) ),length , (short)-length, (short)col );
+               short speed = (short)(1+generator.nextInt(1) );
+			   seed = new wString( speed,length , (short)-length, (short)col );
+			   Log.d("mywallpaper",String.valueOf(speed));
 			   addNewString(seed);
-			   currNrStrings++;
+			   Log.d("mywallpaper",String.valueOf(currNrStrings));
 			}
 		}
 		
@@ -140,6 +145,7 @@ public class EyeCandyWaterfall extends EyeCandy{
 		{
 		   if(assignedStrings[i] != null)
 		   {
+			   assignedStrings[i].startpos += assignedStrings[i].speed;
 			   if(assignedStrings[i].startpos < 0)
 			   {
 				 int visibleLength = assignedStrings[i].length + assignedStrings[i].startpos;
@@ -149,13 +155,14 @@ public class EyeCandyWaterfall extends EyeCandy{
 			   {
 				 putString(assignedStrings[i].column, assignedStrings[i].startpos, assignedStrings[i].length );  
 			   }
-			   assignedStrings[i].startpos += assignedStrings[i].speed;
+			   
 				 
-			   if(assignedStrings[i].startpos > height)
+			   if(assignedStrings[i].startpos >= height)
 			   {
 				 assignedStrings[i] = null; // inseamna ca a iesit de pe ecran , s-a terminat  
 				 currNrStrings--;
 			   }
+			   
 		   }
 		}
 	}
@@ -165,7 +172,7 @@ public class EyeCandyWaterfall extends EyeCandy{
 		
 		
         
-		if(currNrStrings < 15)
+		if(currNrStrings < maxNrStrings)
 		{
 			makeNewStr();
 		}
