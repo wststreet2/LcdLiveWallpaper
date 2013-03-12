@@ -25,20 +25,40 @@ public class EyeCandyWaterfall extends EyeCandy{
 	private boolean[][] waterfcopy;
 	private int width, height;
 	private wString [] assignedStrings;
-	private short maxNrStrings;
+	private static short maxNrStrings;
 	private short currNrStrings;
+	private static int chance;
+	private boolean overlappedStrings;
+
 	
 	public EyeCandyWaterfall()
 	{
 		init(); 
 	}
 	
+	public void setNrStrings(int nr) 
+	{
+		maxNrStrings = (short) nr;
+	}
+	
+	public void setAppearnceChance(int ch)
+	{
+		chance = ch;
+	}
+	
+    public void setOverlapping(boolean o)
+    {
+    	overlappedStrings = o;
+    }
+
 	public void init()
 	{
 		width = LCDLiveWallpaper.getLCD_WIDTH();
 		height = LCDLiveWallpaper.getLCD_HEIGHT();
 		waterfall = new boolean [width][height];
 		maxNrStrings = 70;
+		chance = 100;
+		overlappedStrings = true;
 		assignedStrings = new wString[maxNrStrings];
 		
 		for(int i = 0; i < maxNrStrings; i++)
@@ -71,7 +91,7 @@ public class EyeCandyWaterfall extends EyeCandy{
 		Random generator = new Random();
 		int value = generator.nextInt(101);
 		
-		if(value >= 0 && value <= 80)
+		if(value >= 0 && value <= chance)
 		{
 			return true;
 		}
@@ -103,14 +123,23 @@ public class EyeCandyWaterfall extends EyeCandy{
 		{
 			int col = generator.nextInt(width);
 			
-			if(checkCol((short)col))
+			if(overlappedStrings)
 			{
 			   short length = (short)( 4 + generator.nextInt(7));
                short speed = (short)(1+generator.nextInt(3) );
 			   seed = new wString( speed,length , (short)-length, (short)col );
-			   //Log.d("mywallpaper,speed",String.valueOf(speed));
+			   
 			   addNewString(seed);
-			   //Log.d("mywallpaper,nr of str",String.valueOf(currNrStrings));
+			   
+			}
+			else if(checkCol((short)col))
+			{
+				short length = (short)( 4 + generator.nextInt(7));
+	            short speed = (short)(1+generator.nextInt(3) );
+				seed = new wString( speed,length , (short)-length, (short)col );
+				addNewString(seed);
+				Log.d("mywallpaper,speed",String.valueOf(speed));
+				Log.d("mywallpaper,nr of str",String.valueOf(currNrStrings));
 			}
 		}
 		
