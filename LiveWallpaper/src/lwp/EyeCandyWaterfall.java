@@ -106,11 +106,11 @@ public class EyeCandyWaterfall extends EyeCandy{
 			if(checkCol((short)col))
 			{
 			   short length = (short)( 4 + generator.nextInt(7));
-               short speed = (short)(1+generator.nextInt(1) );
+               short speed = (short)(1+generator.nextInt(3) );
 			   seed = new wString( speed,length , (short)-length, (short)col );
-			   Log.d("mywallpaper,speed",String.valueOf(speed));
+			   //Log.d("mywallpaper,speed",String.valueOf(speed));
 			   addNewString(seed);
-			   Log.d("mywallpaper,nr of str",String.valueOf(currNrStrings));
+			   //Log.d("mywallpaper,nr of str",String.valueOf(currNrStrings));
 			}
 		}
 		
