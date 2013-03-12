@@ -9,6 +9,7 @@
         <item name="none">None</item>
         <item name="random">Random</item>
         <item name="gradient">Gradient</item>
+        <item name="waterfall">Waterfall</item>
     </string-array>
     
     <string-array name="clockType">
