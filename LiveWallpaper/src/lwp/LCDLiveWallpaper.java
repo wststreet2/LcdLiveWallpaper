@@ -306,7 +306,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 		} else if (name.equalsIgnoreCase("random")) {
 			eyeCandy = new EyeCandyRandom();
 		} else if(name.equalsIgnoreCase("waterfall")){
-			//eyeCandy = new EyeCandyWaterfall();
+			eyeCandy = new EyeCandyWaterfall();
 		}
 
 	}
