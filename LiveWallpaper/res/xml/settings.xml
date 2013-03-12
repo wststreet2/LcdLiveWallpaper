@@ -2,7 +2,7 @@
     android:key="livewallpaper_settings"
     android:title="@string/settings_title" >
 
-    <lwp.AdmobPreference android:key="ad" />
+    <org.kamehamehaaa.android.livewallpaper.settings.AdmobPreference android:key="ad" />
 
     <PreferenceCategory
         android:key="bg_set_cat"
