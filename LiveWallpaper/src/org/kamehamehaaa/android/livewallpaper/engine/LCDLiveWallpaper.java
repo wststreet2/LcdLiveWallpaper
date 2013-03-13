@@ -9,6 +9,7 @@ import org.kamehamehaaa.android.livewallpaper.candies.EyeCandy;
 import org.kamehamehaaa.android.livewallpaper.candies.EyeCandyGradient;
 import org.kamehamehaaa.android.livewallpaper.candies.EyeCandyLeet;
 import org.kamehamehaaa.android.livewallpaper.candies.EyeCandyPI;
+import org.kamehamehaaa.android.livewallpaper.candies.EyeCandyPIDay;
 import org.kamehamehaaa.android.livewallpaper.candies.EyeCandyRandom;
 import org.kamehamehaaa.android.livewallpaper.candies.EyeCandyWaterfall;
 
@@ -271,9 +272,9 @@ public class LCDLiveWallpaper extends WallpaperService {
 				new EyeCandyPI().draw(displayMatrix);
 			} else if (df.format(cal.getTime()).equals("13:37")) {
 				new EyeCandyLeet().draw(displayMatrix);
-			}else if (dfd.format(cal.getTime()).equals("11.03")){ 
+			}else if (dfd.format(cal.getTime()).equals("14.03")){ 
 				displayMatrix = eyeCandy.draw(displayMatrix);
-				new EyeCandyPI().draw(displayMatrix);
+				new EyeCandyPIDay().draw(displayMatrix);
 				try {
 					displayMatrix = wC.drawDateTime(displayMatrix);
 				} catch (Throwable e) {
