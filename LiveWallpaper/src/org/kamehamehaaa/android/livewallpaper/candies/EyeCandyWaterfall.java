@@ -36,15 +36,10 @@ public class EyeCandyWaterfall extends EyeCandy {
 		init();
 	}
 
-	public static void setNrStrings(String nr) {
-		short temp = 100;
-		try {
-			temp = Short.valueOf(nr);
-		} catch (Exception e) {
-			Log.e("LCDLiveWallpaper", "exception", e);
-		}
-		if (temp > 0) {
-			maxNrStrings = temp;
+	public static void setNrStrings(int i) {
+		
+		if (i > 0) {
+			maxNrStrings = (short) i;
 			currNrStrings = 0;
 			assignedStrings = new wString[maxNrStrings];
 		} else {

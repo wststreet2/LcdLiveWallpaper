@@ -34,16 +34,18 @@
             <PreferenceScreen
                 android:key="waterfall_pref_screen"
                 android:title="Waterfall settings" >
-                <EditTextPreference
+                <org.kamehamehaaa.android.livewallpaper.settings.SeekBarPreference
                     android:defaultValue="100"
-                    android:key="waterfall_strings"
+                    android:dialogMessage="Max Number of Strings"
+                    android:key="waterfall_strings2"
+                    android:max="1000"
                     android:title="Max Number of Strings" />
 
                 <CheckBoxPreference
                     android:defaultValue="true"
                     android:key="waterfall_overlap"
                     android:title="Overlapping" />
-                    />
+                    />
             </PreferenceScreen>
         </PreferenceScreen>
         <PreferenceScreen
@@ -100,7 +102,7 @@
                 android:defaultValue="false"
                 android:key="black_clock"
                 android:summary="Invert the colors of the binary clock"
-                android:title="Black Binary Clock" >
+                android:title="Inverted Binary Clock" >
             </CheckBoxPreference>
             <CheckBoxPreference
                 android:defaultValue="false"
@@ -113,11 +115,12 @@
     <PreferenceCategory
         android:key="perf_set_cat"
         android:title="Performance" >
-        <EditTextPreference
-            android:defaultValue="1"
-            android:inputType="number"
-            android:key="frame_rate"
+        <org.kamehamehaaa.android.livewallpaper.settings.SeekBarPreference
+            android:dialogMessage="Framerate"
+            android:key="framerate"
+            android:max="100"
             android:summary="How many times per second should the screen refresh? Lower values mean better battery life."
+            android:text=" FPS"
             android:title="Frame Rate" />
     </PreferenceCategory>
     <PreferenceCategory

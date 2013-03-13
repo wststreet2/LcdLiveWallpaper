@@ -55,9 +55,9 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 			WriteClass.setTime(sharedPreferences.getBoolean(key, true));
 		} else if (key.equals("show_date")) {
 			WriteClass.setDate(sharedPreferences.getBoolean(key, false));
-		} else if (key.equals("frame_rate")) {
+		} else if (key.equals("framerate")) {
 			LCDLiveWallpaper
-					.setFramerate(sharedPreferences.getString(key, "1"));
+					.setFramerate(sharedPreferences.getInt(key, 1));
 		} else if (key.equals("clock_type")) {
 			// getString returneaza "decimal" sau "binary"
 			WriteClass
@@ -84,8 +84,8 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 		} else if (key.equals("waterfall_chance")) {
 			//EyeCandyWaterfall.setAppearnceChance(sharedPreferences.getInt(key, 100));
 			EyeCandyWaterfall.setAppearnceChance(100);
-		} else if (key.equals("waterfall_strings")) {
-			EyeCandyWaterfall.setNrStrings(sharedPreferences.getString(key, "100"));
+		} else if (key.equals("waterfall_strings2")) {
+			EyeCandyWaterfall.setNrStrings(sharedPreferences.getInt(key, 100));
 		}
 	}
 

@@ -82,8 +82,12 @@ public class LCDLiveWallpaper extends WallpaperService {
 		private void drawMatrix() throws IndexOutOfBoundsException {
 			for (int i = 0; i < LCD_WIDTH; i++)
 				for (int j = 0; j < LCD_HEIGHT; j++) {
-					if (displayMatrix[i][j])
-						drawPixel(i, j, displayMatrix[i][j]);
+					try {
+						if (displayMatrix[i][j])
+							drawPixel(i, j, displayMatrix[i][j]);
+					} catch (Throwable e) {
+						Log.e("LCDLiveWallpaper", "exception", e);
+					}
 				}
 
 		}
@@ -137,7 +141,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 			WriteClass.blackBinary = blackClock;
 			WriteClass.setBigBinary(bigClock);
 			setEyeCandy(candySetting);
-			setFramerate(sharedPref.getString("frame_rate", "1"));
+			setFramerate(sharedPref.getInt("framerate", 1));
 			setBgColor(bgColor);
 			setPxColor(sharedPref.getString("pixel_color", "0x333333"));
 			EyeCandyRandom.setDensity(sharedPref.getInt("random_pixel_density",
@@ -145,8 +149,8 @@ public class LCDLiveWallpaper extends WallpaperService {
 			EyeCandyWaterfall.setOverlapping(sharedPref.getBoolean(
 					"waterfall_overlap", true));
 			EyeCandyWaterfall.setAppearnceChance(100);
-			EyeCandyWaterfall.setNrStrings(sharedPref.getString(
-					"waterfall_strings", "100"));
+			EyeCandyWaterfall.setNrStrings(sharedPref.getInt(
+					"waterfall_strings2", 100));
 		}
 
 		@SuppressLint("NewApi")
@@ -268,9 +272,17 @@ public class LCDLiveWallpaper extends WallpaperService {
 				new EyeCandyLeet().draw(displayMatrix);
 			} else if (eyeCandy != null) {
 				displayMatrix = eyeCandy.draw(displayMatrix);
-				displayMatrix = wC.drawDateTime(displayMatrix);
+				try {
+					displayMatrix = wC.drawDateTime(displayMatrix);
+				} catch (Throwable e) {
+					Log.e("LCDLiveWallpaper", "exception", e);
+				}
 			} else {
-				displayMatrix = wC.drawDateTime(displayMatrix);
+				try {
+					displayMatrix = wC.drawDateTime(displayMatrix);
+				} catch (Throwable e) {
+					Log.e("LCDLiveWallpaper", "exception", e);
+				}
 			}
 
 		}
@@ -325,16 +337,9 @@ public class LCDLiveWallpaper extends WallpaperService {
 
 	}
 
-	public static void setFramerate(String value) {
-		int f = 1;
+	public static void setFramerate(int value) {
 
-		if (!value.isEmpty())
-			f = Integer.parseInt(value);
-
-		if (f > 0)
-			framerate = f;
-		else
-			framerate = 1;
+		framerate = value > 0 ? value : 1;
 	}
 
 	public static void setBgColor(String string) {
@@ -347,7 +352,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 				r = Integer.parseInt(color.substring(0, 2), 16);
 				g = Integer.parseInt(color.substring(2, 4), 16);
 				b = Integer.parseInt(color.substring(4, 6), 16);
-			} 
+			}
 		} catch (Exception e) {
 			Log.e("LCDLiveWallpaper", "exception", e);
 		}
