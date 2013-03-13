@@ -264,13 +264,23 @@ public class LCDLiveWallpaper extends WallpaperService {
 			initMatrix(); // Called just to clean the matrix
 
 			SimpleDateFormat df = new SimpleDateFormat("HH:mm");
+			SimpleDateFormat dfd = new SimpleDateFormat("dd.MM");
 			Calendar cal = Calendar.getInstance();
 
 			if (df.format(cal.getTime()).equals("03:14")) {
 				new EyeCandyPI().draw(displayMatrix);
 			} else if (df.format(cal.getTime()).equals("13:37")) {
 				new EyeCandyLeet().draw(displayMatrix);
-			} else if (eyeCandy != null) {
+			}else if (dfd.format(cal.getTime()).equals("11.03")){ 
+				displayMatrix = eyeCandy.draw(displayMatrix);
+				new EyeCandyPI().draw(displayMatrix);
+				try {
+					displayMatrix = wC.drawDateTime(displayMatrix);
+				} catch (Throwable e) {
+					Log.e("LCDLiveWallpaper", "exception", e);
+				}
+			}
+			else if (eyeCandy != null) {
 				displayMatrix = eyeCandy.draw(displayMatrix);
 				try {
 					displayMatrix = wC.drawDateTime(displayMatrix);
