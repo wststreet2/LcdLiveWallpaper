@@ -1,13 +1,12 @@
 package org.kamehamehaaa.android.livewallpaper.candies;
 
-import java.io.WriteAbortedException;
 
 import org.kamehamehaaa.android.livewallpaper.engine.LCDLiveWallpaper;
 import org.kamehamehaaa.android.livewallpaper.engine.WriteClass;
 
 public class EyeCandyPIDay extends EyeCandy {
 
-	static int increment = 0;
+	static int pos = 0;
 	static boolean color = false;
 	static int pi_small[][] = {
 			{ 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
@@ -45,11 +44,11 @@ public class EyeCandyPIDay extends EyeCandy {
 
 	@Override
 	public boolean[][] draw(boolean[][] matrix) {
-		if (increment++ == 60) {
+			
+		if( pos-- <= -27){
+			pos = LCDLiveWallpaper.getLCD_HEIGHT();
 			color = !color;
-			increment = 0;
 		}
-		WriteClass.setBigBinary(false);
 		if (LCDLiveWallpaper.getLCD_WIDTH() >= 40) {
 			drawSmall(matrix);
 		} else {
@@ -60,7 +59,7 @@ public class EyeCandyPIDay extends EyeCandy {
 
 	private void drawSmall(boolean[][] matrix) {
 		int startw = (LCDLiveWallpaper.getLCD_WIDTH() / 2) - 11;
-		int starth = 46; // (LCDLiveWallpaper.getLCD_HEIGHT() / 2) - 14;
+		int starth = pos; // 46; // (LCDLiveWallpaper.getLCD_HEIGHT() / 2) - 14;
 		
 		for (int i = 0; i < 22; i++)
 			for (int j = 0; j < 27; j++) {
