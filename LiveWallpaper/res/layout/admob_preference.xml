@@ -11,7 +11,6 @@
             ads:adSize="BANNER"
             ads:adUnitId="a1512fa1fef241f"
             ads:loadAdOnCreate="true"
-            ads:testDevices="TEST_EMULATOR, E723AF288A494F8B84DE5E6BC0EB0C77, 9D601FBB0A93B6F90D3A24DADEFCE5D5"
             android:gravity="center_horizontal|fill_horizontal" />
 
 </RelativeLayout>
