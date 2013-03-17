@@ -237,13 +237,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 			mHandler.removeCallbacks(mDraw);
 		}
 
-		@Override
-		public void onSurfaceRedrawNeeded(SurfaceHolder holder) {
-			super.onSurfaceRedrawNeeded(holder);
-			// drawFrame();
-
-		}
-
+		
 		@Override
 		public void onTouchEvent(MotionEvent event) {
 			super.onTouchEvent(event);
