@@ -45,7 +45,6 @@
                     android:defaultValue="true"
                     android:key="waterfall_overlap"
                     android:title="Overlapping" />
-                    />
             </PreferenceScreen>
         </PreferenceScreen>
         <PreferenceScreen
