@@ -26,10 +26,12 @@
         <item name="Classic Gray">Classic Gray</item>
         <item name="Classic Green">Classic Green</item>
         <item name="Classic Orange">Classic Orange</item>
+        <item name="Blue Backlight">Blue Backlight</item>
         <item name="White on Black">White on Black</item>
         <item name="Matrix Green">Matrix Green</item>
         <item name="Red on Black">Red on Black</item>
         <item name="Blue on Black">Blue on Black</item>
+        <item name="White on Blue">White on Blue</item>
     </string-array>
     
     <string-array name="color_styles_values">

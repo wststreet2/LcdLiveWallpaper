@@ -151,10 +151,10 @@ public class LCDLiveWallpaper extends WallpaperService {
 			EyeCandyWaterfall.setNrStrings(sharedPref.getInt(
 					"waterfall_strings2", 100));
 			if (sharedPref.getBoolean("use_custom_colors", false)) {
-				setColorSet(sharedPref.getString("color_set", "999999|333333"));
-			} else {
-				setBgColor(sharedPref.getString("color", "0x99AA99"));
+				setBgColor(sharedPref.getString("color", "0x999999"));
 				setPxColor(sharedPref.getString("pixel_color", "0x333333"));
+			} else {
+				setColorSet(sharedPref.getString("color_set", "999999|333333"));
 			}
 		}
 
@@ -353,9 +353,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 	}
 
 	public static void setBgColor(String string) {
-		if (!useCustomColors)
-			return;
-
+		
 		int r = 0x99;
 		int g = 0xAA;
 		int b = 0x99;
@@ -373,9 +371,6 @@ public class LCDLiveWallpaper extends WallpaperService {
 	}
 
 	public static void setPxColor(String string) {
-
-		if (!useCustomColors)
-			return;
 
 		int r = 0x33;
 		int g = 0x33;
@@ -396,8 +391,11 @@ public class LCDLiveWallpaper extends WallpaperService {
 	}
 
 	public static void setColorSet(String string) {
-		setBgColor("0x".concat(string.split("|")[0]));
-		setPxColor("0x".concat(string.split("|")[1]));
+		Log.d("LCDLiveWallpaper","0x".concat(string.split("\\|")[0]));
+		Log.d("LCDLiveWallpaper","0x".concat(string.split("\\|")[1]));
+		
+		setBgColor("0x".concat(string.split("\\|")[0]));
+		setPxColor("0x".concat(string.split("\\|")[1]));
 	}
 
 	public static void setUseCustomColors(boolean b) {

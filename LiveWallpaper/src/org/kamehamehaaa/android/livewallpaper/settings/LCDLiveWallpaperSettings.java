@@ -62,8 +62,13 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 			WriteClass
 					.setClockType(sharedPreferences.getString(key, "decimal"));
 		} else if (key.equals("color")) {
-			LCDLiveWallpaper.setBgColor(sharedPreferences.getString(key,
-					"0x99AA99"));
+			if (sharedPreferences.getBoolean("use_custom_colors", false))
+				LCDLiveWallpaper.setBgColor(sharedPreferences.getString(key,
+						"0x99AA99"));
+		} else if (key.equals("pixel_color")) {
+			if (sharedPreferences.getBoolean("use_custom_colors", false))
+				LCDLiveWallpaper.setPxColor(sharedPreferences.getString(key,
+						"0x333333"));
 		} else if (key.equals("big_clock")) {
 
 			WriteClass.bigBinary = sharedPreferences.getBoolean(key, false);
@@ -73,9 +78,6 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 		} else if (key.equals("date_format")) {
 
 			WriteClass.dateType = sharedPreferences.getString(key, "dd/MM/yy");
-		} else if (key.equals("pixel_color")) {
-			LCDLiveWallpaper.setPxColor(sharedPreferences.getString(key,
-					"0x333333"));
 		} else if (key.equals("random_pixel_density")) {
 			EyeCandyRandom.setDensity(sharedPreferences.getInt(key, 50));
 		} else if (key.equals("waterfall_overlap")) {
@@ -90,8 +92,9 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 		} else if (key.equals("use_custom_colors")) {
 			LCDLiveWallpaper.setUseCustomColors(sharedPreferences.getBoolean(
 					key, false));
-		} else if (key.equals("color_set")){
-			LCDLiveWallpaper.setColorSet(sharedPreferences.getString(key, "999999|333333"));
+		} else if (key.equals("color_set")) {
+			LCDLiveWallpaper.setColorSet(sharedPreferences.getString(key,
+					"999999|333333"));
 		}
 	}
 
