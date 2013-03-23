@@ -391,8 +391,6 @@ public class LCDLiveWallpaper extends WallpaperService {
 	}
 
 	public static void setColorSet(String string) {
-		Log.d("LCDLiveWallpaper","0x".concat(string.split("\\|")[0]));
-		Log.d("LCDLiveWallpaper","0x".concat(string.split("\\|")[1]));
 		
 		setBgColor("0x".concat(string.split("\\|")[0]));
 		setPxColor("0x".concat(string.split("\\|")[1]));
