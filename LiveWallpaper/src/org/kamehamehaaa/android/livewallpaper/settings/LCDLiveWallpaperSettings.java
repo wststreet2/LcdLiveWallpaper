@@ -90,11 +90,22 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 		} else if (key.equals("waterfall_strings2")) {
 			EyeCandyWaterfall.setNrStrings(sharedPreferences.getInt(key, 100));
 		} else if (key.equals("use_custom_colors")) {
+
 			LCDLiveWallpaper.setUseCustomColors(sharedPreferences.getBoolean(
 					key, false));
+			if (sharedPreferences.getBoolean(key, false)) {
+				LCDLiveWallpaper.setPxColor(sharedPreferences.getString(
+						"pixel_color", "0x333333"));
+				LCDLiveWallpaper.setBgColor(sharedPreferences.getString(
+						"color", "0x99AA99"));
+			} else {
+				LCDLiveWallpaper.setColorSet(sharedPreferences.getString(
+						"color_set", "999999|333333"));
+			}
 		} else if (key.equals("color_set")) {
-			LCDLiveWallpaper.setColorSet(sharedPreferences.getString(key,
-					"999999|333333"));
+			if (!sharedPreferences.getBoolean("use_custom_colors", false))
+				LCDLiveWallpaper.setColorSet(sharedPreferences.getString(key,
+						"999999|333333"));
 		}
 	}
 
