@@ -126,11 +126,10 @@ public class LCDLiveWallpaper extends WallpaperService {
 			SharedPreferences sharedPref = PreferenceManager
 					.getDefaultSharedPreferences(context);
 
-			String candySetting = sharedPref.getString("eye_candy", "gradient");
+			String candySetting = sharedPref.getString("eye_candy", "waterfall");
 			Boolean clockEnabled = sharedPref.getBoolean("show_clock", true);
 			Boolean dateEnabled = sharedPref.getBoolean("show_date", false);
 			String clockType = sharedPref.getString("clock_type", "decimal");
-			String bgColor = sharedPref.getString("color", "0x99AA99");
 			Boolean bigClock = sharedPref.getBoolean("big_clock", false);
 			Boolean blackClock = sharedPref.getBoolean("black_clock", false);
 			WriteClass.dateType = sharedPref.getString("date_format",
@@ -142,9 +141,8 @@ public class LCDLiveWallpaper extends WallpaperService {
 			WriteClass.blackBinary = blackClock;
 			WriteClass.setBigBinary(bigClock);
 			setEyeCandy(candySetting);
-			setFramerate(sharedPref.getInt("framerate", 1));
-			setBgColor(bgColor);
-			setPxColor(sharedPref.getString("pixel_color", "0x333333"));
+			setFramerate(sharedPref.getInt("framerate", 10));
+
 			EyeCandyRandom.setDensity(sharedPref.getInt("random_pixel_density",
 					50));
 			EyeCandyWaterfall.setOverlapping(sharedPref.getBoolean(
@@ -152,6 +150,12 @@ public class LCDLiveWallpaper extends WallpaperService {
 			EyeCandyWaterfall.setAppearnceChance(100);
 			EyeCandyWaterfall.setNrStrings(sharedPref.getInt(
 					"waterfall_strings2", 100));
+			if (sharedPref.getBoolean("use_custom_colors", false)) {
+				setColorSet(sharedPref.getString("color_set", "999999|333333"));
+			} else {
+				setBgColor(sharedPref.getString("color", "0x99AA99"));
+				setPxColor(sharedPref.getString("pixel_color", "0x333333"));
+			}
 		}
 
 		@SuppressLint("NewApi")
@@ -237,7 +241,6 @@ public class LCDLiveWallpaper extends WallpaperService {
 			mHandler.removeCallbacks(mDraw);
 		}
 
-		
 		@Override
 		public void onTouchEvent(MotionEvent event) {
 			super.onTouchEvent(event);
@@ -266,7 +269,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 				new EyeCandyPI().draw(displayMatrix);
 			} else if (df.format(cal.getTime()).equals("13:37")) {
 				new EyeCandyLeet().draw(displayMatrix);
-			}else if (dfd.format(cal.getTime()).equals("14.03")){ 
+			} else if (dfd.format(cal.getTime()).equals("14.03")) {
 				displayMatrix = eyeCandy.draw(displayMatrix);
 				new EyeCandyPIDay().draw(displayMatrix);
 				try {
@@ -274,8 +277,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 				} catch (Throwable e) {
 					Log.e("LCDLiveWallpaper", "exception", e);
 				}
-			}
-			else if (eyeCandy != null) {
+			} else if (eyeCandy != null) {
 				displayMatrix = eyeCandy.draw(displayMatrix);
 				try {
 					displayMatrix = wC.drawDateTime(displayMatrix);
@@ -302,6 +304,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 	private static MyWallpaperEngine engine;
 	private static Paint bg = new Paint();
 	private static Paint onPixelPaint = null;
+	private static boolean useCustomColors = false;
 
 	public static int getLCD_WIDTH() {
 		return LCD_WIDTH;
@@ -338,6 +341,8 @@ public class LCDLiveWallpaper extends WallpaperService {
 			eyeCandy = new EyeCandyRandom();
 		} else if (name.equalsIgnoreCase("waterfall")) {
 			eyeCandy = new EyeCandyWaterfall();
+		} else {
+			eyeCandy = null;
 		}
 
 	}
@@ -348,6 +353,9 @@ public class LCDLiveWallpaper extends WallpaperService {
 	}
 
 	public static void setBgColor(String string) {
+		if (!useCustomColors)
+			return;
+
 		int r = 0x99;
 		int g = 0xAA;
 		int b = 0x99;
@@ -365,6 +373,10 @@ public class LCDLiveWallpaper extends WallpaperService {
 	}
 
 	public static void setPxColor(String string) {
+
+		if (!useCustomColors)
+			return;
+
 		int r = 0x33;
 		int g = 0x33;
 		int b = 0x33;
@@ -381,6 +393,15 @@ public class LCDLiveWallpaper extends WallpaperService {
 		}
 
 		onPixelPaint.setARGB(0xFF, r, g, b);
+	}
+
+	public static void setColorSet(String string) {
+		setBgColor("0x".concat(string.split("|")[0]));
+		setPxColor("0x".concat(string.split("|")[1]));
+	}
+
+	public static void setUseCustomColors(boolean b) {
+		useCustomColors = b;
 	}
 
 }

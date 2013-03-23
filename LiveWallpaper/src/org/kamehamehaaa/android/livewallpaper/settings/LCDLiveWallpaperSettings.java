@@ -50,14 +50,13 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 
 		if (key.equals("eye_candy")) {
 			LCDLiveWallpaper.setEyeCandy(sharedPreferences.getString(key,
-					"gradient"));
+					"waterfall"));
 		} else if (key.equals("show_clock")) {
 			WriteClass.setTime(sharedPreferences.getBoolean(key, true));
 		} else if (key.equals("show_date")) {
 			WriteClass.setDate(sharedPreferences.getBoolean(key, false));
 		} else if (key.equals("framerate")) {
-			LCDLiveWallpaper
-					.setFramerate(sharedPreferences.getInt(key, 1));
+			LCDLiveWallpaper.setFramerate(sharedPreferences.getInt(key, 10));
 		} else if (key.equals("clock_type")) {
 			// getString returneaza "decimal" sau "binary"
 			WriteClass
@@ -80,12 +79,19 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 		} else if (key.equals("random_pixel_density")) {
 			EyeCandyRandom.setDensity(sharedPreferences.getInt(key, 50));
 		} else if (key.equals("waterfall_overlap")) {
-			EyeCandyWaterfall.setOverlapping(sharedPreferences.getBoolean(key, true));
+			EyeCandyWaterfall.setOverlapping(sharedPreferences.getBoolean(key,
+					true));
 		} else if (key.equals("waterfall_chance")) {
-			//EyeCandyWaterfall.setAppearnceChance(sharedPreferences.getInt(key, 100));
+			// EyeCandyWaterfall.setAppearnceChance(sharedPreferences.getInt(key,
+			// 100));
 			EyeCandyWaterfall.setAppearnceChance(100);
 		} else if (key.equals("waterfall_strings2")) {
 			EyeCandyWaterfall.setNrStrings(sharedPreferences.getInt(key, 100));
+		} else if (key.equals("use_custom_colors")) {
+			LCDLiveWallpaper.setUseCustomColors(sharedPreferences.getBoolean(
+					key, false));
+		} else if (key.equals("color_set")){
+			LCDLiveWallpaper.setColorSet(sharedPreferences.getString(key, "999999|333333"));
 		}
 	}
 

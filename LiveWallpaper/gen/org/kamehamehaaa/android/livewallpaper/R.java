@@ -10,6 +10,8 @@ package org.kamehamehaaa.android.livewallpaper;
 public final class R {
     public static final class array {
         public static final int clockType=0x7f060001;
+        public static final int color_styles=0x7f060003;
+        public static final int color_styles_values=0x7f060004;
         public static final int dateFormat=0x7f060002;
         public static final int eyeCandyArray=0x7f060000;
     }

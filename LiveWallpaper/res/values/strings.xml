@@ -4,7 +4,6 @@
     <string name="settings_title">Wallpaper Settings</string>
     <string name="wallpaper_desc">A live wallpaper that looks like a liquid crystal display</string>
 
-    
     <string-array name="eyeCandyArray">
         <item name="none">None</item>
         <item name="random">Random</item>
@@ -23,4 +22,29 @@
         <item name="japanese">yy/MM/dd</item>
     </string-array>
 
+    <string-array name="color_styles">
+        <item name="Classic Gray">Classic Gray</item>
+        <item name="Classic Green">Classic Green</item>
+        <item name="Classic Orange">Classic Orange</item>
+        <item name="White on Black">White on Black</item>
+        <item name="Matrix Green">Matrix Green</item>
+        <item name="Red on Black">Red on Black</item>
+        <item name="Blue on Black">Blue on Black</item>
+    </string-array>
+    
+    <string-array name="color_styles_values">
+        <item name="Classic Gray">999999|333333</item>
+        <item name="Classic Green">99AA99|333333</item>
+        <item name="Classic Orange">FEDEAC|333333</item>
+        <item name="Blue Backlight">007FFF|333333</item>
+        <item name="White on Black">000000|FFFFFF</item>
+        <item name="Matrix Green">000000|00CC00</item>
+        <item name="Red on Black">000000|FF0000</item>
+        <item name="Blue on Black">000000|0000FF</item>
+        <item name="White on Blue">0070FF|FFFFFF</item>
+    </string-array>
+    
+    
+        
+    
 </resources>

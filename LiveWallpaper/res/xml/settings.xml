@@ -8,7 +8,7 @@
         android:key="bg_set_cat"
         android:title="General Settings" >
         <ListPreference
-            android:defaultValue="gradient"
+            android:defaultValue="waterfall"
             android:dialogTitle="EyeCandy"
             android:entries="@array/eyeCandyArray"
             android:entryValues="@array/eyeCandyArray"
@@ -51,6 +51,17 @@
         <PreferenceScreen
             android:key="colors_pref_screen"
             android:title="Colors" >
+            <ListPreference
+                android:title="Color Set"
+                android:defaultValue="999999|333333"
+            	android:entries="@array/color_styles"
+            	android:entryValues="@array/color_styles_values"
+            	android:key="color_set"/>
+            <CheckBoxPreference 
+                android:defaultValue="false"
+                android:key="use_custom_colors"
+                android:title="Use Custom Colors"
+                />
             <EditTextPreference
                 android:defaultValue="0x88AA88"
                 android:key="color"
@@ -117,6 +128,7 @@
         android:title="Performance" >
         <org.kamehamehaaa.android.livewallpaper.settings.SeekBarPreference
             android:dialogMessage="Framerate"
+            android:defaultValue="10"
             android:key="framerate"
             android:max="100"
             android:summary="How many times per second should the screen refresh? Lower values mean better battery life."
