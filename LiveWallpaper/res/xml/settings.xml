@@ -1,4 +1,5 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:seekbar="http://schemas.android.com/apk/res/org.kamehamehaaa.android.livewallpaper"
     android:key="livewallpaper_settings"
     android:title="@string/settings_title" >
 
@@ -26,10 +27,11 @@
                     android:defaultValue="50"
                     android:dialogMessage="Density"
                     android:key="random_pixel_density"
-                    android:max="100"
                     android:summary="How much of the random pixels should be active"
                     android:text="%"
-                    android:title="Random Pixel Density" />
+                    android:title="Random Pixel Density"
+                    seekbar:maxValue="100"
+                    seekbar:minValue="1" />
             </PreferenceScreen>
             <PreferenceScreen
                 android:key="waterfall_pref_screen"
@@ -38,8 +40,10 @@
                     android:defaultValue="100"
                     android:dialogMessage="Max Number of Strings"
                     android:key="waterfall_strings2"
-                    android:max="1000"
-                    android:title="Max Number of Strings" />
+                    android:summary="Set how many strings can fall at once"
+                    android:title="Max Number of Strings"
+                    seekbar:maxValue="1000"
+                    seekbar:minValue="1" />
 
                 <CheckBoxPreference
                     android:defaultValue="true"
@@ -51,16 +55,17 @@
             android:key="colors_pref_screen"
             android:title="Colors" >
             <ListPreference
-                android:title="Color Set"
                 android:defaultValue="999999|333333"
-            	android:entries="@array/color_styles"
-            	android:entryValues="@array/color_styles_values"
-            	android:key="color_set"/>
-            <CheckBoxPreference 
+                android:entries="@array/color_styles"
+                android:entryValues="@array/color_styles_values"
+                android:key="color_set"
+                android:title="Color Set" />
+
+            <CheckBoxPreference
                 android:defaultValue="false"
                 android:key="use_custom_colors"
-                android:title="Use Custom Colors"
-                />
+                android:title="Use Custom Colors" />
+
             <EditTextPreference
                 android:defaultValue="0x88AA88"
                 android:key="color"
@@ -126,13 +131,14 @@
         android:key="perf_set_cat"
         android:title="Performance" >
         <org.kamehamehaaa.android.livewallpaper.settings.SeekBarPreference
-            android:dialogMessage="Framerate"
             android:defaultValue="10"
+            android:dialogMessage="Framerate"
             android:key="framerate"
-            android:max="100"
             android:summary="How many times per second should the screen refresh? Lower values mean better battery life."
             android:text=" FPS"
-            android:title="Frame Rate" />
+            android:title="Frame Rate"
+            seekbar:maxValue="100"
+            seekbar:minValue="1" />
     </PreferenceCategory>
     <PreferenceCategory
         android:key="about_set_cat"

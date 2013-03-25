@@ -1,100 +1,117 @@
 package org.kamehamehaaa.android.livewallpaper.settings;
+
+import org.kamehamehaaa.android.livewallpaper.R;
+
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.preference.DialogPreference;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.LinearLayout;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 
+public final class SeekBarPreference extends DialogPreference implements OnSeekBarChangeListener {
 
-public class SeekBarPreference extends DialogPreference implements SeekBar.OnSeekBarChangeListener
-{
-  private static final String androidns="http://schemas.android.com/apk/res/android";
+    // Namespaces to read attributes
+    private static final String PREFERENCE_NS = "http://schemas.android.com/apk/res/org.kamehamehaaa.android.livewallpaper";
+    private static final String ANDROID_NS = "http://schemas.android.com/apk/res/android";
 
-  private SeekBar mSeekBar;
-  private TextView mSplashText,mValueText;
-  private Context mContext;
+    // Attribute names
+    private static final String ATTR_DEFAULT_VALUE = "defaultValue";
+    private static final String ATTR_MIN_VALUE = "minValue";
+    private static final String ATTR_MAX_VALUE = "maxValue";
 
-  private String mDialogMessage, mSuffix;
-  private int mDefault, mMax, mValue = 0;
+    // Default values for defaults
+    private static final int DEFAULT_CURRENT_VALUE = 50;
+    private static final int DEFAULT_MIN_VALUE = 0;
+    private static final int DEFAULT_MAX_VALUE = 100;
 
-  public SeekBarPreference(Context context, AttributeSet attrs) { 
-    super(context,attrs); 
-    mContext = context;
+    // Real defaults
+    private final int mDefaultValue;
+    private final int mMaxValue;
+    private final int mMinValue;
+    
+    // Current value
+    private int mCurrentValue;
+    
+    // View elements
+    private SeekBar mSeekBar;
+    private TextView mValueText;
 
-    mDialogMessage = attrs.getAttributeValue(androidns,"dialogMessage");
-    mSuffix = attrs.getAttributeValue(androidns,"text");
-    mDefault = attrs.getAttributeIntValue(androidns,"defaultValue", 0);
-    mMax = attrs.getAttributeIntValue(androidns,"max", 100);
+    public SeekBarPreference(Context context, AttributeSet attrs) {
+	super(context, attrs);
 
-  }
-  @Override 
-  protected View onCreateDialogView() {
-    LinearLayout.LayoutParams params;
-    LinearLayout layout = new LinearLayout(mContext);
-    layout.setOrientation(LinearLayout.VERTICAL);
-    layout.setPadding(6,6,6,6);
+	// Read parameters from attributes
+	mMinValue = attrs.getAttributeIntValue(PREFERENCE_NS, ATTR_MIN_VALUE, DEFAULT_MIN_VALUE);
+	mMaxValue = attrs.getAttributeIntValue(PREFERENCE_NS, ATTR_MAX_VALUE, DEFAULT_MAX_VALUE);
+	mDefaultValue = attrs.getAttributeIntValue(ANDROID_NS, ATTR_DEFAULT_VALUE, DEFAULT_CURRENT_VALUE);
+    }
 
-    mSplashText = new TextView(mContext);
-    if (mDialogMessage != null)
-      mSplashText.setText(mDialogMessage);
-    layout.addView(mSplashText);
+    @Override
+    protected View onCreateDialogView() {
+	// Get current value from preferences
+	mCurrentValue = getPersistedInt(mDefaultValue);
 
-    mValueText = new TextView(mContext);
-    mValueText.setGravity(Gravity.CENTER_HORIZONTAL);
-    mValueText.setTextSize(32);
-    params = new LinearLayout.LayoutParams(
-        LinearLayout.LayoutParams.MATCH_PARENT, 
-        LinearLayout.LayoutParams.WRAP_CONTENT);
-    layout.addView(mValueText, params);
+	// Inflate layout
+	LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	View view = inflater.inflate(R.layout.dialog_slider, null);
 
-    mSeekBar = new SeekBar(mContext);
-    mSeekBar.setOnSeekBarChangeListener(this);
-    layout.addView(mSeekBar, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+	// Setup minimum and maximum text labels
+	((TextView) view.findViewById(R.id.min_value)).setText(Integer.toString(mMinValue));
+	((TextView) view.findViewById(R.id.max_value)).setText(Integer.toString(mMaxValue));
 
-    if (shouldPersist())
-      mValue = getPersistedInt(mDefault);
+	// Setup SeekBar
+	mSeekBar = (SeekBar) view.findViewById(R.id.seek_bar);
+	mSeekBar.setMax(mMaxValue - mMinValue);
+	mSeekBar.setProgress(mCurrentValue - mMinValue);
+	mSeekBar.setOnSeekBarChangeListener(this);
 
-    mSeekBar.setMax(mMax);
-    mSeekBar.setProgress(mValue);
-    return layout;
-  }
-  @Override 
-  protected void onBindDialogView(View v) {
-    super.onBindDialogView(v);
-    mSeekBar.setMax(mMax);
-    mSeekBar.setProgress(mValue);
-  }
-  @Override
-  protected void onSetInitialValue(boolean restore, Object defaultValue)  
-  {
-    super.onSetInitialValue(restore, defaultValue);
-    if (restore) 
-      mValue = shouldPersist() ? getPersistedInt(mDefault) : 0;
-    else 
-      mValue = (Integer)defaultValue;
-  }
+	// Setup text label for current value
+	mValueText = (TextView) view.findViewById(R.id.current_value);
+	mValueText.setText(Integer.toString(mCurrentValue));
 
-  public void onProgressChanged(SeekBar seek, int value, boolean fromTouch)
-  {
-    String t = String.valueOf(value);
-    mValueText.setText(mSuffix == null ? t : t.concat(mSuffix));
-    if (shouldPersist())
-      persistInt(value);
-    callChangeListener(Integer.valueOf(value));
-  }
-  public void onStartTrackingTouch(SeekBar seek) {}
-  public void onStopTrackingTouch(SeekBar seek) {}
+	return view;
+    }
 
-  public void setMax(int max) { mMax = max; }
-  public int getMax() { return mMax; }
+    @Override
+    protected void onDialogClosed(boolean positiveResult) {
+	super.onDialogClosed(positiveResult);
 
-  public void setProgress(int progress) { 
-    mValue = progress;
-    if (mSeekBar != null)
-      mSeekBar.setProgress(progress); 
-  }
-  public int getProgress() { return mValue; }
+	// Return if change was cancelled
+	if (!positiveResult) {
+	    return;
+	}
+	
+	// Persist current value if needed
+	if (shouldPersist()) {
+	    persistInt(mCurrentValue);
+	}
+
+	// Notify activity about changes (to update preference summary line)
+	notifyChanged();
+    }
+
+    @Override
+    public CharSequence getSummary() {
+	// Format summary string with current value
+	String summary = super.getSummary().toString();
+	int value = getPersistedInt(mDefaultValue);
+	return String.format(summary, value);
+    }
+    
+    public void onProgressChanged(SeekBar seek, int value, boolean fromTouch) {
+	// Update current value
+	mCurrentValue = value + mMinValue;
+	// Update label with current value
+	mValueText.setText(Integer.toString(mCurrentValue));
+    }
+
+    public void onStartTrackingTouch(SeekBar seek) {
+	// Not used
+    }
+
+    public void onStopTrackingTouch(SeekBar seek) {
+	// Not used
+    }
 }

@@ -16,6 +16,22 @@ public final class R {
         public static final int eyeCandyArray=0x7f060000;
     }
     public static final class attr {
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int maxValue=0x7f010001;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int minValue=0x7f010000;
     }
     public static final class drawable {
         public static final int ic_action_search=0x7f020000;
@@ -23,9 +39,14 @@ public final class R {
     }
     public static final class id {
         public static final int adView=0x7f080000;
+        public static final int current_value=0x7f080001;
+        public static final int max_value=0x7f080004;
+        public static final int min_value=0x7f080003;
+        public static final int seek_bar=0x7f080002;
     }
     public static final class layout {
         public static final int admob_preference=0x7f030000;
+        public static final int dialog_slider=0x7f030001;
     }
     public static final class string {
         public static final int app_name=0x7f050000;
@@ -39,4 +60,49 @@ public final class R {
         public static final int livewallpaper=0x7f040000;
         public static final int settings=0x7f040001;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a org_kamehamehaaa_android_livewallpaper_settings_SeekBarPreference.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #org_kamehamehaaa_android_livewallpaper_settings_SeekBarPreference_maxValue org.kamehamehaaa.android.livewallpaper:maxValue}</code></td><td></td></tr>
+           <tr><td><code>{@link #org_kamehamehaaa_android_livewallpaper_settings_SeekBarPreference_minValue org.kamehamehaaa.android.livewallpaper:minValue}</code></td><td></td></tr>
+           </table>
+           @see #org_kamehamehaaa_android_livewallpaper_settings_SeekBarPreference_maxValue
+           @see #org_kamehamehaaa_android_livewallpaper_settings_SeekBarPreference_minValue
+         */
+        public static final int[] org_kamehamehaaa_android_livewallpaper_settings_SeekBarPreference = {
+            0x7f010000, 0x7f010001
+        };
+        /**
+          <p>This symbol is the offset where the {@link org.kamehamehaaa.android.livewallpaper.R.attr#maxValue}
+          attribute's value can be found in the {@link #org_kamehamehaaa_android_livewallpaper_settings_SeekBarPreference} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:maxValue
+        */
+        public static final int org_kamehamehaaa_android_livewallpaper_settings_SeekBarPreference_maxValue = 1;
+        /**
+          <p>This symbol is the offset where the {@link org.kamehamehaaa.android.livewallpaper.R.attr#minValue}
+          attribute's value can be found in the {@link #org_kamehamehaaa_android_livewallpaper_settings_SeekBarPreference} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:minValue
+        */
+        public static final int org_kamehamehaaa_android_livewallpaper_settings_SeekBarPreference_minValue = 0;
+    };
 }
