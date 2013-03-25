@@ -11,6 +11,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 
+
+// This class is from Mike114 on Code Project: http://www.codeproject.com/Articles/163541/SeekBar-Preference
 public final class SeekBarPreference extends DialogPreference implements OnSeekBarChangeListener {
 
     // Namespaces to read attributes
