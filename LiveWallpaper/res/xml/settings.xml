@@ -148,6 +148,13 @@
             android:title="Creators" >
         </Preference>
         <Preference
+            
+            android:title="Rate this app" >
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="market://details?id=org.kamehamehaaa.android.livewallpaper" />
+        </Preference>
+        <Preference
             android:summary="Opens http://www.kamehamehaaa.org/ there you can find a paypal donate widget"
             android:title="Donate" >
             <intent
