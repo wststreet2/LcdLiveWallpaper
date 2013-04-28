@@ -5,13 +5,7 @@ package org.kamehamehaaa.android.livewallpaper.engine;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import org.kamehamehaaa.android.livewallpaper.candies.EyeCandy;
-import org.kamehamehaaa.android.livewallpaper.candies.EyeCandyGradient;
-import org.kamehamehaaa.android.livewallpaper.candies.EyeCandyLeet;
-import org.kamehamehaaa.android.livewallpaper.candies.EyeCandyPI;
-import org.kamehamehaaa.android.livewallpaper.candies.EyeCandyPIDay;
-import org.kamehamehaaa.android.livewallpaper.candies.EyeCandyRandom;
-import org.kamehamehaaa.android.livewallpaper.candies.EyeCandyWaterfall;
+import org.kamehamehaaa.android.livewallpaper.candies.*;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -126,7 +120,8 @@ public class LCDLiveWallpaper extends WallpaperService {
 			SharedPreferences sharedPref = PreferenceManager
 					.getDefaultSharedPreferences(context);
 
-			String candySetting = sharedPref.getString("eye_candy", "waterfall");
+			String candySetting = sharedPref
+					.getString("eye_candy", "waterfall");
 			Boolean clockEnabled = sharedPref.getBoolean("show_clock", true);
 			Boolean dateEnabled = sharedPref.getBoolean("show_date", false);
 			String clockType = sharedPref.getString("clock_type", "decimal");
@@ -277,6 +272,14 @@ public class LCDLiveWallpaper extends WallpaperService {
 				} catch (Throwable e) {
 					Log.e("LCDLiveWallpaper", "exception", e);
 				}
+			} else if (dfd.format(cal.getTime()).equals("04.05")) {
+				displayMatrix = eyeCandy.draw(displayMatrix);
+				new EyeCandyVader().draw(displayMatrix);
+				try {
+					displayMatrix = wC.drawDateTime(displayMatrix);
+				} catch (Throwable e) {
+					Log.e("LCDLiveWallpaper", "exception", e);
+				}
 			} else if (eyeCandy != null) {
 				displayMatrix = eyeCandy.draw(displayMatrix);
 				try {
@@ -353,7 +356,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 	}
 
 	public static void setBgColor(String string) {
-		
+
 		int r = 0x99;
 		int g = 0xAA;
 		int b = 0x99;
@@ -391,7 +394,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 	}
 
 	public static void setColorSet(String string) {
-		
+
 		setBgColor("0x".concat(string.split("\\|")[0]));
 		setPxColor("0x".concat(string.split("\\|")[1]));
 	}
