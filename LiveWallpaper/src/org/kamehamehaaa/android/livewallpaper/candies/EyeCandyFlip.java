@@ -43,13 +43,13 @@ public class EyeCandyFlip extends EyeCandy{
 		rects = new rect[64];
 		
 	    rects[0] = new rect(0,0,width,height,true);
-	    //rects[1] = new rect(0,height/2, width, height, false);
+	    
 	    nrRects = 1;
 	    rects[0].splitType = true; // urmeaza split pe orizontala
-	    //rects[1].splitType = true;
+	    
 	    totalflips = 0;
 	    
-	    Log.d("Screen Resolution","width: "+width+", height: "+height);
+	    
 	    up = true;
 	}
 	
@@ -59,16 +59,10 @@ public class EyeCandyFlip extends EyeCandy{
 	{
 		newRects[newRIndex] = new rect(x1, y1, x2, y2, color);
 		newRects[newRIndex].splitType = splitType;
-		writeLog(newRects[newRIndex], newRIndex);
+		
 		newRIndex++;
 	}
 	
-	void writeLog(rect r, int i)
-	{
-		Log.d("rectangle "," R1: "+i);
-		Log.d("x1: ",r.x1+", y1: "+r.y1+", x2: "+r.x2+", y2: "+r.y2+", type: "+r.splitType+" ,ColorType: "+r.color);
-       
-	}
 	
 	private rect[] split()
 	{
@@ -79,7 +73,7 @@ public class EyeCandyFlip extends EyeCandy{
 		newRIndex = 0;
 		boolean color = false;
 		
-		Log.d("New rectangles ","New Rects");
+		
 	    
 		for(i = 0; i < nrRects; i++)
 		{
@@ -105,8 +99,6 @@ public class EyeCandyFlip extends EyeCandy{
 			color = false;
 		}
 		
-		Log.d("End ","EoNR");
-		
 		nrRects = newRIndex;
 		return newRects;
 	}
@@ -120,7 +112,7 @@ public class EyeCandyFlip extends EyeCandy{
 		newRIndex = 0;
 		boolean color = false;
 		
-		Log.d("New rectangles ","New Rects");
+		
 	    
 		for(i = 0; i < nrRects-1; i += 2)
 		{
@@ -143,63 +135,13 @@ public class EyeCandyFlip extends EyeCandy{
 			j++;
 		}
 		
-		Log.d("End ","EoNR");
+		
 		
 		nrRects = newRIndex;
 		return newRects;
 	}
 
-/*
-boolean eIntreg(double nr)
-{
-   if(nr == (int)nr)
-       return true;
-   
-   return false; 
-}
 
-boolean putereDeDoi(int x)
-{
-   int i;
-   
-   for(i = 0; i < 16; i++)
-   {
-      if(x == Math.pow(2,i))
-        return true;      
-   }
-   
-   return false;
-}
-
-int getNr(double n)
-{ 
-   double x = 0;
-   int xI = 0;
-   
-   if(n == 2 || n == 1)
-    return 1;
-    
-   x = Math.sqrt(n);
-   
-   
-   if( eIntreg(x)  && putereDeDoi((int)x)  )
-   {
-     return (int)x;
-   }
-   else
-   {
-      xI = (int)x;
-      while(!putereDeDoi(xI))
-      {
-          xI--;         
-      }    
-      return xI;
-   }
-   
-  
-}
-
-*/
 	
 	public boolean[][] draw(boolean mat[][])
 	{
@@ -245,14 +187,13 @@ int getNr(double n)
 		}
 	
 	
-		//int rectsPerLine = getNr(nrRects);
+	
 		boolean color = true;
-		//Log.d("Nr Rects ","nr = " + rectsPerLine);
-		//int z = 0;
+		
 		
 		for(k = 0; k < nrRects; k++)
 		{
-			//if(rects[k].color == true)
+			
 			
 			
 			    
