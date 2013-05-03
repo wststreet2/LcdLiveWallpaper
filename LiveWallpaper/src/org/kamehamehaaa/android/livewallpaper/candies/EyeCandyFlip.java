@@ -132,7 +132,7 @@ public class EyeCandyFlip extends EyeCandy{
 			
 			if(rects[i].splitType == false)
 			{	
-				addRect(rects[i].x1,rects[i].y1,rects[i+1].x2,rects[i+1].y2,color, false);
+				addRect(rects[i].x1,rects[i].y1,rects[i+1].x2,rects[i+1].y2,color, true);
 			}	
 		    
 			//color = false;
@@ -207,7 +207,7 @@ int getNr(double n)
 		
 		if(up)
 		{
-			if(totalflips < 7)
+			if(totalflips < 9)
 			{
 				rects = split();
 				totalflips++;
