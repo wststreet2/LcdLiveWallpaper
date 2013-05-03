@@ -336,10 +336,11 @@ public class LCDLiveWallpaper extends WallpaperService {
 	}
 
 	public static void setEyeCandy(String name) {
-		
-		
+
 		if (name.equalsIgnoreCase("none")) {
 			eyeCandy = null;
+		} else if (name.equalsIgnoreCase("checkerbox")) {
+			eyeCandy = new EyeCandyFlip();
 		} else if (name.equalsIgnoreCase("gradient")) {
 			eyeCandy = new EyeCandyGradient();
 		} else if (name.equalsIgnoreCase("random")) {
@@ -349,7 +350,6 @@ public class LCDLiveWallpaper extends WallpaperService {
 		} else {
 			eyeCandy = null;
 		}
-		
 
 	}
 

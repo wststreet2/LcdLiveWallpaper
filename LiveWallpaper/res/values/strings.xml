@@ -6,8 +6,9 @@
 
     <string-array name="eyeCandyArray">
         <item name="none">None</item>
-        <item name="random">Random</item>
+        <item name="checkerbox">Checkerbox</item>
         <item name="gradient">Gradient</item>
+        <item name="random">Random</item>
         <item name="waterfall">Waterfall</item>
     </string-array>
     
