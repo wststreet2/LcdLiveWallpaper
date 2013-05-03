@@ -322,6 +322,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 		super.onConfigurationChanged(newConfig);
 		try {
 			engine.initMatrix();
+			eyeCandy.init();
 		} catch (Exception e) {
 			Log.e("LCDLiveWallpaper", "exception", e);
 		}
