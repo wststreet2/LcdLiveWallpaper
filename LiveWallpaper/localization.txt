@@ -1,0 +1,7 @@
+[ar, ar_EG, bg, bg_BG, ca, ca_ES, cs, cs_CZ, da, da_DK, de, de_AT, de_BE, de_CH, de_DE, de_LI, de_LU, el, el_CY, el_GR, en, en
+_AU, en_BE, en_BW, en_BZ, en_CA, en_GB, en_HK, en_IE, en_IN, en_JM, en_MH, en_MT, en_NA, en_NZ, en_PH, en_PK, en_RH, en_SG, en_TT, en_US, en_US_POSIX,
+ en_VI, en_ZA, en_ZW, es, es_AR, es_BO, es_CL, es_CO, es_CR, es_DO, es_EC, es_ES, es_GT, es_HN, es_MX, es_NI, es_PA, es_PE, es_PR, es_PY, es_SV, es_US
+, es_UY, es_VE, et, et_EE, eu, eu_ES, fa, fa_IR, fi, fi_FI, fr, fr_BE, fr_CA, fr_CH, fr_FR, fr_LU, fr_MC, gl, gl_ES, hr, hr_HR, hu, hu_HU, in, in_ID,
+is, is_IS, it, it_CH, it_IT, iw, iw_IL, ja, ja_JP, kk, kk_KZ, ko, ko_KR, lt, lt_LT, lv, lv_LV, mk, mk_MK, ms, ms_BN, ms_MY, nl, nl_BE, nl_NL, no, no_N
+O, no_NO_NY, pl, pl_PL, pt, pt_BR, pt_PT, ro, ro_RO, ru, ru_RU, ru_UA, sh, sh_BA, sh_CS, sh_YU, sk, sk_SK, sl, sl_SI, sq, sq_AL, sr, sr_BA, sr_ME, sr_
+RS, sv, sv_FI, sv_SE, th, th_TH, tr, tr_TR, uk, uk_UA, vi, vi_VN, zh, zh_CN, zh_HK, zh_HANS_SG, zh_HANT_MO, zh_MO, zh_TW]
