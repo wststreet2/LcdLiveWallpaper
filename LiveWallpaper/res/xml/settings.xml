@@ -14,8 +14,8 @@
             android:entries="@array/eyeCandyArray"
             android:entryValues="@array/eyeCandyArray_values"
             android:key="eye_candy"
-            android:summary="@string/eye_candy_title"
-            android:title="@string/eye_candy_desc" />
+            android:summary="@string/eye_candy_desc"
+            android:title="@string/eye_candy_title" />
 
         <PreferenceScreen
             android:key="specific_pref_screen"
