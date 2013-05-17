@@ -13,7 +13,9 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Paint.Style;
 import android.graphics.PixelFormat;
+import android.graphics.Rect;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.service.wallpaper.WallpaperService;
@@ -39,6 +41,8 @@ public class LCDLiveWallpaper extends WallpaperService {
 		private int refreshDelay = 1000 / framerate;
 		private WriteClass wC = new WriteClass();
 		float margin = 0.5f;
+	
+		
 
 		private Runnable mDraw = new Runnable() {
 
@@ -50,9 +54,13 @@ public class LCDLiveWallpaper extends WallpaperService {
 		};
 
 		private void drawBg(Canvas c) {
-
+            
+            
 			try {
 				c.drawRect(0, 0, width, height, bg);
+			    
+				
+			    
 			} catch (Exception e) {
 				Log.e("LCDLiveWallpaper", "exception", e);
 			}
@@ -91,6 +99,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 
 			try {
 				if (value) {
+					
 					mCanvas.drawRect((x * pixelWidth) + margin,
 							(y * pixelHeight) + margin, (x * pixelWidth)
 									+ pixelWidth - margin, (y * pixelHeight)
@@ -114,7 +123,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 			WriteClass.clockType = "";
 			WriteClass.blackBinary = true;
 			// WriteClass.dateType = "european";
-
+           
 			initMatrix();
 
 			SharedPreferences sharedPref = PreferenceManager
@@ -255,7 +264,8 @@ public class LCDLiveWallpaper extends WallpaperService {
 		@SuppressLint("SimpleDateFormat")
 		private void update() {
 			initMatrix(); // Called just to clean the matrix
-
+            
+			
 			SimpleDateFormat df = new SimpleDateFormat("HH:mm");
 			SimpleDateFormat dfd = new SimpleDateFormat("dd.MM");
 			Calendar cal = Calendar.getInstance();
@@ -296,6 +306,7 @@ public class LCDLiveWallpaper extends WallpaperService {
 			}
 
 		}
+		
 	}
 
 	// Static stuff goes here

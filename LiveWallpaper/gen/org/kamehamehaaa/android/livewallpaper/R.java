@@ -15,6 +15,8 @@ public final class R {
  SETTINGS MENU ARRAYS 
  SETTINGS MENU END 
  SETTINGS MENU ARRAYS 
+ SETTINGS MENU END 
+ SETTINGS MENU ARRAYS 
          */
         public static final int color_styles=0x7f060000;
         public static final int color_styles_values=0x7f060007;
@@ -22,6 +24,13 @@ public final class R {
         public static final int dateFormat_values=0x7f060006;
         public static final int eyeCandyArray=0x7f060001;
         /**  SETTINGS MENU ARRAYS END 
+ DO NOT TRANSLATE BELOW THIS LINE!!!! 
+ DO NOT TRANSLATE BELOW THIS LINE!!!! 
+ DO NOT TRANSLATE BELOW THIS LINE!!!! 
+ DO NOT TRANSLATE BELOW THIS LINE!!!! 
+ DO NOT TRANSLATE BELOW THIS LINE!!!! 
+ SETTINGS MENU ARRAY VALUES 
+ SETTINGS MENU ARRAYS END 
  DO NOT TRANSLATE BELOW THIS LINE!!!! 
  DO NOT TRANSLATE BELOW THIS LINE!!!! 
  DO NOT TRANSLATE BELOW THIS LINE!!!! 
@@ -103,6 +112,7 @@ containing a value of this type.
         public static final int eye_candy_specific_settings=0x7f050006;
         public static final int eye_candy_title=0x7f050004;
         /**  SETTINGS MENU TEXT 
+ SETTINGS MENU TEXT 
  SETTINGS MENU TEXT 
          */
         public static final int general_settings=0x7f050003;
