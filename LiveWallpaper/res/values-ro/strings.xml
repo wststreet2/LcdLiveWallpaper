@@ -21,6 +21,8 @@
     <string name="colors_custom">Folosește Culori Personalizate</string>
     <string name="colors_bg">Culoare Fundal</string>
     <string name="colors_px">Culoare Pixel</string>
+    <string name="colors_bg_desc">0xRRVVAA ( R = Rosu, V = Verde, G=Albastru in format Hexazecimal )</string>
+    <string name="colors_px_desc">0xRRVVAA ( R = Rosu, V = Verde, G=Albastru in format Hexazecimal )</string>
     <string name="datetime_settings">Ora și Data</string>
     <string name="datetime_showclock_title">Afișează Ora</string>
     <string name="datetime_showclock_desc"></string>

@@ -21,6 +21,8 @@
     <string name="colors_custom">Use Custom Colors</string>
     <string name="colors_bg">Background Color</string>
     <string name="colors_px">Pixel Color</string>
+    <string name="colors_bg_desc">0xRRGGBB ( R = Red, G = Green, B=Blue Hexadecimal format )</string>
+    <string name="colors_px_desc">0xRRGGBB ( R = Red, G = Green, B=Blue Hexadecimal format )</string>
     <string name="datetime_settings">Date and Time</string>
     <string name="datetime_showclock_title">Show Clock</string>
     <string name="datetime_showclock_desc">Enable to show the time on the virtual LCD</string>

@@ -19,12 +19,14 @@
 
         <PreferenceScreen
             android:key="specific_pref_screen"
-            android:title="@string/eye_candy_specific_settings">
+            android:title="@string/eye_candy_specific_settings" >
             <org.kamehamehaaa.android.livewallpaper.settings.AdmobPreference android:key="ad" />
+
             <PreferenceScreen
                 android:key="random_pref_screen"
                 android:title="@string/random_settings" >
                 <org.kamehamehaaa.android.livewallpaper.settings.AdmobPreference android:key="ad" />
+
                 <org.kamehamehaaa.android.livewallpaper.settings.SeekBarPreference
                     android:defaultValue="50"
                     android:dialogMessage="@string/random_density_title"
@@ -39,6 +41,7 @@
                 android:key="waterfall_pref_screen"
                 android:title="@string/waterfall_settings" >
                 <org.kamehamehaaa.android.livewallpaper.settings.AdmobPreference android:key="ad" />
+
                 <org.kamehamehaaa.android.livewallpaper.settings.SeekBarPreference
                     android:defaultValue="100"
                     android:dialogMessage="@string/waterfall_maxnum_title"
@@ -58,6 +61,7 @@
             android:key="colors_pref_screen"
             android:title="@string/colors_settings" >
             <org.kamehamehaaa.android.livewallpaper.settings.AdmobPreference android:key="ad" />
+
             <ListPreference
                 android:defaultValue="999999|333333"
                 android:entries="@array/color_styles"
@@ -73,11 +77,13 @@
             <EditTextPreference
                 android:defaultValue="0x88AA88"
                 android:key="color"
+                android:summary="@string/colors_bg_desc"
                 android:title="@string/colors_bg" >
             </EditTextPreference>
             <EditTextPreference
                 android:defaultValue="0x333333"
                 android:key="pixel_color"
+                android:summary="@string/colors_px_desc"
                 android:title="@string/colors_px" >
             </EditTextPreference>
         </PreferenceScreen>
@@ -100,6 +106,7 @@
             android:key="detail_set_cat"
             android:title="@string/datetime_specific_settings" >
             <org.kamehamehaaa.android.livewallpaper.settings.AdmobPreference android:key="ad" />
+
             <ListPreference
                 android:defaultValue="decimal"
                 android:dialogTitle="@string/datetime_clocktype_title"
@@ -150,9 +157,7 @@
             android:summary="@string/about_creators_desc"
             android:title="@string/about_creators_title" >
         </Preference>
-        <Preference
-            
-            android:title="@string/about_rate" >
+        <Preference android:title="@string/about_rate" >
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="market://details?id=org.kamehamehaaa.android.livewallpaper" />
