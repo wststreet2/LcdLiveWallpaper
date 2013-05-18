@@ -21,6 +21,8 @@
     <string name="colors_custom">Benützen von Eigenfarben</string>
     <string name="colors_bg">Hindergrundfarbe </string>
     <string name="colors_px">Pixelfarbe</string>
+    <string name="colors_bg_desc">0xRRGGBB ( R = Rot, G = Grün, B=Blau Hexadezimales Format )</string>
+    <string name="colors_px_desc">0xRRGGBB ( R = Rot, G = Grün, B=Blau Hexadezimales Format )</string>
     <string name="datetime_settings">Datum und Zeit</string>
     <string name="datetime_showclock_title">Uhr anzeigen</string>
     <string name="datetime_showclock_desc">Ermöglichung des Anzeigens der Zeit auf dem virtuellen LCD</string>
