@@ -3,7 +3,6 @@
     android:key="livewallpaper_settings"
     android:title="@string/settings_title" >
 
-    <org.kamehamehaaa.android.livewallpaper.settings.AdmobPreference android:key="ad" />
 
     <PreferenceCategory
         android:key="bg_set_cat"
@@ -20,13 +19,11 @@
         <PreferenceScreen
             android:key="specific_pref_screen"
             android:title="@string/eye_candy_specific_settings" >
-            <org.kamehamehaaa.android.livewallpaper.settings.AdmobPreference android:key="ad" />
-
+           
             <PreferenceScreen
                 android:key="random_pref_screen"
                 android:title="@string/random_settings" >
-                <org.kamehamehaaa.android.livewallpaper.settings.AdmobPreference android:key="ad" />
-
+                
                 <org.kamehamehaaa.android.livewallpaper.settings.SeekBarPreference
                     android:defaultValue="50"
                     android:dialogMessage="@string/random_density_title"
@@ -40,8 +37,7 @@
             <PreferenceScreen
                 android:key="waterfall_pref_screen"
                 android:title="@string/waterfall_settings" >
-                <org.kamehamehaaa.android.livewallpaper.settings.AdmobPreference android:key="ad" />
-
+                
                 <org.kamehamehaaa.android.livewallpaper.settings.SeekBarPreference
                     android:defaultValue="100"
                     android:dialogMessage="@string/waterfall_maxnum_title"
@@ -60,8 +56,7 @@
         <PreferenceScreen
             android:key="colors_pref_screen"
             android:title="@string/colors_settings" >
-            <org.kamehamehaaa.android.livewallpaper.settings.AdmobPreference android:key="ad" />
-
+            
             <ListPreference
                 android:defaultValue="999999|333333"
                 android:entries="@array/color_styles"
@@ -105,8 +100,7 @@
         <PreferenceScreen
             android:key="detail_set_cat"
             android:title="@string/datetime_specific_settings" >
-            <org.kamehamehaaa.android.livewallpaper.settings.AdmobPreference android:key="ad" />
-
+            
             <ListPreference
                 android:defaultValue="decimal"
                 android:dialogTitle="@string/datetime_clocktype_title"
