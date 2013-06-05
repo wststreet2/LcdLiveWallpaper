@@ -13,9 +13,9 @@ public final class R {
         public static final int clockType_values=0x7f060005;
         /**  DONATE DIALOG END 
  SETTINGS MENU ARRAYS 
- SETTINGS MENU END 
+ DONATE DIALOG END 
  SETTINGS MENU ARRAYS 
- SETTINGS MENU END 
+ DONATE DIALOG END 
  SETTINGS MENU ARRAYS 
          */
         public static final int color_styles=0x7f060000;
@@ -122,6 +122,10 @@ containing a value of this type.
         public static final int donate_dialog_message=0x7f05002e;
         public static final int donate_dialog_ok=0x7f05002f;
         /**  SETTINGS MENU END 
+ DONATE DIALOG START 
+ SETTINGS MENU END 
+ DONATE DIALOG START 
+ SETTINGS MENU END 
  DONATE DIALOG START 
          */
         public static final int donate_dialog_title=0x7f05002d;
