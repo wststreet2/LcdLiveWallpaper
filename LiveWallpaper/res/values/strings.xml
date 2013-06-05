@@ -47,8 +47,15 @@
     <string name="about_donate_desc">Opens http://www.kamehamehaaa.org/ there you can find a paypal donate widget</string>
     <string name="about_email_title">Email</string>
     <string name="about_email_desc">wststreet2@gmail.com</string>
-
     <!-- SETTINGS MENU END -->
+    
+    <!-- DONATE DIALOG START -->
+    <string name="donate_dialog_title">Donate</string>
+    <string name="donate_dialog_message">With the ads gone, we no longer have any income from this app. Will you be kind enough to at least consider donating? Any amount is ok. Please?</string>
+    <string name="donate_dialog_ok">Yes</string>
+    <string name="donate_dialog_maybe">Maybe</string>
+    <string name="donate_dialog_cancel">No</string>
+    <!-- DONATE DIALOG END -->
 
 
     <!-- SETTINGS MENU ARRAYS -->

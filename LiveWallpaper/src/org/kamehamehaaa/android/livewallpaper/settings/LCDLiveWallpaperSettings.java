@@ -1,18 +1,26 @@
 package org.kamehamehaaa.android.livewallpaper.settings;
 
+import java.util.Calendar;
+
 import org.kamehamehaaa.android.livewallpaper.R;
 import org.kamehamehaaa.android.livewallpaper.candies.EyeCandyRandom;
 import org.kamehamehaaa.android.livewallpaper.candies.EyeCandyWaterfall;
 import org.kamehamehaaa.android.livewallpaper.engine.LCDLiveWallpaper;
 import org.kamehamehaaa.android.livewallpaper.engine.WriteClass;
 
-import android.content.Context;
+import android.app.Dialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.net.Uri;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
+import android.text.format.DateFormat;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 @SuppressWarnings("deprecation")
 public class LCDLiveWallpaperSettings extends PreferenceActivity implements
@@ -32,6 +40,44 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 	@Override
 	protected void onResume() {
 		super.onResume();
+
+		String today = (String) DateFormat.format("dd", Calendar.getInstance());
+		SharedPreferences sharedPref = PreferenceManager
+				.getDefaultSharedPreferences(LCDLiveWallpaper.getContext());
+
+		if (today.equals(sharedPref.getString("lastDonate", "-1")) == false) {
+			Log.d("LCDLiveWallpaper", today + "  " + sharedPref.getString("lastDonate", "-1") );
+			sharedPref.edit().putString("lastDonate", today).commit();
+			final Dialog d = new Dialog(this);
+			d.setTitle(getString(R.string.donate_dialog_title));
+			d.setContentView(R.layout.dialogview);
+			((Button) d.findViewById(R.id.nobutton))
+					.setOnClickListener(new OnClickListener() {
+						public void onClick(View v) {
+							d.hide();
+						}
+					});
+			((Button) d.findViewById(R.id.yesbutton))
+					.setOnClickListener(new OnClickListener() {
+						public void onClick(View v) {
+							d.hide();
+							Intent i = new Intent(Intent.ACTION_VIEW, Uri
+									.parse("http://www.kamehamehaaa.org/"));
+							startActivity(i);
+						}
+					});
+			((Button) d.findViewById(R.id.maybebutton))
+					.setOnClickListener(new OnClickListener() {
+						public void onClick(View v) {
+							d.hide();
+							Intent i = new Intent(Intent.ACTION_VIEW, Uri
+									.parse("http://www.kamehamehaaa.org/"));
+							startActivity(i);
+						}
+					});
+			d.show();
+		}
+
 		// Set up a listener whenever a key changes
 		getPreferenceScreen().getSharedPreferences()
 				.registerOnSharedPreferenceChangeListener(this);
