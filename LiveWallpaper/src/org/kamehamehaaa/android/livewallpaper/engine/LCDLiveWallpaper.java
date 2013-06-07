@@ -319,7 +319,6 @@ public class LCDLiveWallpaper extends WallpaperService {
 	private static Paint bg = new Paint();
 	private static Paint onPixelPaint = null;
 	private static boolean useCustomColors = false;
-
 	public static int getLCD_WIDTH() {
 		return LCD_WIDTH;
 	}
@@ -345,6 +344,10 @@ public class LCDLiveWallpaper extends WallpaperService {
 		context = getApplicationContext();
 		engine = new MyWallpaperEngine();
 		return engine;
+	}
+	
+	public static Context getContext() {
+		return context;
 	}
 
 	public static void setEyeCandy(String name) {

@@ -50,6 +50,14 @@
 
     <!-- SETTINGS MENU END -->
 
+    <!-- DONATE DIALOG START -->
+    <string name="donate_dialog_title">Donate</string>
+    <string name="donate_dialog_message">With the ads gone, we no longer have any income from this app. Will you be kind enough to at least consider donating? Any amount is ok. Please?</string>
+    <string name="donate_dialog_ok">Yes</string>
+    <string name="donate_dialog_maybe">Maybe</string>
+    <string name="donate_dialog_cancel">No</string>
+    <!-- DONATE DIALOG END -->
+
 
     <!-- SETTINGS MENU ARRAYS -->
 

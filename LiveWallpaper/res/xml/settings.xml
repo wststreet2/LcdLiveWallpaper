@@ -151,18 +151,6 @@
             android:summary="@string/about_creators_desc"
             android:title="@string/about_creators_title" >
         </Preference>
-        <Preference android:title="@string/about_rate" >
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="market://details?id=org.kamehamehaaa.android.livewallpaper" />
-        </Preference>
-        <Preference
-            android:summary="@string/about_donate_desc"
-            android:title="@string/about_donate_title" >
-            <intent
-                android:action="android.intent.action.VIEW"
-                android:data="http://www.kamehamehaaa.org/" />
-        </Preference>
         <Preference
             android:summary="@string/about_email_desc"
             android:title="@string/about_email_title" >

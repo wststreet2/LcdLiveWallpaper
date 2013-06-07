@@ -11,11 +11,11 @@ public final class R {
     public static final class array {
         public static final int clockType=0x7f060002;
         public static final int clockType_values=0x7f060005;
-        /**  SETTINGS MENU END 
+        /**  DONATE DIALOG END 
  SETTINGS MENU ARRAYS 
- SETTINGS MENU END 
+ DONATE DIALOG END 
  SETTINGS MENU ARRAYS 
- SETTINGS MENU END 
+ DONATE DIALOG END 
  SETTINGS MENU ARRAYS 
          */
         public static final int color_styles=0x7f060000;
@@ -68,17 +68,24 @@ containing a value of this type.
     public static final class drawable {
         public static final int ic_action_search=0x7f020000;
         public static final int ic_launcher=0x7f020001;
+        public static final int please=0x7f020002;
     }
     public static final class id {
         public static final int adView=0x7f080000;
         public static final int current_value=0x7f080001;
+        public static final int imageView1=0x7f080005;
         public static final int max_value=0x7f080004;
+        public static final int maybebutton=0x7f080008;
         public static final int min_value=0x7f080003;
+        public static final int nobutton=0x7f080007;
         public static final int seek_bar=0x7f080002;
+        public static final int textView1=0x7f080006;
+        public static final int yesbutton=0x7f080009;
     }
     public static final class layout {
         public static final int admob_preference=0x7f030000;
         public static final int dialog_slider=0x7f030001;
+        public static final int dialogview=0x7f030002;
     }
     public static final class string {
         public static final int about_creators_desc=0x7f050027;
@@ -110,6 +117,18 @@ containing a value of this type.
         public static final int datetime_showdate_desc=0x7f050019;
         public static final int datetime_showdate_title=0x7f050018;
         public static final int datetime_specific_settings=0x7f05001a;
+        public static final int donate_dialog_cancel=0x7f050031;
+        public static final int donate_dialog_maybe=0x7f050030;
+        public static final int donate_dialog_message=0x7f05002e;
+        public static final int donate_dialog_ok=0x7f05002f;
+        /**  SETTINGS MENU END 
+ DONATE DIALOG START 
+ SETTINGS MENU END 
+ DONATE DIALOG START 
+ SETTINGS MENU END 
+ DONATE DIALOG START 
+         */
+        public static final int donate_dialog_title=0x7f05002d;
         public static final int eye_candy_desc=0x7f050005;
         public static final int eye_candy_specific_settings=0x7f050006;
         public static final int eye_candy_title=0x7f050004;
