@@ -6,6 +6,7 @@ import org.kamehamehaaa.android.livewallpaper.candies.EyeCandyWaterfall;
 import org.kamehamehaaa.android.livewallpaper.engine.LCDLiveWallpaper;
 import org.kamehamehaaa.android.livewallpaper.engine.WriteClass;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
