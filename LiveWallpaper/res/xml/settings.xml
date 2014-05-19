@@ -1,5 +1,5 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:seekbar="http://schemas.android.com/apk/res/org.kamehamehaaa.android.livewallpaper"
+    xmlns:seekbar="http://schemas.android.com/apk/res/org.kamehamehaaa.android.livewallpaperpro"
     android:key="livewallpaper_settings"
     android:title="@string/settings_title" >
 
@@ -24,7 +24,7 @@
                 android:key="random_pref_screen"
                 android:title="@string/random_settings" >
                 
-                <org.kamehamehaaa.android.livewallpaper.settings.SeekBarPreference
+                <org.kamehamehaaa.android.livewallpaperpro.settings.SeekBarPreference
                     android:defaultValue="50"
                     android:dialogMessage="@string/random_density_title"
                     android:key="random_pixel_density"
@@ -38,7 +38,7 @@
                 android:key="waterfall_pref_screen"
                 android:title="@string/waterfall_settings" >
                 
-                <org.kamehamehaaa.android.livewallpaper.settings.SeekBarPreference
+                <org.kamehamehaaa.android.livewallpaperpro.settings.SeekBarPreference
                     android:defaultValue="100"
                     android:dialogMessage="@string/waterfall_maxnum_title"
                     android:key="waterfall_strings2"
@@ -134,7 +134,7 @@
     <PreferenceCategory
         android:key="perf_set_cat"
         android:title="@string/perf_settings" >
-        <org.kamehamehaaa.android.livewallpaper.settings.SeekBarPreference
+        <org.kamehamehaaa.android.livewallpaperpro.settings.SeekBarPreference
             android:defaultValue="10"
             android:dialogMessage="@string/perf_framerate_title"
             android:key="framerate"
