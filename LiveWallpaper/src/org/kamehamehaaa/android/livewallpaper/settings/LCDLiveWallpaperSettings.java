@@ -41,31 +41,46 @@ public class LCDLiveWallpaperSettings extends PreferenceActivity implements
 	protected void onResume() {
 		super.onResume();
 
-		/*
-		 * String today = (String) DateFormat.format("dd",
-		 * Calendar.getInstance()); SharedPreferences sharedPref =
-		 * PreferenceManager
-		 * .getDefaultSharedPreferences(LCDLiveWallpaper.getContext());
-		 * 
-		 * if (today.equals(sharedPref.getString("lastDonate", "-1")) == false)
-		 * { Log.d("LCDLiveWallpaper", today + "  " +
-		 * sharedPref.getString("lastDonate", "-1") );
-		 * sharedPref.edit().putString("lastDonate", today).commit(); final
-		 * Dialog d = new Dialog(this);
-		 * d.setTitle(getString(R.string.donate_dialog_title));
-		 * d.setContentView(R.layout.dialogview); ((Button)
-		 * d.findViewById(R.id.nobutton)) .setOnClickListener(new
-		 * OnClickListener() { public void onClick(View v) { d.hide(); } });
-		 * ((Button) d.findViewById(R.id.yesbutton)) .setOnClickListener(new
-		 * OnClickListener() { public void onClick(View v) { d.hide(); Intent i
-		 * = new Intent(Intent.ACTION_VIEW, Uri
-		 * .parse("http://www.kamehamehaaa.org/")); startActivity(i); } });
-		 * ((Button) d.findViewById(R.id.maybebutton)) .setOnClickListener(new
-		 * OnClickListener() { public void onClick(View v) { d.hide(); Intent i
-		 * = new Intent(Intent.ACTION_VIEW, Uri
-		 * .parse("http://www.kamehamehaaa.org/")); startActivity(i); } });
-		 * d.show(); }
-		 */
+		String today = (String) DateFormat.format("dd", Calendar.getInstance());
+		SharedPreferences sharedPref = PreferenceManager
+				.getDefaultSharedPreferences(LCDLiveWallpaper.getContext());
+
+		if (today.equals(sharedPref.getString("lastDonate", "-1")) == false) {
+			Log.d("LCDLiveWallpaper",
+					today + "  " + sharedPref.getString("lastDonate", "-1"));
+			sharedPref.edit().putString("lastDonate", today).commit();
+			final Dialog d = new Dialog(this);
+			d.setTitle(getString(R.string.donate_dialog_title));
+			d.setContentView(R.layout.dialogview);
+			((Button) d.findViewById(R.id.nobutton))
+					.setOnClickListener(new OnClickListener() {
+						public void onClick(View v) {
+							d.hide();
+						}
+					});
+			((Button) d.findViewById(R.id.maybebutton))
+					.setOnClickListener(new OnClickListener() {
+						public void onClick(View v) {
+							d.hide();
+							Intent i = new Intent(
+									Intent.ACTION_VIEW,
+									Uri.parse("https://play.google.com/store/apps/details?id=org.kamehamehaaa.android.livewallpaperpro"));
+							startActivity(i);
+						}
+					});
+			((Button) d.findViewById(R.id.yesbutton))
+					.setOnClickListener(new OnClickListener() {
+						public void onClick(View v) {
+							d.hide();
+							Intent i = new Intent(
+									Intent.ACTION_VIEW,
+									Uri.parse("https://play.google.com/store/apps/details?id=org.kamehamehaaa.android.livewallpaperpro"));
+							startActivity(i);
+						}
+					});
+			d.show();
+		}
+
 		// Set up a listener whenever a key changes
 		getPreferenceScreen().getSharedPreferences()
 				.registerOnSharedPreferenceChangeListener(this);

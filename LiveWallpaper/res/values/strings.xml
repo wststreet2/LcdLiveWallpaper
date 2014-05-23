@@ -43,15 +43,15 @@
     <string name="about_creators_title">Creators</string>
     <string name="about_creators_desc">Cezar FLESERIU\nAndrei SIRBU</string>
     <string name="about_rate">Rate this app</string>
-    <string name="about_donate_title">Donate</string>
-    <string name="about_donate_desc">Opens http://www.kamehamehaaa.org/ there you can find a paypal donate widget</string>
+    <string name="about_donate_title">Get Donate Version</string>
+    <string name="about_donate_desc"></string>
     <string name="about_email_title">Email</string>
     <string name="about_email_desc">wststreet2@gmail.com</string>
     <!-- SETTINGS MENU END -->
     
     <!-- DONATE DIALOG START -->
     <string name="donate_dialog_title">Donate</string>
-    <string name="donate_dialog_message">With the ads gone, we no longer have any income from this app. Will you be kind enough to at least consider donating? Any amount is ok. Please?</string>
+    <string name="donate_dialog_message">Have you ever considered buying the donate version? It would help us.</string>
     <string name="donate_dialog_ok">Yes</string>
     <string name="donate_dialog_maybe">Maybe</string>
     <string name="donate_dialog_cancel">No</string>

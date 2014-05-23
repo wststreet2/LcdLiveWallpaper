@@ -73,14 +73,13 @@ containing a value of this type.
     public static final class id {
         public static final int adView=0x7f080000;
         public static final int current_value=0x7f080001;
-        public static final int imageView1=0x7f080005;
         public static final int max_value=0x7f080004;
-        public static final int maybebutton=0x7f080008;
+        public static final int maybebutton=0x7f080007;
         public static final int min_value=0x7f080003;
-        public static final int nobutton=0x7f080007;
+        public static final int nobutton=0x7f080006;
         public static final int seek_bar=0x7f080002;
-        public static final int textView1=0x7f080006;
-        public static final int yesbutton=0x7f080009;
+        public static final int textView1=0x7f080005;
+        public static final int yesbutton=0x7f080008;
     }
     public static final class layout {
         public static final int admob_preference=0x7f030000;
@@ -184,7 +183,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:maxValue
+          @attr name org.kamehamehaaa.android.livewallpaper:maxValue
         */
         public static final int org_kamehamehaaa_android_livewallpaper_settings_SeekBarPreference_maxValue = 1;
         /**
@@ -198,7 +197,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:minValue
+          @attr name org.kamehamehaaa.android.livewallpaper:minValue
         */
         public static final int org_kamehamehaaa_android_livewallpaper_settings_SeekBarPreference_minValue = 0;
     };

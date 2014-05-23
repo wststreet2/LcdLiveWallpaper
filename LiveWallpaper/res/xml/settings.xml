@@ -3,7 +3,6 @@
     android:key="livewallpaper_settings"
     android:title="@string/settings_title" >
 
-
     <PreferenceCategory
         android:key="bg_set_cat"
         android:title="@string/general_settings" >
@@ -19,11 +18,9 @@
         <PreferenceScreen
             android:key="specific_pref_screen"
             android:title="@string/eye_candy_specific_settings" >
-           
             <PreferenceScreen
                 android:key="random_pref_screen"
                 android:title="@string/random_settings" >
-                
                 <org.kamehamehaaa.android.livewallpaper.settings.SeekBarPreference
                     android:defaultValue="50"
                     android:dialogMessage="@string/random_density_title"
@@ -37,7 +34,6 @@
             <PreferenceScreen
                 android:key="waterfall_pref_screen"
                 android:title="@string/waterfall_settings" >
-                
                 <org.kamehamehaaa.android.livewallpaper.settings.SeekBarPreference
                     android:defaultValue="100"
                     android:dialogMessage="@string/waterfall_maxnum_title"
@@ -56,7 +52,6 @@
         <PreferenceScreen
             android:key="colors_pref_screen"
             android:title="@string/colors_settings" >
-            
             <ListPreference
                 android:defaultValue="999999|333333"
                 android:entries="@array/color_styles"
@@ -100,7 +95,6 @@
         <PreferenceScreen
             android:key="detail_set_cat"
             android:title="@string/datetime_specific_settings" >
-            
             <ListPreference
                 android:defaultValue="decimal"
                 android:dialogTitle="@string/datetime_clocktype_title"
@@ -150,6 +144,18 @@
         <Preference
             android:summary="@string/about_creators_desc"
             android:title="@string/about_creators_title" >
+        </Preference>
+        <Preference android:title="@string/about_rate" >
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="market://details?id=org.kamehamehaaa.android.livewallpaper" />
+        </Preference>
+        <Preference
+            android:summary="@string/about_donate_desc"
+            android:title="@string/about_donate_title" >
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://play.google.com/store/apps/details?id=org.kamehamehaaa.android.livewallpaperpro" />
         </Preference>
         <Preference
             android:summary="@string/about_email_desc"

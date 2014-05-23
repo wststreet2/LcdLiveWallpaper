@@ -44,7 +44,7 @@
     <string name="about_creators_desc">Cezar FLEȘERIU\nAndrei SÎRBU</string>
     <string name="about_rate">Acordă Calificativ</string>
     <string name="about_donate_title">Donează</string>
-    <string name="about_donate_desc">Deschide http://www.kamehamehaaa.org/ , acolo veți găsi un widget de PayPal</string>
+    <string name="about_donate_desc"></string>
     <string name="about_email_title">Email</string>
     <string name="about_email_desc">wststreet2@gmail.com</string>
 
@@ -52,7 +52,7 @@
 
     <!-- DONATE DIALOG START -->
     <string name="donate_dialog_title">Donati</string>
-    <string name="donate_dialog_message">Din cauza disparitiei reclamelor noi nu mai avem nici un venit din aplicatie, ati dori sa donati? Oricat de putin, va rugam?</string>
+    <string name="donate_dialog_message">V-ati gandit vreodata sa cumparati varianta pentru donatii?</string>
     <string name="donate_dialog_ok">Da</string>
     <string name="donate_dialog_maybe">Poate</string>
     <string name="donate_dialog_cancel">Nu</string>
